@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 3826128cd347cbd4fbbf4d2adf716688
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - AppleSDGothicNeoR00
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e3d2eeb530fa01e429f663045a0750ed, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
