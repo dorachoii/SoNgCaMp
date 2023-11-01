@@ -34,7 +34,7 @@ public class PageButton : MonoBehaviour
                 //불러올때는 노트의 정보가
                 Notes note = Board.instance.drags[i].Tile;
                 NoteBlockInfo info = note.info = notes[i];
-                note._Beat = info.beat;
+                note._IBeat = info.Beat;
                 note._IPitch = info.Pitch;
                 
                 Debug.Log(info.pitch);

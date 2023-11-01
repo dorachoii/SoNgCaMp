@@ -29,6 +29,10 @@ public class NoteBlockInfo{
 
     public int Pitch = 60;
     public Pitch pitch;
+
+    //Enum형 이제 안쓸거임 
+    public int Beat;
+
     public Beat beat;
     //세기
     public int velocity;
@@ -39,6 +43,7 @@ public class NoteBlockInfo{
         this.beat = data.beat;
         this.velocity = data.velocity;
         this.enable = data.enable;
+        this.Beat = data.Beat;
     }
 }
 
@@ -49,10 +54,16 @@ public class Notes : MonoBehaviour
     public const int MinNoteNum = 0;
     public const int MaxNoteNum = 127;
     public const int PitchPage = 12;
+
+    public const int MinBeatNum = 1;
+    public const int MaxBeatNum = 16;
+
     public NoteBlockInfo info;
 
     public int Ipitch;
     //음
+    public int Ibeat;
+
     public Pitch pitch;
     public Beat beat;
     //세기
@@ -69,7 +80,17 @@ public class Notes : MonoBehaviour
         get { return Ipitch; }
         set { Ipitch = value;
             pitchText.text = IpitchToString(value);
-            info.Pitch = value; 
+            info.Pitch = value;
+        }
+    }
+    public int _IBeat{
+        get { return Ibeat; }
+
+        set {
+            Debug.Log("뭐떄문에 안되는지?");
+            Ibeat = value;
+            beatText.text = value + "칸";
+            info.Beat = value;
         }
     }
 

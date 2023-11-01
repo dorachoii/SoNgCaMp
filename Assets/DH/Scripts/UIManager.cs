@@ -90,6 +90,7 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < noteInfos.Length; i++) {
             NoteBlockInfo info = new NoteBlockInfo();
             info.pitch = Notes.Pitch.Do;
+            info.Beat = 16;
             noteInfos[i] = info;
         }
 

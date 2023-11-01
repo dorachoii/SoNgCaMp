@@ -87,24 +87,58 @@ public class NoteManager : MonoBehaviour
 
             List<byte> bytelist = new List<byte>();
 
+            NoteBlockInfo prevNote = null;
+            int count = 1;//얼마나 공백이 존재하는지
+            int shim = 0;
+            //블록당 읽으니까. 
             foreach (NoteBlockInfo[] infos in track.Notelist)
             {
+                
                 foreach (NoteBlockInfo info in infos)
                 {
-                    if (!info.enable) continue;
+                    //카운트는 무조건 해야함
 
-                    //NpteOnEvent
-                    bytelist.AddRange(D_MidiManager.ConvertDeltaTime(60)); //test!! 1
-                    bytelist.Add((byte)info.Pitch);
-                    bytelist.Add(120);
+                    //지금 칸이 공백이 아니라면
+                    if (info.enable) {
+                        shim = count;
+                        //공백이 아닐시 뒤에 노트를 끊고 
+                        if (prevNote != null)
+                        {
+                            //내 박자가 큰경우 쪼개기 아니면 그냥하기
+                            prevNote.Beat = (count > prevNote.Beat ? prevNote.Beat : count);
+                            //쉼표는 count - 비트 
+                            shim = (count > prevNote.Beat ? count - prevNote.Beat : 0);
+                            //NoteOff Event (뒤에 노트 끊고)
+                            bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(prevNote.Beat * 0.5f)));
+                            bytelist.Add((byte)prevNote.Pitch); //이거 수정필
+                            bytelist.Add(0);
+                            count = 0;
+                        }
 
-                    //NoteOff Event
-                    bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(Notes.BeatTofloat(info.beat))));
-                    bytelist.Add((byte)info.Pitch); //이거 수정필
-                    bytelist.Add(0);
+                        //나 시작하고
+                        //NoteOnEvent
+                        bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime((shim) * 0.5f))); //쉼표는 결국 count가 된다.
+                        bytelist.Add((byte)info.Pitch);
+                        bytelist.Add(120);
+                        count = 0;
+                        //끝났으니 내가 이전으로 될게.
+                        prevNote = info;
+                    }
+                    count++;
                 }
+                //탐색종료시 마지막에 초기화가 안된 대상이 있을 시, null이 아닐시 종료 필요.
+
 
             }
+            //마지막때 한번 필요해 
+            if (prevNote != null) {
+
+                prevNote.Beat = (count > prevNote.Beat ? prevNote.Beat : count);
+                bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(prevNote.Beat * 0.5f))); //한칸에 0.5박
+                bytelist.Add((byte)prevNote.Pitch); //이거 수정필
+                bytelist.Add(0);
+            }
+
             //한 트랙의 데이터들을 모두 긁어서 List에 넣어둠.
             //그것을? track에 붙임. 
             trackchunk.AddData = bytelist.ToArray();
