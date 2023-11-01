@@ -1,0 +1,181 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using UnityEngine;
+using UnityEngine.UI;
+using DH;
+using DHMidi;
+
+public class NoteManager : MonoBehaviour
+{
+
+    public static int noteSize = 5;
+
+    public static NoteManager instance;
+
+
+    public NoteBlockInfo SaveData = new NoteBlockInfo();
+    private void Awake()
+    {
+        instance = this;
+    }
+    public Transform Board;
+    public Notes[] list;
+    public static List<byte> bytelist = new List<byte>();
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        byte[] bytes = BitConverter.GetBytes(10);
+        Debug.Log(bytes);
+
+
+
+
+
+
+        //127 이상이면 무조건 다음 바이트도 델타타임.
+        //
+        
+
+    }
+
+    public InputField field;
+    public void CreateNote(GameObject go) {
+        GameObject note = Instantiate(go, Board);
+        Notes Cnote = note.GetComponent<Notes>();
+        //Cnote.beat = float.Parse(field.text);
+        field.text = "";
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public MidiFile midifile = new MidiFile();
+
+
+    public void ReadNote() {
+
+
+        midifile.TrackLsit.Clear();
+        DummyHeaderData dummy = new DummyHeaderData();
+        midifile.Header = new HeaderChunk(dummy.H_Ctype,dummy.H_Length,dummy.H_Data);
+
+        bytelist.Clear();
+        list = Board.GetComponentsInChildren<Notes>();
+
+        //1바이트 = 8비트
+        //16진수 하나 = 1바이트
+
+        //1101 0111
+        //앞자리 수로 비교하는데 원래 수의
+        //최상위 비트가 1이면 안됨
+        //따라서 1이라면 
+
+        //파싱하는 과정필요
+
+        UIManager.instance.Tracks.ForEach((Action<Track>)(track =>
+        {
+            DummyTrackData dummy = new DummyTrackData();
+            TrackChunk trackchunk = new TrackChunk(dummy.C_Ctype, dummy.C_Length, dummy.C_Data);
+
+            //Track에 있는 Note 데이터들을 Data에 옮기자.
+
+            List<byte> bytelist = new List<byte>();
+
+            foreach (NoteBlockInfo[] infos in track.Notelist)
+            {
+                foreach (NoteBlockInfo info in infos)
+                {
+                    if (!info.enable) continue;
+
+                    //NpteOnEvent
+                    bytelist.AddRange(D_MidiManager.ConvertDeltaTime(60)); //test!! 1
+                    bytelist.Add((byte)info.Pitch);
+                    bytelist.Add(120);
+
+                    //NoteOff Event
+                    bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(Notes.BeatTofloat(info.beat))));
+                    bytelist.Add((byte)info.Pitch); //이거 수정필
+                    bytelist.Add(0);
+                }
+
+            }
+            //한 트랙의 데이터들을 모두 긁어서 List에 넣어둠.
+            //그것을? track에 붙임. 
+            trackchunk.AddData = bytelist.ToArray();
+
+            //마지막 데이터니까?
+            byte[] last_data = { 0x00,
+        0xFF, 0x2F, 0x00 };
+
+            trackchunk.AddData = last_data;
+
+            midifile.TrackLsit.Add(trackchunk);
+        }));
+    
+        //test  차원에서지 UIManager에 이게 있으면 곤란함
+
+
+        //foreach (NoteInfo[] infos in UIManager.instance.noteList) {  
+        //    foreach (NoteInfo info in infos) {
+        //        if (!info.enable) continue;
+
+        //        //NpteOnEvent
+        //        bytelist.AddRange(D_MidiManager.ConvertDeltaTime(1));
+        //        bytelist.Add((byte)info.Pitch);
+        //        bytelist.Add(120);
+
+        //        //NoteOff Event
+        //        bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime( Notes.BeatTofloat(info.beat)  )));
+        //        bytelist.Add((byte)info.Pitch); //이거 수정필
+        //        bytelist.Add(0);
+        //    }
+
+        //}
+            
+
+
+
+        //foreach (Notes note in list)
+        //{
+        //    //deltatime to byte
+        //    Debug.Log("Parsing!!");
+
+        //    //시작은 상관이 없네.. 어짜피 뒤에서 끝나니까
+            
+        //    //뒤 이벤트가 끝난 후, 1tick 뒤에 바로 다음 이벤트를 실행한다.
+        //    bytelist.AddRange(D_MidiManager.ConvertDeltaTime(1));
+
+
+        //    //Test Data ========
+        //    byte[] bytes1 = D_MidiManager.ConvertDeltaTime(1000);
+        //    Debug.LogWarning(1 + "를 지금 바꾸는 중입니다."); 
+        //    bytes1.ToList().ForEach(i => Debug.Log(i)); 
+
+
+        //    bytelist.Add((byte)note.PitchToint(note.pitch));
+
+        //    bytelist.Add(120
+        //        );
+                
+        //    //Test Data ========
+        //    byte[] bytes2 = D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime( note._FBeat));
+        //    Debug.LogWarning(note.beat + "를 지금 바꾸는 중입니다.");
+        //    bytes2.ToList().ForEach( i => Debug.Log(i) );  
+
+        //    //byte[] e_pitchbytes = BitConverter.GetBytes(note.PitchToint(note.pitch));
+        //    bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(note._FBeat)));  
+        //    bytelist.Add((byte)note.PitchToint(note.pitch));
+        //    //bytelist.AddRange(pitchbytes);
+        //    bytelist.Add(0);
+
+
+        //}
+    }
+}
+
