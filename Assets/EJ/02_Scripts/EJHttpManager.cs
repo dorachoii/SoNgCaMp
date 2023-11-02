@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 [Serializable]
 public class UserInfo
 {
@@ -88,13 +89,16 @@ public class EJHttpInfo
     public EJRequestType EJRequestType2;
     public string url = "";
     public string body;
+
+    //API로부터 다운로드를 받은 것이 있는지 없는지 판단
     public Action<DownloadHandler> onReceive;
 
+    //??? 이 Set함수를 실행시켜주는 곳이 어디지?
     public void Set(
-        EJRequestType type,
-        string u,
-        Action<DownloadHandler> callback,
-        bool useDefaultUrl = true)
+            EJRequestType type,
+            string u,
+            Action<DownloadHandler> callback,
+            bool useDefaultUrl = true)
     {
         EJRequestType2 = type;
         if (useDefaultUrl) url = "http://172.16.16.228:3000";
@@ -163,6 +167,7 @@ public class EJHttpManager : MonoBehaviour
                 req = UnityWebRequest.Delete(httpInfo.url);
                 break;
 
+            //이미지 파일
             case EJRequestType.TEXTURE:
                 req = UnityWebRequestTexture.GetTexture(httpInfo.url);
                 break;
