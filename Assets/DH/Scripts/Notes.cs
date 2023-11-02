@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 using static Notes;
 
+using static DH.D_MidiManager;
 
 //Track 
 public class Track {
+    public int number;
+    public Instruments instrument; 
+
     public List<NoteBlockInfo[]> Notelist = new List<NoteBlockInfo[]>();
     public Track() {
         //할당하는 작업
-        NoteBlockInfo[] noteInfos = new NoteBlockInfo[5 * 5];
+        NoteBlockInfo[] noteInfos = new NoteBlockInfo[ 4 * 4];
         for (int i = 0; i < noteInfos.Length; i++)
         {
             NoteBlockInfo info = new NoteBlockInfo();

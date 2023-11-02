@@ -97,7 +97,6 @@ public class NoteDrag : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, ID
         //test
         MIDIPlayer1.instance.midiStreamSynthesizer.NoteOff(0, note._IPitch);
         IsDragging = false;
-        Queue queue = new Queue();
         
         
 

@@ -77,56 +77,65 @@ public class NoteManager : MonoBehaviour
         //따라서 1이라면 
 
         //파싱하는 과정필요
-
+        int trackCount = 0;
         UIManager.instance.Tracks.ForEach((Action<Track>)(track =>
         {
-            DummyTrackData dummy = new DummyTrackData();
-            TrackChunk trackchunk = new TrackChunk(dummy.C_Ctype, dummy.C_Length, dummy.C_Data);
+        DummyTrackData dummy = new DummyTrackData();
+        TrackChunk trackchunk = new TrackChunk(dummy.C_Ctype, dummy.C_Length, dummy.C_Data);
 
-            //Track에 있는 Note 데이터들을 Data에 옮기자.
+        //Track에 있는 Note 데이터들을 Data에 옮기자.
 
-            List<byte> bytelist = new List<byte>();
+        List<byte> bytelist = new List<byte>();
 
-            NoteBlockInfo prevNote = null;
-            int count = 1;//얼마나 공백이 존재하는지
-            int shim = 0;
+        NoteBlockInfo prevNote = null;
+        int count = 1;//얼마나 공백이 존재하는지
+        int shim = 0;
+
+
+            //악기 설정
+            bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(0)));
+            bytelist.AddRange(D_MidiManager.ChangeInstument(trackCount, track.instrument));
+
+            //트랙의 시작 시 시작이벤트 넣자. 
+            bytelist.AddRange(new byte[] { 0x00, (byte)(0x90 + trackCount), 0x3C, 0x00 });
+            trackCount++;
             //블록당 읽으니까. 
             foreach (NoteBlockInfo[] infos in track.Notelist)
+        {
+
+            foreach (NoteBlockInfo info in infos)
             {
-                
-                foreach (NoteBlockInfo info in infos)
-                {
-                    //카운트는 무조건 해야함
+                //카운트는 무조건 해야함
 
-                    //지금 칸이 공백이 아니라면
-                    if (info.enable) {
-                        shim = count;
-                        //공백이 아닐시 뒤에 노트를 끊고 
-                        if (prevNote != null)
-                        {
-                            //내 박자가 큰경우 쪼개기 아니면 그냥하기
-                            prevNote.Beat = (count > prevNote.Beat ? prevNote.Beat : count);
-                            //쉼표는 count - 비트 
-                            shim = (count > prevNote.Beat ? count - prevNote.Beat : 0);
-                            //NoteOff Event (뒤에 노트 끊고)
-                            bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(prevNote.Beat * 0.5f)));
-                            bytelist.Add((byte)prevNote.Pitch); //이거 수정필
-                            bytelist.Add(0);
-                            count = 0;
-                        }
-
-                        //나 시작하고
-                        //NoteOnEvent
-                        bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime((shim) * 0.5f))); //쉼표는 결국 count가 된다.
-                        bytelist.Add((byte)info.Pitch);
-                        bytelist.Add(120);
+                //지금 칸이 공백이 아니라면
+                if (info.enable) {
+                    shim = count;
+                    //공백이 아닐시 뒤에 노트를 끊고 
+                    if (prevNote != null)
+                    {
+                        //내 박자가 큰경우 쪼개기 아니면 그냥하기
+                        prevNote.Beat = (count > prevNote.Beat ? prevNote.Beat : count);
+                        //쉼표는 count - 비트 
+                        shim = (count > prevNote.Beat ? count - prevNote.Beat : 0);
+                        //NoteOff Event (뒤에 노트 끊고)
+                        bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(prevNote.Beat * 0.5f)));
+                        bytelist.Add((byte)prevNote.Pitch); //이거 수정필
+                        bytelist.Add(0);
                         count = 0;
-                        //끝났으니 내가 이전으로 될게.
-                        prevNote = info;
                     }
-                    count++;
+
+                    //나 시작하고
+                    //NoteOnEvent
+                    bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime((shim) * 0.5f))); //쉼표는 결국 count가 된다.
+                    bytelist.Add((byte)info.Pitch);
+                    bytelist.Add(120);
+                    count = 0;
+                    //끝났으니 내가 이전으로 될게.
+                    prevNote = info;
                 }
-                //탐색종료시 마지막에 초기화가 안된 대상이 있을 시, null이 아닐시 종료 필요.
+                count++;
+            }
+            //탐색종료시 마지막에 초기화가 안된 대상이 있을 시, null이 아닐시 종료 필요.
 
 
             }
