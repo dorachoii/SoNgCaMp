@@ -60,6 +60,29 @@ public class EJLogIn : MonoBehaviour
         d.SetActive(true);
     }
 
+    //ctrl+Z ¸¸µé±â
+    public void Click_Back()
+    {
+        if (b.activeSelf)
+        {
+            b.SetActive(false);
+            a.SetActive(true);
+        }else if (c.activeSelf)
+        {
+            c.SetActive(false);
+            b.SetActive(true);
+        }else if (d.activeSelf)
+        {
+            d.SetActive(false);
+            b.SetActive(true);
+        }else
+        {
+            a.SetActive(true);
+        }
+        
+        //Idontknow
+    }
+
 
     public void LogInCheck()
     {
