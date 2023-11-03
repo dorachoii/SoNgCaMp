@@ -24,7 +24,7 @@ public class NetworkTest: MonoBehaviour
         int mood = 0;
         bool musician = true;
 
-        UserInfo userInfo = new UserInfo(id, pw, nickName, sessionType, genre, mood, musician);
+        UserInfo_register userInfo = new UserInfo_register(id, pw, nickName, sessionType, genre, mood, musician);
 
         //"api/v1/users"
         HttpInfo httpInfo = new HttpInfo(); 
