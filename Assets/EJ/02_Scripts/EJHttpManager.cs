@@ -6,15 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-[Serializable]
-public class UserInfo
-{
-    public bool isMusician;
-    public string name;
-    public int session;
-    public int genre;
-    public int mood;
-}
+
 
 public enum sessionType
 {
