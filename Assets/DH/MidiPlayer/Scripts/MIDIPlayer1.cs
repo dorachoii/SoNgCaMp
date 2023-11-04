@@ -80,12 +80,12 @@ public class MIDIPlayer1 : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            //midiStreamSynthesizer.NoteOn(0, midiNote, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn(9, midiNote, midiNoteVolume, midiInstrument);
         }
 
         if (Input.GetButtonUp("Fire1"))
         {
-            //midiStreamSynthesizer.NoteOff(0, midiNote);
+            midiStreamSynthesizer.NoteOff(9, midiNote);
         }
 
 

@@ -173,10 +173,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info:
+    Pitch: 60
     pitch: 4
+    Beat: 16
     beat: 0
     velocity: 0
     enable: 0
+  Ipitch: 0
+  Ibeat: 0
   pitch: 4
   beat: 0
   velocity: 0
@@ -275,4 +279,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1\uBC15"
+  m_Text: "16\uCE78"

@@ -82,7 +82,9 @@ public class NoteDrag : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, ID
                 
                 break;
             case EditerMode.EditerState.Beat:
-                note._Beat = (Notes.Beat)AdderEnum(note.beat, arrow);
+                note._IBeat = Adderint(note.Ibeat, Notes.MinBeatNum, Notes.MaxBeatNum, arrow);
+                NoteManager.instance.SaveData.Copy(note.info);
+                //note._Beat = (Notes.Beat)AdderEnum(note.beat, arrow);
                 break;
             default:
                 break;
@@ -95,7 +97,6 @@ public class NoteDrag : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, ID
         //test
         MIDIPlayer1.instance.midiStreamSynthesizer.NoteOff(0, note._IPitch);
         IsDragging = false;
-        Queue queue = new Queue();
         
         
 

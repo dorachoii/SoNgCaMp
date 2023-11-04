@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public Stack<GameObject> UiLayer = new Stack<GameObject>();
+    
+
 
 
     public static UIManager instance;
@@ -80,16 +83,18 @@ public class UIManager : MonoBehaviour
         get { return noteList; }
     }
 
+    public const int MaxNote = 4;
     public List<PageButton> pageList = new List<PageButton>();
     public void plusButton() {
         Debug.Log("MY PAGE = " + page);
         if (page + 1 > pageLength) return;
 
         //할당하는 작업
-        NoteBlockInfo[] noteInfos = new NoteBlockInfo[5 * 5];
+        NoteBlockInfo[] noteInfos = new NoteBlockInfo[MaxNote * MaxNote];
         for (int i = 0; i < noteInfos.Length; i++) {
             NoteBlockInfo info = new NoteBlockInfo();
             info.pitch = Notes.Pitch.Do;
+            info.Beat = 16;
             noteInfos[i] = info;
         }
 
@@ -136,7 +141,17 @@ public class UIManager : MonoBehaviour
     public Transform TrackBoard;
     //다중 트랙
     public List<Track> Tracks = new List<Track>();
+
+
     public Track currentTrack;
+    public InputField filed;
+    public void ChangeInstruments() {
+        int val = int.Parse(field.text);
+        currentTrack.instrument = (DH.D_MidiManager.Instruments)val;
+    }
+
+
+
     //트랙 증가
     public void trackButton()
     {
