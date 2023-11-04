@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public Stack<GameObject> UiLayer = new Stack<GameObject>();
+    
+
 
 
     public static UIManager instance;
