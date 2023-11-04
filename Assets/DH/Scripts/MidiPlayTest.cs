@@ -14,7 +14,7 @@ public class MidiPlayTest : MonoBehaviour
         LogManager.instance.Log("어디서 로그가 안찍히는건지 모르겠네 진짜");
         midiPlayer = new AndroidJavaObject("com.unity3d.midi.MidiPlayer");
 
-
+        Debug.LogError("그냥 기분삼아 찍는 에러임");
 
         if (File.Exists(midiFilePath))
         {

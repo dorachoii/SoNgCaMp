@@ -19,6 +19,7 @@ public class Drag : MonoBehaviour, IPointerDownHandler
         Tile.info.Copy(NoteManager.instance.SaveData);
         Tile._IPitch = NoteManager.instance.SaveData.Pitch;
         Tile._Beat = NoteManager.instance.SaveData.beat;
+        Tile._IBeat = NoteManager.instance.SaveData.Beat;
         Tile.info.enable = true;
     }
 
