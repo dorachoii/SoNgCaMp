@@ -152,15 +152,23 @@ public class UIManager : MonoBehaviour
 
 
 
+    //transform
+    public Transform TrackBtn;
     //트랙 증가
     public void trackButton()
     {
         GameObject go =  Instantiate(TrackButton, TrackBoard);
+        TrackBtn.SetAsLastSibling();
         TrackButton trButton =  go.GetComponent<TrackButton>();
         trButton.myPage = trackPage;
         //트랙 증가
         Tracks.Add(new Track());
         trackPage++;
+
+        //버튼을 맨 마지막으로 보냄
+
+
+        Debug.Log("근데 왜 안됨?");
     }
 
     public void EscapeButton() {
