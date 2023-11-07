@@ -75,8 +75,8 @@ public class Notes : MonoBehaviour
     //public float beat;
 
     //의존성 두고싶지 않음 차후에 수정
-    public Text pitchText;
-    public Text beatText;
+    public TMPro.TextMeshProUGUI pitchText;
+    public TMPro.TextMeshProUGUI beatText;
 
 
     public int _IPitch
@@ -93,7 +93,7 @@ public class Notes : MonoBehaviour
         set {
             Debug.Log("뭐떄문에 안되는지?");
             Ibeat = value;
-            beatText.text = value + "칸";
+            beatText.text = value + "Beat";
             info.Beat = value;
         }
     }
@@ -327,7 +327,7 @@ public class Notes : MonoBehaviour
         return s_pitch;
     }
 
-    static string[] str_pitch = { "도", "도#","레","레#","미","파","파#","솔","솔#","라","라#","시" }; 
+    static string[] str_pitch = { "Do", "Do#","Re","Re#","Mi","Pa","Pa#","Sol","Sol#","La","La#","Si" }; 
     public string IpitchToString(int pitch) {
         int octave = pitch / PitchPage;
         int notenum = pitch % PitchPage;

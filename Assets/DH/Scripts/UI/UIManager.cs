@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public Transform Board;
+   // public Transform Board;
     public GameObject Button;
     public int page = 1;
     int pageLength = 50;
@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
     
     private void Start()
     {
-        trackButton();
+        //trackButton();
     }
     public List<NoteBlockInfo[]> NoteList
     {
@@ -99,11 +99,12 @@ public class UIManager : MonoBehaviour
         }
 
         noteList.Add(noteInfos);
-        GameObject go = Instantiate(Button,Board);
-        PageButton button = go.GetComponent<PageButton>();
-        pageList.Add(button);
-        button.text.text = page.ToString();
-        button.idx = page - 1;
+
+        //GameObject go = Instantiate(Button,Board);
+        //PageButton button = go.GetComponent<PageButton>();
+        //pageList.Add(button);
+        //button.text.text = page.ToString();
+        //button.idx = page - 1;
 
         page++;
 
@@ -125,6 +126,62 @@ public class UIManager : MonoBehaviour
         Destroy(button.gameObject);
         page--;
     }
+
+
+    public int currentPage = 0;
+    public void AdderPage(int adder) {
+
+        Debug.Log("TEST");
+        //더한값이 크거나 작으면 곤란 곤란
+        currentPage = (adder + currentPage) > page || (adder + currentPage) < 0 ? currentPage : currentPage + adder;
+        click(currentPage );
+        
+
+    }
+
+    public void click(int idx)
+    {
+        //몇 번째 노트 데이터를 알려주세요.
+        NoteBlockInfo[] notes = NoteList[idx];
+        Debug.Log("Loading!!");
+
+        //받은 데이터 렌더링 하기
+        for (int i = 0; i < notes.Length; i++)
+        {
+
+            if (notes[i] != null)
+            {
+
+                //불러올때는 노트의 정보가
+                Notes note = Board.instance.drags[i].Tile;
+                NoteBlockInfo info = note.info = notes[i];
+                note._IBeat = info.Beat;
+                note._IPitch = info.Pitch;
+
+                Debug.Log(info.pitch);
+                note.gameObject.SetActive(info.enable);
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void Save(int page) { 
         
@@ -160,7 +217,13 @@ public class UIManager : MonoBehaviour
         GameObject go =  Instantiate(TrackButton, TrackBoard);
         TrackBtn.SetAsLastSibling();
         TrackButton trButton =  go.GetComponent<TrackButton>();
+
+
+        //trButton.
         trButton.myPage = trackPage;
+
+        trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
+        trButton.OnClickTrackEv.AddListener(ChangeTrack);
         //트랙 증가
         Tracks.Add(new Track());
         trackPage++;
@@ -191,25 +254,37 @@ public class UIManager : MonoBehaviour
 
 
         //이유가, Remove 할때마다 Size가 감소해서 반복문이 의도한대로 진행되지 않음.
-        pageList.ForEach(i => {
-            Destroy(i.gameObject);
-        } );
-        pageList.Clear();
-        page = 1;
 
-        for (int i = 0; i < noteList.Count; i++)
+        //pageList.ForEach(i => {
+        //    Destroy(i.gameObject);
+        //} );
+        //pageList.Clear();
+        //page = 0;
+
+        for (int i = 0; i < noteList.Count - 1; i++)
         {
 
             Debug.LogError("추가가 된다.");
             //이만큼 버튼 추가
-            GameObject go = Instantiate(Button, Board);
-            PageButton button = go.GetComponent<PageButton>();
-            pageList.Add(button);
-            button.text.text = page.ToString();
-            button.idx = page - 1;
+            //GameObject go = Instantiate(Button, Board);
+            //PageButton button = go.GetComponent<PageButton>();
+            //pageList.Add(button);
+            //button.text.text = page.ToString();
+            //button.idx = page - 1;
             page++;
         }
 
 
     }
+
+
+    public void ChangeTrack(int chanel) {
+        currentTrack = Tracks[chanel];
+        TrackCanvas.gameObject.SetActive(false);
+        EditerCanvas.gameObject.SetActive(true);
+        //렌더링 방식을 변경
+        noteList = currentTrack.Notelist;
+        Rendering();
+    }
+
 }
