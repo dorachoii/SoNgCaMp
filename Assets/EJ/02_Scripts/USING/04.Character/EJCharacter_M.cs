@@ -5,25 +5,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-
-[System.Serializable]
-public struct CharacterInfo
-{
-    public int characterType;
-    //0: listener, 1: rabbit, 2: panda, 3: dog
-
-    public string hexString_cloth;
-    public string hexString_skin;
-    public string hexString_face;
-    public string hexString_ribbon;
-
-    //Color albedoColor = ColorUtility.HexToColor(hexString); 변환 후 사용
-
-    public bool isCrownON;
-    public bool isGlassON;
-    public bool isBagON;
-    public bool isCapON;
-}
+using UnityEngine.InputSystem.EnhancedTouch;
 
 
 public class EJCharacter_M : MonoBehaviour
@@ -32,8 +14,20 @@ public class EJCharacter_M : MonoBehaviour
     CharacterInfo characterInfo = new CharacterInfo();
 
     //01. character prefabs
-    public GameObject character_L;
+    //public GameObject character_L;
     public GameObject[] characters_M;
+
+    [System.Serializable]
+    public class Array
+    {
+        public GameObject[] item = new GameObject[4];
+   
+    }        
+    public Array[] character_items = new Array[3];
+
+    public Transform centerPos;
+
+    public Camera stageCam;
 
     //02. UI
     public GameObject CustomBtns;
@@ -43,7 +37,7 @@ public class EJCharacter_M : MonoBehaviour
 
     public GameObject[] Color_Btns_Clicked;
 
-    public GameObject Btns_Item_L;
+    //public GameObject Btns_Item_L;
     public GameObject Btns_Item_M;
     public GameObject Btns_ColorChange;
 
@@ -63,32 +57,87 @@ public class EJCharacter_M : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isExplainBoxON)
-        {
-            if (Btns_Item_L.activeSelf || Btns_ColorChange.activeSelf)
-            {
-                for (int i = 0; i < explainBox.Length; i++)
-                {
-                    explainBox[i].SetActive(false);
-                }
-                print("explainBoxON이 몇번 호출될까요~~");
-                isExplainBoxON = false;
-            }
-        }
+        SelectCharacter();
     }
 
-    //musician중 누르면 해당 위치로 Spawn되게
+    public void SelectCharacter()
+    {
+        //***touch로 바꿀 시
+        //UnityEngine.Touch touch = Input.GetTouch(0);
+        //Ray ray = Camera.main.ScreenPointToRay(touch.position);
 
+        Ray ray = stageCam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            print("마우스 왼쪽 버튼을 눌렀다");
+            if (Physics.Raycast(ray, out hitInfo, 100f, 1 << LayerMask.NameToLayer("character")))
+            {
+                string characterName = hitInfo.transform.name;
+                characterName = characterName.Replace("Ch_", "");
+                int characterIndex = int.Parse(characterName) - 1;
+
+                //outline
+                if (hitInfo.transform.gameObject.GetComponent<Outline>().enabled)
+                {
+                    //이동 코루틴
+                    StartCoroutine(moveToCenterPoint(hitInfo.transform.parent.gameObject));
+
+                    //나머지 애는 꺼지게
+                    for (int i = 0; i < characters_M.Length; i++)
+                    {
+                        if (i != characterIndex)
+                        {
+                            characters_M[i].gameObject.SetActive(false);
+                        }
+                    }
+                }
+                else
+                {
+                    hitInfo.transform.gameObject.GetComponent<Outline>().enabled = true;
+
+                    for (int i = 0; i < characters_M.Length; i++)
+                    {
+                        if (i != characterIndex)
+                        {
+                            characters_M[i].gameObject.GetComponentInChildren<Outline>().enabled = false;
+                        }
+                    }                   
+                }
+            }
+        }        
+    }
+
+    IEnumerator moveToCenterPoint(GameObject go)
+    {
+        while (!(Vector3.Distance(go.transform.position, centerPos.transform.position) < 0.01f))
+        {
+            go.transform.position = Vector3.Lerp(go.transform.position, centerPos.transform.position, 0.1f);
+            yield return null;
+        }
+
+        go.GetComponentInChildren<Outline>().enabled = false;
+        Show_Btns();
+    }
+
+    public void Show_Btns()
+    {
+        CustomBtns.SetActive(true);
+        explainBox[0].SetActive(false);
+        explainBox[1].SetActive(true);
+    }
+    
     public void Click_Item()
     {
         CustomBtns.SetActive(false);
-        Btns_Item_L.SetActive(true);
+        Btns_Item_M.SetActive(true);
     }
 
     public void Click_ColorChange()
@@ -105,88 +154,96 @@ public class EJCharacter_M : MonoBehaviour
         CP_Cloth.SetActive(false);
 
         print("clickBack을 눌렀다");
-        if (Btns_Item_L.activeSelf)
+        if (Btns_Item_M.activeSelf)
         {
             print("clickBack을 눌렀고 itemBtn이 activeself이다");
-            Btns_Item_L.SetActive(false);
+            Btns_Item_M.SetActive(false);
         }
         else if (Btns_ColorChange.activeSelf)
         {
             print("clickBack을 눌렀고 colorChangeBtn이 activeself이다");
             Btns_ColorChange.SetActive(false);
         }
-        
+
         CustomBtns.SetActive(true);
     }
 
 
-    #region L_Items
-    //동시 착용 안되는 것들: 모자와 헤드폰
+    #region M_Items - testFINISHED!
+    //동시 착용 안되는 것들: 모자와 크라운
     public void Click_Item_Cap()
     {
-        if (!items[0].activeSelf)
+        int charIndex = WhatCharSelected();
+
+        if (!character_items[charIndex].item[0].activeSelf)
         {
-            items[0].SetActive(true);
+            character_items[charIndex].item[0].SetActive(true);
             characterInfo.isCapON = true;
         }
-        else 
+        else
         {
-            items[0].SetActive(false);
+            character_items[charIndex].item[0].SetActive(false);
             characterInfo.isCapON = false;
         }
 
 
-        if (items[1].activeSelf)
+        if (character_items[charIndex].item[1].activeSelf)
         {
-            items[1].SetActive(false);
+            character_items[charIndex].item[1].SetActive(false);
             characterInfo.isCrownON = false;
         }
     }
 
-    public void Click_Item_Headphone()
+    public void Click_Item_Crown()
     {
-        if (!items[1].activeSelf)
+        int charIndex = WhatCharSelected();
+
+        if (!character_items[charIndex].item[1].activeSelf)
         {
-            items[1].SetActive(true);
+            character_items[charIndex].item[1].SetActive(true);
             characterInfo.isCrownON = true;
         }
         else
         {
-            items[1].SetActive(false);
+            character_items[charIndex].item[1].SetActive(false);
             characterInfo.isCrownON = false;
         }
 
-        if (items[0].activeSelf)
+        if (character_items[charIndex].item[0].activeSelf)
         {
-            items[0].SetActive(false);
+            character_items[charIndex].item[0].SetActive(false);
             characterInfo.isCapON = false;
         }
     }
 
     public void Click_Item_Glasses()
     {
-        if (!items[2].activeSelf)
+        int charIndex = WhatCharSelected();
+
+        if (!character_items[charIndex].item[2].activeSelf)
         {
-            items[2].SetActive(true);
+            character_items[charIndex].item[2].SetActive(true);
             characterInfo.isGlassON = true;
         }
         else
         {
-            items[2].SetActive(false);
+            character_items[charIndex].item[2].SetActive(false);
             characterInfo.isGlassON = false;
         }
     }
 
     public void Click_Item_Bag()
     {
-        if (!items[3].activeSelf)
+        int charIndex = WhatCharSelected();
+
+        if (!character_items[charIndex].item[3].activeSelf)
         {
-            items[3].SetActive(true);
+            character_items[charIndex].item[3].SetActive(true);
             characterInfo.isBagON = true;
         }
         else
         {
-            items[3].SetActive(false);
+            character_items[charIndex].item[3].SetActive(false);
             characterInfo.isGlassON = false;
         }
     }
@@ -221,9 +278,6 @@ public class EJCharacter_M : MonoBehaviour
         }
 
 
-        Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
-        //char_L_Mats[3].color = Color.red;
-        
     }
     public void Click_Color_skin()
     {
@@ -234,7 +288,6 @@ public class EJCharacter_M : MonoBehaviour
             Color_Btns_Clicked[2].SetActive(false);
             Color_Btns_Clicked[3].SetActive(false);
 
-            
 
             CP_Skin.SetActive(true);
             CP_Face.SetActive(false);
@@ -252,8 +305,6 @@ public class EJCharacter_M : MonoBehaviour
             CP_Cloth.SetActive(false);
         }
 
-        Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
-        //char_L_Mats[1].color = Color.red;
     }
     public void Click_Color_ribbon()
     {
@@ -280,8 +331,6 @@ public class EJCharacter_M : MonoBehaviour
             CP_Skin.SetActive(false);
         }
 
-        Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
-        //char_L_Mats[2].color = Color.red;
     }
 
     public void Click_Color_cloth()
@@ -309,8 +358,24 @@ public class EJCharacter_M : MonoBehaviour
             CP_Skin.SetActive(false);
         }
 
-        Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
-        //char_L_Mats[0].color = Color.red;
+    }
+
+    public int WhatCharSelected()
+    {
+        if (characters_M[0].activeSelf)
+        {
+            return 0;
+        }
+        else if (characters_M[1].activeSelf)
+        {
+            return 1;
+        }else if (characters_M[2].activeSelf)
+        {
+            return 2;
+        }else
+        {
+            return -1;
+        }
     }
 
     public int WhatClicked()
@@ -344,9 +409,10 @@ public class EJCharacter_M : MonoBehaviour
 
     #endregion
 
-    public void ColorInfoCheck()
+    //수정 필요
+    public void ColorInfoCheck_M()
     {
-        Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
+        Material[] char_L_Mats = characters_M[0].GetComponent<MeshRenderer>().materials;
 
         characterInfo.hexString_cloth = char_L_Mats[0].ToString();
         characterInfo.hexString_skin = char_L_Mats[1].ToString();
@@ -357,7 +423,7 @@ public class EJCharacter_M : MonoBehaviour
 
     public void Click_CompleteBtn()
     {
-        ColorInfoCheck();
+        ColorInfoCheck_M();
         //server에 업로드 한다.
     }
 }
