@@ -23,7 +23,7 @@ public class EJColorChange : MonoBehaviour, IPointerDownHandler
         Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
         Color color = GetComponent<Image>().color;
 
-        int i = EJCharacter.instance.WhatClicked();
+        int i = EJCharacter_M.instance.WhatClicked();
 
         char_L_Mats[i].color = color;
 

@@ -6,10 +6,36 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class EJCharacter : MonoBehaviour
+[System.Serializable]
+public struct CharacterInfo
 {
-    public GameObject character_L;
+    public int characterType;
+    //0: listener, 1: rabbit, 2: panda, 3: dog
 
+    public string hexString_cloth;
+    public string hexString_skin;
+    public string hexString_face;
+    public string hexString_ribbon;
+
+    //Color albedoColor = ColorUtility.HexToColor(hexString); 변환 후 사용
+
+    public bool isCrownON;
+    public bool isGlassON;
+    public bool isBagON;
+    public bool isCapON;
+}
+
+
+public class EJCharacter_M : MonoBehaviour
+{
+    //00. Server에 저장할 정보
+    CharacterInfo characterInfo = new CharacterInfo();
+
+    //01. character prefabs
+    public GameObject character_L;
+    public GameObject[] characters_M;
+
+    //02. UI
     public GameObject CustomBtns;
     public GameObject[] explainBox;
 
@@ -27,7 +53,8 @@ public class EJCharacter : MonoBehaviour
     public GameObject CP_Face;
     public GameObject CP_Skin;
 
-    public static EJCharacter instance;
+    //03. singleton
+    public static EJCharacter_M instance;
 
     private void Awake()
     {
@@ -90,8 +117,6 @@ public class EJCharacter : MonoBehaviour
         }
         
         CustomBtns.SetActive(true);
-
-
     }
 
 
@@ -102,16 +127,19 @@ public class EJCharacter : MonoBehaviour
         if (!items[0].activeSelf)
         {
             items[0].SetActive(true);
+            characterInfo.isCapON = true;
         }
         else 
         {
             items[0].SetActive(false);
+            characterInfo.isCapON = false;
         }
 
 
         if (items[1].activeSelf)
         {
             items[1].SetActive(false);
+            characterInfo.isCrownON = false;
         }
     }
 
@@ -120,15 +148,18 @@ public class EJCharacter : MonoBehaviour
         if (!items[1].activeSelf)
         {
             items[1].SetActive(true);
+            characterInfo.isCrownON = true;
         }
         else
         {
             items[1].SetActive(false);
+            characterInfo.isCrownON = false;
         }
 
         if (items[0].activeSelf)
         {
             items[0].SetActive(false);
+            characterInfo.isCapON = false;
         }
     }
 
@@ -137,10 +168,12 @@ public class EJCharacter : MonoBehaviour
         if (!items[2].activeSelf)
         {
             items[2].SetActive(true);
+            characterInfo.isGlassON = true;
         }
         else
         {
             items[2].SetActive(false);
+            characterInfo.isGlassON = false;
         }
     }
 
@@ -149,10 +182,12 @@ public class EJCharacter : MonoBehaviour
         if (!items[3].activeSelf)
         {
             items[3].SetActive(true);
+            characterInfo.isBagON = true;
         }
         else
         {
             items[3].SetActive(false);
+            characterInfo.isGlassON = false;
         }
     }
     #endregion
@@ -309,4 +344,20 @@ public class EJCharacter : MonoBehaviour
 
     #endregion
 
+    public void ColorInfoCheck()
+    {
+        Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
+
+        characterInfo.hexString_cloth = char_L_Mats[0].ToString();
+        characterInfo.hexString_skin = char_L_Mats[1].ToString();
+        characterInfo.hexString_ribbon = char_L_Mats[1].ToString();
+        characterInfo.hexString_face = char_L_Mats[3].ToString();
+        //Color albedoColor = ColorUtility.HexToColor(hexString)
+    }
+
+    public void Click_CompleteBtn()
+    {
+        ColorInfoCheck();
+        //server에 업로드 한다.
+    }
 }
