@@ -134,7 +134,7 @@ public class UIManager : MonoBehaviour
         Debug.Log("TEST");
         //더한값이 크거나 작으면 곤란 곤란
         currentPage = (adder + currentPage) > page || (adder + currentPage) < 0 ? currentPage : currentPage + adder;
-        click(currentPage );
+        click(currentPage);
         
 
     }
@@ -148,9 +148,10 @@ public class UIManager : MonoBehaviour
         //받은 데이터 렌더링 하기
         for (int i = 0; i < notes.Length; i++)
         {
-
+            
             if (notes[i] != null)
             {
+                Debug.LogError("왜 안되는지");
 
                 //불러올때는 노트의 정보가
                 Notes note = Board.instance.drags[i].Tile;
@@ -177,17 +178,13 @@ public class UIManager : MonoBehaviour
 
 
 
-
-
-
-
-
-
     public void Save(int page) { 
         
     }
 
     public void PlayMidi() {
+        
+
         bool IsPlay = MIDIPlayer1.instance.ShouldPlayFile;
         MIDIPlayer1.instance.ShouldPlayFile = IsPlay ? false : true; //false 일때는 true true 일때는 false
     }
@@ -225,7 +222,7 @@ public class UIManager : MonoBehaviour
         trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
         trButton.OnClickTrackEv.AddListener(ChangeTrack);
         //트랙 증가
-        Tracks.Add(new Track());
+        Tracks.Add(new Track() { number = trackPage }) ;
         trackPage++;
 
         //버튼을 맨 마지막으로 보냄
@@ -273,7 +270,7 @@ public class UIManager : MonoBehaviour
             //button.idx = page - 1;
             page++;
         }
-
+        click(0);
 
     }
 

@@ -63,7 +63,7 @@ public class NoteDrag : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, ID
      
     public void CheckMode(EditerMode.EditerState state,Notes note,int arrow)
     {
-        MIDIPlayer1.instance.midiStreamSynthesizer.NoteOff(0, note._IPitch);
+        MIDIPlayer1.instance.midiStreamSynthesizer.NoteOff(UIManager.instance.currentTrack.number, note._IPitch);
         switch (state)
         {
             case EditerMode.EditerState.Pitch:
@@ -73,7 +73,7 @@ public class NoteDrag : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, ID
                 note._IPitch = Adderint(note.Ipitch,Notes.MinNoteNum,Notes.MaxNoteNum,arrow);
 
                 //Test
-                MIDIPlayer1.instance.midiStreamSynthesizer.NoteOn(0, note.Ipitch, 100,0);
+                MIDIPlayer1.instance.midiStreamSynthesizer.NoteOn(UIManager.instance.currentTrack.number, note.Ipitch, 100,(int)UIManager.instance.currentTrack.instrument);
 
                 //Save (Value Copy)
                 NoteManager.instance.SaveData.Copy(note.info);
@@ -95,7 +95,7 @@ public class NoteDrag : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, ID
     {
 
         //test
-        MIDIPlayer1.instance.midiStreamSynthesizer.NoteOff(0, note._IPitch);
+        MIDIPlayer1.instance.midiStreamSynthesizer.NoteOff(UIManager.instance.currentTrack.number, note._IPitch);
         IsDragging = false;
         
         

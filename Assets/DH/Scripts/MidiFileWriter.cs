@@ -231,7 +231,8 @@ public class MidiFileWriter : MonoBehaviour
         string path = Application.persistentDataPath + "/" + "example.mid.txt";
         File.WriteAllBytes(path, data);
 
-        LogManager.instance.Log(path);
+        Debug.LogError(path);
+        //LogManager.instance.Log(path);
         //AssetDatabase.Refresh();
         //3개의 데이터를 병합할 배열 생성 
         //byte[] newdata = new byte[midiData.Length + data.Length + last_data.Length];
@@ -249,6 +250,7 @@ public class MidiFileWriter : MonoBehaviour
 
 
         //File.WriteAllBytes(path, newdata);
+
 
     }
     

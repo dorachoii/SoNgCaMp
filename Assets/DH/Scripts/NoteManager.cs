@@ -66,7 +66,7 @@ public class NoteManager : MonoBehaviour
         midifile.Header = new HeaderChunk(dummy.H_Ctype,dummy.H_Length,dummy.H_Data);
 
         bytelist.Clear();
-        list = Board.GetComponentsInChildren<Notes>();
+        //list = Board.GetComponentsInChildren<Notes>();
 
         //1바이트 = 8비트
         //16진수 하나 = 1바이트
