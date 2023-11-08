@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 1872922}
   - component: {fileID: 1872921}
   - component: {fileID: 1872923}
+  - component: {fileID: 1872924}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -216,6 +217,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -231,6 +233,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1872924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872919}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &7794815
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +843,7 @@ GameObject:
   - component: {fileID: 54436250}
   - component: {fileID: 54436249}
   - component: {fileID: 54436251}
+  - component: {fileID: 54436252}
   m_Layer: 5
   m_Name: Image (7)
   m_TagString: Untagged
@@ -904,6 +925,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -919,6 +941,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &54436252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54436247}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &82520530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1191,7 @@ GameObject:
   - component: {fileID: 110391287}
   - component: {fileID: 110391286}
   - component: {fileID: 110391288}
+  - component: {fileID: 110391289}
   m_Layer: 5
   m_Name: Image (15)
   m_TagString: Untagged
@@ -1232,6 +1273,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -1247,6 +1289,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &110391289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110391284}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &161675252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1395,7 @@ GameObject:
   - component: {fileID: 164665967}
   - component: {fileID: 164665966}
   - component: {fileID: 164665968}
+  - component: {fileID: 164665969}
   m_Layer: 5
   m_Name: Image (9)
   m_TagString: Untagged
@@ -1416,6 +1477,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -1431,6 +1493,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &164665969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164665964}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &206774722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,6 +1941,7 @@ GameObject:
   - component: {fileID: 214135343}
   - component: {fileID: 214135342}
   - component: {fileID: 214135344}
+  - component: {fileID: 214135345}
   m_Layer: 5
   m_Name: Default_color07
   m_TagString: Untagged
@@ -1942,6 +2023,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -1957,6 +2039,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &214135345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214135340}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &219012184 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 890106588777723638, guid: a97f39d01d694494691b435aeed47c4f, type: 3}
@@ -2026,6 +2126,7 @@ GameObject:
   - component: {fileID: 227458589}
   - component: {fileID: 227458588}
   - component: {fileID: 227458590}
+  - component: {fileID: 227458591}
   m_Layer: 5
   m_Name: Image (4)
   m_TagString: Untagged
@@ -2107,6 +2208,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -2122,6 +2224,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &227458591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227458586}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &249751968 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4467143137856374411, guid: a550fa4bb38614c4e8a8fc2c0b97e06d, type: 3}
@@ -2238,6 +2358,7 @@ GameObject:
   - component: {fileID: 360382871}
   - component: {fileID: 360382870}
   - component: {fileID: 360382872}
+  - component: {fileID: 360382873}
   m_Layer: 5
   m_Name: Image (14)
   m_TagString: Untagged
@@ -2319,6 +2440,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -2334,6 +2456,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &360382873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360382868}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &364809346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,6 +3413,7 @@ GameObject:
   - component: {fileID: 525143421}
   - component: {fileID: 525143420}
   - component: {fileID: 525143422}
+  - component: {fileID: 525143423}
   m_Layer: 5
   m_Name: Image (5)
   m_TagString: Untagged
@@ -3354,6 +3495,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -3369,6 +3511,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &525143423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525143418}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &549748738
 GameObject:
   m_ObjectHideFlags: 0
@@ -3544,6 +3704,7 @@ GameObject:
   - component: {fileID: 575222926}
   - component: {fileID: 575222925}
   - component: {fileID: 575222927}
+  - component: {fileID: 575222928}
   m_Layer: 5
   m_Name: Image (10)
   m_TagString: Untagged
@@ -3625,6 +3786,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -3640,6 +3802,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &575222928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575222923}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &579470440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3652,6 +3832,7 @@ GameObject:
   - component: {fileID: 579470443}
   - component: {fileID: 579470442}
   - component: {fileID: 579470444}
+  - component: {fileID: 579470445}
   m_Layer: 5
   m_Name: Image (5)
   m_TagString: Untagged
@@ -3733,6 +3914,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -3748,6 +3930,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &579470445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579470440}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &593482273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,6 +4170,7 @@ GameObject:
   - component: {fileID: 612776809}
   - component: {fileID: 612776808}
   - component: {fileID: 612776810}
+  - component: {fileID: 612776811}
   m_Layer: 5
   m_Name: Image (11)
   m_TagString: Untagged
@@ -4051,6 +4252,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -4066,6 +4268,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &612776811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612776806}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &627872089
 GameObject:
   m_ObjectHideFlags: 0
@@ -4115,6 +4335,7 @@ GameObject:
   - component: {fileID: 664585526}
   - component: {fileID: 664585525}
   - component: {fileID: 664585527}
+  - component: {fileID: 664585528}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -4196,6 +4417,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -4211,6 +4433,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &664585528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664585523}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &676619122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,6 +4463,7 @@ GameObject:
   - component: {fileID: 676619125}
   - component: {fileID: 676619124}
   - component: {fileID: 676619126}
+  - component: {fileID: 676619127}
   m_Layer: 5
   m_Name: Default_Color
   m_TagString: Untagged
@@ -4304,6 +4545,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -4319,6 +4561,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &676619127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676619122}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &701301295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4483,6 +4743,7 @@ GameObject:
   - component: {fileID: 721067399}
   - component: {fileID: 721067398}
   - component: {fileID: 721067400}
+  - component: {fileID: 721067401}
   m_Layer: 5
   m_Name: Image (10)
   m_TagString: Untagged
@@ -4564,6 +4825,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -4579,6 +4841,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &721067401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721067396}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &737775680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6581248204678508812, guid: a550fa4bb38614c4e8a8fc2c0b97e06d, type: 3}
@@ -4703,6 +4983,7 @@ GameObject:
   - component: {fileID: 760780235}
   - component: {fileID: 760780234}
   - component: {fileID: 760780236}
+  - component: {fileID: 760780237}
   m_Layer: 5
   m_Name: Image (8)
   m_TagString: Untagged
@@ -4784,6 +5065,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -4799,6 +5081,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &760780237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760780232}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &762388345
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,6 +5230,7 @@ GameObject:
   - component: {fileID: 776491666}
   - component: {fileID: 776491665}
   - component: {fileID: 776491667}
+  - component: {fileID: 776491668}
   m_Layer: 5
   m_Name: Image (14)
   m_TagString: Untagged
@@ -5011,6 +5312,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -5026,6 +5328,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &776491668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776491663}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &783688076 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4233876609763717529, guid: a97f39d01d694494691b435aeed47c4f, type: 3}
@@ -5043,6 +5363,7 @@ GameObject:
   - component: {fileID: 808886349}
   - component: {fileID: 808886348}
   - component: {fileID: 808886350}
+  - component: {fileID: 808886351}
   m_Layer: 5
   m_Name: Image (12)
   m_TagString: Untagged
@@ -5124,6 +5445,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -5139,6 +5461,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &808886351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808886346}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &846407734
 GameObject:
   m_ObjectHideFlags: 0
@@ -5151,6 +5491,7 @@ GameObject:
   - component: {fileID: 846407737}
   - component: {fileID: 846407736}
   - component: {fileID: 846407738}
+  - component: {fileID: 846407739}
   m_Layer: 5
   m_Name: Image (13)
   m_TagString: Untagged
@@ -5232,6 +5573,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -5247,6 +5589,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &846407739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846407734}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &859291638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6581248205317203694, guid: a550fa4bb38614c4e8a8fc2c0b97e06d, type: 3}
@@ -5427,6 +5787,7 @@ GameObject:
   - component: {fileID: 906447306}
   - component: {fileID: 906447305}
   - component: {fileID: 906447307}
+  - component: {fileID: 906447308}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -5508,6 +5869,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -5523,6 +5885,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &906447308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906447303}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &908553231
 GameObject:
   m_ObjectHideFlags: 0
@@ -5535,6 +5915,7 @@ GameObject:
   - component: {fileID: 908553234}
   - component: {fileID: 908553233}
   - component: {fileID: 908553235}
+  - component: {fileID: 908553236}
   m_Layer: 5
   m_Name: Image (6)
   m_TagString: Untagged
@@ -5616,6 +5997,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -5631,6 +6013,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &908553236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908553231}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &915538914
 GameObject:
   m_ObjectHideFlags: 0
@@ -5741,6 +6141,7 @@ GameObject:
   - component: {fileID: 928120312}
   - component: {fileID: 928120314}
   - component: {fileID: 928120313}
+  - component: {fileID: 928120315}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -5788,7 +6189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5806,6 +6207,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928120311}
   m_CullTransparentMesh: 1
+--- !u!114 &928120315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928120311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c9bf0fe24d36348812e0df5f5126f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_color1: {r: 1, g: 1, b: 1, a: 1}
+  m_color2: {r: 1, g: 1, b: 1, a: 1}
+  m_angle: 90
 --- !u!1 &957704004
 GameObject:
   m_ObjectHideFlags: 0
@@ -5899,6 +6315,7 @@ GameObject:
   - component: {fileID: 969981169}
   - component: {fileID: 969981168}
   - component: {fileID: 969981170}
+  - component: {fileID: 969981171}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -5980,6 +6397,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -5995,6 +6413,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &969981171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969981166}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &973866584
 GameObject:
   m_ObjectHideFlags: 0
@@ -6256,6 +6692,7 @@ GameObject:
   - component: {fileID: 1021353878}
   - component: {fileID: 1021353877}
   - component: {fileID: 1021353879}
+  - component: {fileID: 1021353880}
   m_Layer: 5
   m_Name: Image (10)
   m_TagString: Untagged
@@ -6337,6 +6774,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -6352,6 +6790,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1021353880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021353875}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &1035259812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3464576272526903388, guid: 1c18b543fa7efdd42a5d0c9b517255d0, type: 3}
@@ -6369,6 +6825,7 @@ GameObject:
   - component: {fileID: 1059935346}
   - component: {fileID: 1059935345}
   - component: {fileID: 1059935347}
+  - component: {fileID: 1059935348}
   m_Layer: 5
   m_Name: Image (4)
   m_TagString: Untagged
@@ -6450,6 +6907,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -6465,6 +6923,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1059935348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059935343}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &1072866302
 GameObject:
   m_ObjectHideFlags: 0
@@ -6558,6 +7034,7 @@ GameObject:
   - component: {fileID: 1104589987}
   - component: {fileID: 1104589986}
   - component: {fileID: 1104589988}
+  - component: {fileID: 1104589989}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -6639,6 +7116,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -6654,6 +7132,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1104589989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104589984}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &1106964807
 GameObject:
   m_ObjectHideFlags: 0
@@ -6899,6 +7395,7 @@ GameObject:
   - component: {fileID: 1138372987}
   - component: {fileID: 1138372986}
   - component: {fileID: 1138372988}
+  - component: {fileID: 1138372989}
   m_Layer: 5
   m_Name: Image (8)
   m_TagString: Untagged
@@ -6980,6 +7477,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -6995,6 +7493,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1138372989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138372984}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &1146867642
 GameObject:
   m_ObjectHideFlags: 0
@@ -7075,6 +7591,7 @@ GameObject:
   - component: {fileID: 1154170411}
   - component: {fileID: 1154170410}
   - component: {fileID: 1154170412}
+  - component: {fileID: 1154170413}
   m_Layer: 5
   m_Name: Image (8)
   m_TagString: Untagged
@@ -7156,6 +7673,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -7171,6 +7689,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1154170413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154170408}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &1160302336
 GameObject:
   m_ObjectHideFlags: 0
@@ -7183,6 +7719,7 @@ GameObject:
   - component: {fileID: 1160302339}
   - component: {fileID: 1160302338}
   - component: {fileID: 1160302340}
+  - component: {fileID: 1160302341}
   m_Layer: 5
   m_Name: Default_color05
   m_TagString: Untagged
@@ -7264,6 +7801,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -7279,6 +7817,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1160302341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160302336}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1167551546
 GameObject:
   m_ObjectHideFlags: 0
@@ -7428,6 +7984,7 @@ GameObject:
   - component: {fileID: 1171995840}
   - component: {fileID: 1171995839}
   - component: {fileID: 1171995841}
+  - component: {fileID: 1171995842}
   m_Layer: 5
   m_Name: Image (15)
   m_TagString: Untagged
@@ -7509,6 +8066,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -7524,6 +8082,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1171995842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171995837}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &1188202762
 GameObject:
   m_ObjectHideFlags: 0
@@ -7671,6 +8247,7 @@ GameObject:
   - component: {fileID: 1204552815}
   - component: {fileID: 1204552814}
   - component: {fileID: 1204552816}
+  - component: {fileID: 1204552817}
   m_Layer: 5
   m_Name: Default_color03
   m_TagString: Untagged
@@ -7752,6 +8329,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -7767,6 +8345,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1204552817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204552812}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1219336910
 GameObject:
   m_ObjectHideFlags: 0
@@ -7991,6 +8587,7 @@ GameObject:
   - component: {fileID: 1245565487}
   - component: {fileID: 1245565486}
   - component: {fileID: 1245565488}
+  - component: {fileID: 1245565489}
   m_Layer: 5
   m_Name: Image (12)
   m_TagString: Untagged
@@ -8072,6 +8669,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -8087,6 +8685,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1245565489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245565484}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1298577950
 GameObject:
   m_ObjectHideFlags: 0
@@ -8099,6 +8715,7 @@ GameObject:
   - component: {fileID: 1298577953}
   - component: {fileID: 1298577952}
   - component: {fileID: 1298577954}
+  - component: {fileID: 1298577955}
   m_Layer: 5
   m_Name: Image (16)
   m_TagString: Untagged
@@ -8180,6 +8797,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -8195,6 +8813,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1298577955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298577950}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1305541130 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 890106588487676049, guid: a97f39d01d694494691b435aeed47c4f, type: 3}
@@ -8636,6 +9272,7 @@ GameObject:
   - component: {fileID: 1342787158}
   - component: {fileID: 1342787157}
   - component: {fileID: 1342787159}
+  - component: {fileID: 1342787160}
   m_Layer: 5
   m_Name: Default_color04
   m_TagString: Untagged
@@ -8717,6 +9354,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -8732,6 +9370,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1342787160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342787155}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1347835032
 GameObject:
   m_ObjectHideFlags: 0
@@ -8744,6 +9400,7 @@ GameObject:
   - component: {fileID: 1347835035}
   - component: {fileID: 1347835034}
   - component: {fileID: 1347835036}
+  - component: {fileID: 1347835037}
   m_Layer: 5
   m_Name: Default_color
   m_TagString: Untagged
@@ -8825,6 +9482,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -8840,6 +9498,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1347835037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347835032}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &1359179996
 GameObject:
   m_ObjectHideFlags: 0
@@ -8852,6 +9528,7 @@ GameObject:
   - component: {fileID: 1359179999}
   - component: {fileID: 1359179998}
   - component: {fileID: 1359180000}
+  - component: {fileID: 1359180001}
   m_Layer: 5
   m_Name: Image (7)
   m_TagString: Untagged
@@ -8933,6 +9610,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -8948,6 +9626,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1359180001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359179996}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &1366736219
 GameObject:
   m_ObjectHideFlags: 0
@@ -9131,6 +9827,7 @@ GameObject:
   - component: {fileID: 1378154627}
   - component: {fileID: 1378154629}
   - component: {fileID: 1378154628}
+  - component: {fileID: 1378154630}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -9178,7 +9875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9196,6 +9893,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378154626}
   m_CullTransparentMesh: 1
+--- !u!114 &1378154630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378154626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c9bf0fe24d36348812e0df5f5126f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_color1: {r: 1, g: 1, b: 1, a: 1}
+  m_color2: {r: 1, g: 1, b: 1, a: 1}
+  m_angle: 90
 --- !u!1 &1390240927
 GameObject:
   m_ObjectHideFlags: 0
@@ -9488,6 +10200,7 @@ GameObject:
   - component: {fileID: 1439120623}
   - component: {fileID: 1439120622}
   - component: {fileID: 1439120624}
+  - component: {fileID: 1439120625}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -9569,6 +10282,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -9584,6 +10298,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1439120625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439120620}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &1507799700
 GameObject:
   m_ObjectHideFlags: 0
@@ -9980,6 +10712,7 @@ GameObject:
   - component: {fileID: 1570891359}
   - component: {fileID: 1570891358}
   - component: {fileID: 1570891360}
+  - component: {fileID: 1570891361}
   m_Layer: 5
   m_Name: Image (7)
   m_TagString: Untagged
@@ -10061,6 +10794,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -10076,6 +10810,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1570891361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570891356}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1589076554
 GameObject:
   m_ObjectHideFlags: 0
@@ -10450,6 +11202,7 @@ GameObject:
   - component: {fileID: 1613945904}
   - component: {fileID: 1613945903}
   - component: {fileID: 1613945905}
+  - component: {fileID: 1613945906}
   m_Layer: 5
   m_Name: Image (13)
   m_TagString: Untagged
@@ -10531,6 +11284,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -10546,6 +11300,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1613945906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613945901}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &1615385582
 GameObject:
   m_ObjectHideFlags: 0
@@ -10558,6 +11330,7 @@ GameObject:
   - component: {fileID: 1615385585}
   - component: {fileID: 1615385584}
   - component: {fileID: 1615385586}
+  - component: {fileID: 1615385587}
   m_Layer: 5
   m_Name: Default_color06
   m_TagString: Untagged
@@ -10639,6 +11412,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -10654,6 +11428,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1615385587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615385582}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1639803096
 GameObject:
   m_ObjectHideFlags: 0
@@ -10666,6 +11458,7 @@ GameObject:
   - component: {fileID: 1639803099}
   - component: {fileID: 1639803098}
   - component: {fileID: 1639803100}
+  - component: {fileID: 1639803101}
   m_Layer: 5
   m_Name: Default_color02
   m_TagString: Untagged
@@ -10747,6 +11540,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -10762,6 +11556,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1639803101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639803096}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1646191947
 GameObject:
   m_ObjectHideFlags: 0
@@ -10774,6 +11586,7 @@ GameObject:
   - component: {fileID: 1646191950}
   - component: {fileID: 1646191949}
   - component: {fileID: 1646191951}
+  - component: {fileID: 1646191952}
   m_Layer: 5
   m_Name: Default_color08
   m_TagString: Untagged
@@ -10855,6 +11668,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -10870,6 +11684,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1646191952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646191947}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1659829024
 GameObject:
   m_ObjectHideFlags: 0
@@ -10882,6 +11714,7 @@ GameObject:
   - component: {fileID: 1659829027}
   - component: {fileID: 1659829026}
   - component: {fileID: 1659829028}
+  - component: {fileID: 1659829029}
   m_Layer: 5
   m_Name: Default_color01
   m_TagString: Untagged
@@ -10963,6 +11796,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -10978,6 +11812,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1659829029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659829024}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1001 &1666236131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11295,6 +12147,7 @@ GameObject:
   - component: {fileID: 1738415262}
   - component: {fileID: 1738415264}
   - component: {fileID: 1738415263}
+  - component: {fileID: 1738415265}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -11342,7 +12195,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11360,6 +12213,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738415261}
   m_CullTransparentMesh: 1
+--- !u!114 &1738415265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738415261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c9bf0fe24d36348812e0df5f5126f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_color1: {r: 1, g: 1, b: 1, a: 1}
+  m_color2: {r: 1, g: 1, b: 1, a: 1}
+  m_angle: 90
 --- !u!1 &1739536036
 GameObject:
   m_ObjectHideFlags: 0
@@ -11733,6 +12601,7 @@ GameObject:
   - component: {fileID: 1772577131}
   - component: {fileID: 1772577130}
   - component: {fileID: 1772577132}
+  - component: {fileID: 1772577133}
   m_Layer: 5
   m_Name: Image (6)
   m_TagString: Untagged
@@ -11814,6 +12683,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -11829,6 +12699,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1772577133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772577128}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &1806529511
 GameObject:
   m_ObjectHideFlags: 0
@@ -12194,6 +13082,7 @@ GameObject:
   - component: {fileID: 1869868883}
   - component: {fileID: 1869868882}
   - component: {fileID: 1869868884}
+  - component: {fileID: 1869868885}
   m_Layer: 5
   m_Name: Image (11)
   m_TagString: Untagged
@@ -12275,6 +13164,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -12290,6 +13180,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1869868885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869868880}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &1871772136
 GameObject:
   m_ObjectHideFlags: 0
@@ -12435,6 +13343,7 @@ GameObject:
   - component: {fileID: 1875246123}
   - component: {fileID: 1875246122}
   - component: {fileID: 1875246124}
+  - component: {fileID: 1875246125}
   m_Layer: 5
   m_Name: Image (11)
   m_TagString: Untagged
@@ -12516,6 +13425,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -12531,6 +13441,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1875246125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875246120}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &1897352746
 GameObject:
   m_ObjectHideFlags: 0
@@ -12543,6 +13471,7 @@ GameObject:
   - component: {fileID: 1897352749}
   - component: {fileID: 1897352748}
   - component: {fileID: 1897352750}
+  - component: {fileID: 1897352751}
   m_Layer: 5
   m_Name: Image (9)
   m_TagString: Untagged
@@ -12624,6 +13553,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -12639,6 +13569,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1897352751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897352746}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &1934901609
 GameObject:
   m_ObjectHideFlags: 0
@@ -12831,6 +13779,7 @@ GameObject:
   - component: {fileID: 1945252203}
   - component: {fileID: 1945252202}
   - component: {fileID: 1945252204}
+  - component: {fileID: 1945252205}
   m_Layer: 5
   m_Name: Image (9)
   m_TagString: Untagged
@@ -12912,6 +13861,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -12927,67 +13877,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1001 &1955067345
-PrefabInstance:
+--- !u!114 &1945252205
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.751
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.542
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6516126627314317563, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
-      propertyPath: m_Name
-      value: Waving
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7bbffc92171675540a0c4becd578b80e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945252200}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &1963223131
 GameObject:
   m_ObjectHideFlags: 0
@@ -13213,6 +14120,7 @@ GameObject:
   - component: {fileID: 1977763529}
   - component: {fileID: 1977763528}
   - component: {fileID: 1977763530}
+  - component: {fileID: 1977763531}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -13294,6 +14202,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -13309,6 +14218,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1977763531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977763526}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1750675593}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1378154626}
 --- !u!1 &2003349278
 GameObject:
   m_ObjectHideFlags: 0
@@ -13586,6 +14513,7 @@ GameObject:
   - component: {fileID: 2076873768}
   - component: {fileID: 2076873767}
   - component: {fileID: 2076873769}
+  - component: {fileID: 2076873770}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -13667,6 +14595,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -13682,6 +14611,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2076873770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076873765}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &2102090905
 GameObject:
   m_ObjectHideFlags: 0
@@ -13694,6 +14641,7 @@ GameObject:
   - component: {fileID: 2102090908}
   - component: {fileID: 2102090907}
   - component: {fileID: 2102090909}
+  - component: {fileID: 2102090910}
   m_Layer: 5
   m_Name: Image (17)
   m_TagString: Untagged
@@ -13775,6 +14723,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -13790,6 +14739,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2102090910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102090905}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1395196454}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 928120311}
 --- !u!1 &2102794953
 GameObject:
   m_ObjectHideFlags: 0
@@ -13802,6 +14769,7 @@ GameObject:
   - component: {fileID: 2102794956}
   - component: {fileID: 2102794955}
   - component: {fileID: 2102794957}
+  - component: {fileID: 2102794958}
   m_Layer: 5
   m_Name: Image (6)
   m_TagString: Untagged
@@ -13883,6 +14851,7 @@ MonoBehaviour:
   - {fileID: 1526698335}
   - {fileID: 737775680}
   - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
   oo:
     m_PersistentCalls:
       m_Calls:
@@ -13898,6 +14867,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2102794958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102794953}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c27ccd90d21b7439d5d2fcc032aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2012118620}
+  character_M:
+  - {fileID: 1526698335}
+  - {fileID: 737775680}
+  - {fileID: 219012184}
+  sliderBackgroundImg: {fileID: 1738415261}
 --- !u!1 &2123294090
 GameObject:
   m_ObjectHideFlags: 0
