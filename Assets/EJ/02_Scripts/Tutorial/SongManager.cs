@@ -5,10 +5,10 @@
 //using UnityEngine.Networking;
 
 ////midi library
-////using Melanchall.DryWetMidi.Core;
-////using Melanchall.DryWetMidi.Interaction;
-////using System.IO;
-////using UnityEngine.Networking;
+//using Melanchall.DryWetMidi.Core;
+//using Melanchall.DryWetMidi.Interaction;
+//using System.IO;
+//using UnityEngine.Networking;
 
 //public class SongManager : MonoBehaviour
 //{
@@ -36,7 +36,7 @@
 
 //    private void Awake()
 //    {
-//        instance = this;    
+//        instance = this;
 //    }
 
 //    // Start is called before the first frame update
@@ -45,7 +45,8 @@
 //        if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath + "/" + fileLocation)
 //        {
 //            StartCoroutine(ReadFromWebsite());
-//        }else
+//        }
+//        else
 //        {
 //            StartCoroutine(ReadFromFile());
 //        }
@@ -64,7 +65,7 @@
 
 //    private IEnumerator ReadFromFile()
 //    {
-        
+
 //    }
 
 //    private IEnumerator ReadFromWebsite()
@@ -75,6 +76,6 @@
 //    // Update is called once per frame
 //    void Update()
 //    {
-        
+
 //    }
 //}
