@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class ChangeInstButton : MonoBehaviour, IPointerDownHandler,IPointerClickHandler
 {
     public int ChangeChanel;
-    public Text text;
+    public TextMeshProUGUI text;
     public UnityEvent<int> ev;
+    
+    public Image img;
 
     public void OnPointerClick(PointerEventData eventData)
     {

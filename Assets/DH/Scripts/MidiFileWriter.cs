@@ -1,3 +1,4 @@
+using DHMidi;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 //using UnityEditor;
 
 public class Chunk {
-    private byte[] ctype;
+    private byte[] ctype;           
     public byte[] length;
     public byte[] data;
 
@@ -60,6 +61,7 @@ public class Chunk {
         this.length = Length;
         this.data = Data;
     }
+
 }
 public class HeaderChunk : Chunk
 {
@@ -261,5 +263,61 @@ public class MidiFileWriter : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    private void Awake()
+    {
+        ReadMidi();
+    }
+    //읽어오자고
+    public void ReadMidi() {
+
+        MidiFile midiFile = new MidiFile();
+        
+
+        string filePath = Application.persistentDataPath + "/example.mid.txt";
+
+
+        Debug.LogError("ㅇㅇㅇㅇ?!");
+        if (File.Exists(filePath))
+        {
+            try
+            {
+                using (BinaryReader reader = new BinaryReader(File.Open(filePath, FileMode.Open)))
+                {
+                    while (reader.BaseStream.Position < reader.BaseStream.Length) {
+                        Debug.LogError("들어왔다!");
+                        // 여기에 파일에서 데이터를 읽어오는 코드를 추가하세요.
+                        // 예를 들어, reader.ReadBytes()를 사용하여 바이트 배열을 읽어올 수 있습니다.
+                        int ctype = reader.ReadInt32();
+                        int length = reader.ReadInt32();
+                        length = IPAddress.NetworkToHostOrder(length);
+                        byte[] buffer = reader.ReadBytes(length);
+
+                        switch (IPAddress.NetworkToHostOrder(ctype))
+                        {
+                            case 0x4d546864:
+                                //midiFile.Header = new HeaderChunk(ctype,length,buffer);
+                                break;
+                            case 0x4d54726b:
+                                
+                                break;
+                        }
+                    }
+                    
+                   
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("파일 읽기 오류: " + e.Message);
+            }
+        }
+        else
+        {
+            Debug.LogError("파일이 존재하지 않습니다: " + filePath);
+        }
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TrackButton : MonoBehaviour
 {
@@ -18,15 +19,33 @@ public class TrackButton : MonoBehaviour
     public EventButton event1;
     public EventButton event2;
 
+    public Image image;
+
     public int myPage;
 
     private void Start()
     {
         //버튼을 눌렀을 때 이런 액션을 취하자
-        event1.action.AddListener( ()=> { OnClickInsEv.Invoke(myPage); });
-        event2.action.AddListener(()=>  { OnClickTrackEv.Invoke(myPage); ; });
+        event1.action.AddListener( ()=> { UIManager.instance.currentTrack = mytrack; InstrumentManager.instance.ChangeTrack(image); });
+        event2.action.AddListener(()=>  { UIManager.instance.ChangeTrack(mytrack);  });
+        //ChanelBtn.text.text = "CH" + myPage;
+        ChanelBtn.Count = myPage; 
     }
 
+    //1버튼이 눌렸을 때
+    //--> 채널을 설정 
+    //2버튼이 눌렸을 때
 
+    
+
+    public void Test()
+    {
+
+
+    }
+                   
+    
+
+    
 
 }

@@ -13,7 +13,18 @@ public class ChanelN : DragChange
         get { return count; }
         set { 
             
-            count = Mathf.Clamp(value, 0, max); 
+            count = Mathf.Clamp(value, 0, max);
+            text.text = "CH" + Count;
+            if (count == 9)
+            {
+                btn.image.sprite = InstrumentManager.instance.iconlist[(int)InstrumentManager.Instype.Percussive];
+                btn.mytrack.instrument = DH.D_MidiManager.Instruments.Acoustic_Grand_Piano;
+            }
+            else {
+
+                int i = (int)btn.mytrack.instrument;
+                btn.image.sprite = InstrumentManager.instance.iconlist[(int)InstrumentManager.retIns(i)] ;
+            }
         }
     }
     public int max;
@@ -21,12 +32,11 @@ public class ChanelN : DragChange
 
     public void PlusButton() {
         Count++;
-        text.text = "CH" + Count;
         btn.mytrack.number = Count;
+        
     }
     public void MinusButton() {
         Count--;
-        text.text = "CH" + Count;
         btn.mytrack.number = Count;
     }
 

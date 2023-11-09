@@ -13,6 +13,7 @@ public class Track {
     public int number;
     public Instruments instrument; 
 
+
     public List<NoteBlockInfo[]> Notelist = new List<NoteBlockInfo[]>();
     public Track() {
         //할당하는 작업

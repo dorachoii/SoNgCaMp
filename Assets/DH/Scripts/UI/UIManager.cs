@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class UIManager : MonoBehaviour
 {
     public Stack<GameObject> UiLayer = new Stack<GameObject>();
@@ -217,13 +217,17 @@ public class UIManager : MonoBehaviour
         //trButton.
         trButton.myPage = trackPage;
 
-        trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
-        trButton.OnClickTrackEv.AddListener(ChangeTrack);
+        //trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
+        //trButton.OnClickTrackEv.AddListener(ChangeTrack);
         //트랙 증가
 
         Track tr = new Track() { number = trackPage };
         Tracks.Add(tr) ;
-        trackPage++;
+
+        if (trackPage < 15) { trackPage++; }
+        
+
+        
 
         trButton.mytrack = tr;
 
@@ -280,13 +284,37 @@ public class UIManager : MonoBehaviour
     }
 
 
+    public Image InsImage;
+    public TextMeshProUGUI InsText;
     public void ChangeTrack(int chanel) {
         currentTrack = Tracks[chanel];
         TrackCanvas.gameObject.SetActive(false);
         EditerCanvas.gameObject.SetActive(true);
+
         //렌더링 방식을 변경
         noteList = currentTrack.Notelist;
         Rendering();
     }
 
+    public void ChangeTrack(Track track)
+    {
+        currentTrack = track;
+        TrackCanvas.gameObject.SetActive(false);
+        EditerCanvas.gameObject.SetActive(true);
+        //렌더링 방식을 변경
+
+        if (track.number == 9)
+        {
+            InsImage.sprite = InstrumentManager.instance.iconlist[(int)InstrumentManager.Instype.Percussive];
+            InsText.text = "Drum Kit";
+        }
+        else {
+            int ins = (int)currentTrack.instrument;
+            InsImage.sprite = InstrumentManager.instance.iconlist[(int)InstrumentManager.retIns(ins)];
+            InsText.text = currentTrack.instrument.ToString();
+        }
+        
+        noteList = currentTrack.Notelist;
+        Rendering();
+    }
 }
