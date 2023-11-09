@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class TrackButton : MonoBehaviour
 {
+    public Track mytrack;
+    public ChanelN ChanelBtn;
     //트랙 악기가 클릭되었을때 진행될 이벤트를 담음
     public UnityEvent<int> OnClickInsEv;
 
@@ -18,14 +20,13 @@ public class TrackButton : MonoBehaviour
 
     public int myPage;
 
-    private void Awake()
-    {
-        //OnClickTrackEv =   
-    }
     private void Start()
     {
         //버튼을 눌렀을 때 이런 액션을 취하자
         event1.action.AddListener( ()=> { OnClickInsEv.Invoke(myPage); });
         event2.action.AddListener(()=>  { OnClickTrackEv.Invoke(myPage); ; });
     }
+
+
+
 }

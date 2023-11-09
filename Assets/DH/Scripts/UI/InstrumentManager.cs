@@ -8,6 +8,29 @@ public class InstrumentManager : MonoBehaviour
 {
     public static InstrumentManager instance;
 
+    public Sprite[] InsImage;
+
+    public enum Instype {
+        Piano,
+        ChromaticPercussion,
+        Organ,
+        Guitar,
+        Bass,
+        Strings,
+        Ensemble,
+        Brass,
+        Reed,
+        Pipe,
+        SynthLead,
+        SynthPad,
+        SynthEffects,
+        Ethnic,
+        Percussive,
+        SoundEffects
+    }
+
+
+
     public Transform Content;
     public GameObject InstruBtn;
     //Áß°£ÀÚ 

@@ -8,8 +8,6 @@ public class UIManager : MonoBehaviour
     public Stack<GameObject> UiLayer = new Stack<GameObject>();
     
 
-
-
     public static UIManager instance;
     
     public Canvas TrackCanvas;
@@ -222,8 +220,14 @@ public class UIManager : MonoBehaviour
         trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
         trButton.OnClickTrackEv.AddListener(ChangeTrack);
         //트랙 증가
-        Tracks.Add(new Track() { number = trackPage }) ;
+
+        Track tr = new Track() { number = trackPage };
+        Tracks.Add(tr) ;
         trackPage++;
+
+        trButton.mytrack = tr;
+
+        
 
         //버튼을 맨 마지막으로 보냄
 
@@ -238,6 +242,7 @@ public class UIManager : MonoBehaviour
 
     
     public void Rendering() {
+        currentPage = 0;
         Debug.LogError("MyPageCount!!" + "0 부터 " + (pageList.Count - 1) + "까지 반복한다.");
 
         //int count = pageList.Count;
@@ -271,7 +276,7 @@ public class UIManager : MonoBehaviour
             page++;
         }
         click(0);
-
+        page = currentTrack.Notelist.Count -1 ;
     }
 
 

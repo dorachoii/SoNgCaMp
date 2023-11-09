@@ -94,10 +94,10 @@ public class NoteManager : MonoBehaviour
 
             //악기 설정
             bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(0)));
-            bytelist.AddRange(D_MidiManager.ChangeInstument(trackCount, track.instrument));
+            bytelist.AddRange(D_MidiManager.ChangeInstument(track.number, track.instrument));
 
             //트랙의 시작 시 시작이벤트 넣자. 
-            bytelist.AddRange(new byte[] { 0x00, (byte)(0x90 + trackCount), 0x3C, 0x00 });
+            bytelist.AddRange(new byte[] { 0x00, (byte)(0x90 + track.number), 0x3C, 0x00 });
             trackCount++;
             //블록당 읽으니까. 
             foreach (NoteBlockInfo[] infos in track.Notelist)
@@ -160,7 +160,11 @@ public class NoteManager : MonoBehaviour
 
             midifile.TrackLsit.Add(trackchunk);
         }));
-    
+
+
+        if (trackCount > 1) {
+            midifile.Header.Format = 1;
+        }
         //test  차원에서지 UIManager에 이게 있으면 곤란함
 
 

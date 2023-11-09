@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class NoteDrag : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, IDragHandler,IBeginDragHandler,IEndDragHandler
+public class NoteDrag : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginDragHandler,IEndDragHandler,IPointerUpHandler
 {
     public Notes note;
     //public Notes.Pitch;

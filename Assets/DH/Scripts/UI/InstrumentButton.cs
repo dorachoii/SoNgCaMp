@@ -9,6 +9,7 @@ public class _Instrument
 {
     public Sprite sprite; //악기 이미지 
     public Instruments instruments; //어떤 악기인지
+    public int Channel;
     
 }
 public class InstrumentButton : MonoBehaviour
