@@ -6,11 +6,19 @@ using System.IO;
 using System.Net;
 using UnityEngine;
 //using UnityEditor;
+using DHMidi.Event;
 
 public class Chunk {
-    private byte[] ctype;           
+    private byte[] ctype;
     public byte[] length;
     public byte[] data;
+
+    public int Ctype
+    {
+        get;
+        set;
+
+    }
 
 
     //이전에 있는 데이터 + 새로운 데이터 
@@ -107,12 +115,136 @@ public class HeaderChunk : Chunk
 }
 public class TrackChunk : Chunk
 {
-    
+    //event..-\
+    List<MEvent> eventList = new List<MEvent>();
     public TrackChunk(byte[] Ctype, byte[] Length, byte[] Data) : base(Ctype, Length, Data)
     {
+        //Data 를 순차적으로 읽으면서 진행 
+        int count = 0;
+        //델타타임을 계산하고?
+        //일단 1바이트를 읽고 
+
+        while (count < Data.Length) {
+            //함수를 안에서 진행한는것이?
+            int delta = Checkdelta(Data, ref count);
+            MEvent evt = MakeEvent(delta,Data,ref count);
+            eventList.Add(evt);
+
+        }
+
+        
         
     }
+
+    public int Checkdelta(byte[] buffer,ref int count)
+    {
+        int currentDelta = 0;
+
+
+        int delta = 0;
+
+        //버퍼가 있을것
+        //버퍼에는 바이트가 하나 있다.
+
+        //하나씩 불러와서 
+        do
+        {
+            delta = buffer[count];
+            currentDelta = (currentDelta << 8) | (delta);
+            count++;
+        } while (delta > 127);
+
+        //더이상 deltatime이 없으면 .
+
+        return currentDelta;
+
+    }
+
+    public MEvent MakeEvent(int deltatime,byte[] buffer,ref int count) {
+        byte eventType = buffer[count];
+        if (eventType == 0xFF) {
+            return new MetaEvent(deltatime,buffer,ref count);
+        }
+        if (eventType > 0xF0) {
+            return new MidiEvent(deltatime, buffer, ref count,eventType);
+        }
+        return null;
+                //byte msg = buffer[++count];
+                //byte len = buffer[++count];
+                //byte[] data = new byte[len];
+                //Array.Copy(buffer,++count, data, 0,data.Length);
+                //count += data.Length;
+                //return new MetaEvent(eventType,msg,len,data);
+
+            
+    }
+    
 }
+
+
+namespace DHMidi.Event {
+    public class MEvent
+    {
+        byte[] deltatime;
+        byte[] data;
+
+        public MEvent()
+        {
+
+        }
+
+        public MEvent(int deltatime, byte[] data)
+        {
+
+        }
+    }
+
+
+    public class MetaEvent : MEvent
+    {
+        byte etype;
+        byte msg;
+        byte len;
+        byte[] data;
+        public MetaEvent(int deltatime, byte[] buffer, ref int count)
+        {
+
+        }
+    }
+
+    public class MidiEvent : MEvent
+    {
+        int chanel; //어느 채널 이벤트인지
+        byte fData;
+        byte sData;
+        byte eventType;
+
+        public MidiEvent(int deltatime, byte[] buffer, ref int count, byte eventType)
+        {
+            chanel = (eventType & 0xF);
+            this.eventType = (byte)(eventType >> 4);
+
+            //이벤트 타입을 검사
+            switch (eventType)
+            {
+                case 0x8:
+                    fData = buffer[++count];
+                    sData = buffer[++count];
+                    break;
+                case 0x9:
+                    fData = buffer[++count];
+                    sData = buffer[++count];
+                    break;
+
+            }
+            //이벤트 타입을 결정
+            // 4비트는 이벤트 타입 //4비트는 채널
+
+        }
+    }
+
+}
+
 
 public class DummyHeaderData {
     public byte[] H_Ctype = { 0x4D, 0x54, 0x68, 0x64 };
@@ -274,7 +406,7 @@ public class MidiFileWriter : MonoBehaviour
     public void ReadMidi() {
 
         MidiFile midiFile = new MidiFile();
-        
+        midiFile.Header = new HeaderChunk();
 
         string filePath = Application.persistentDataPath + "/example.mid.txt";
 
@@ -290,22 +422,28 @@ public class MidiFileWriter : MonoBehaviour
                         Debug.LogError("들어왔다!");
                         // 여기에 파일에서 데이터를 읽어오는 코드를 추가하세요.
                         // 예를 들어, reader.ReadBytes()를 사용하여 바이트 배열을 읽어올 수 있습니다.
-                        int ctype = reader.ReadInt32();
-                        int length = reader.ReadInt32();
-                        length = IPAddress.NetworkToHostOrder(length);
-                        byte[] buffer = reader.ReadBytes(length);
+                        byte[] ctype = reader.ReadBytes(4);
+                        byte[] length = reader.ReadBytes(4);
+                        int len = BitConverter.ToInt32(length, 0);
 
-                        switch (IPAddress.NetworkToHostOrder(ctype))
+                        len = IPAddress.NetworkToHostOrder(len);
+                        byte[] buffer = reader.ReadBytes(len);
+
+                        int ctypeI = BitConverter.ToInt32(ctype); //거꾸로 되어있는데?
+                        ctypeI = IPAddress.NetworkToHostOrder(ctypeI);
+
+                        switch (ctypeI)
                         {
                             case 0x4d546864:
-                                //midiFile.Header = new HeaderChunk(ctype,length,buffer);
+                                midiFile.Header = new HeaderChunk(ctype,length,buffer);
                                 break;
                             case 0x4d54726b:
-                                
+                                midiFile.TrackLsit.Add(new TrackChunk(ctype, length, buffer));
                                 break;
                         }
                     }
-                    
+
+                    Debug.Log(midiFile);
                    
                 }
             }
