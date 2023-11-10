@@ -1,4 +1,4 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using CSharpSynth.Effects;
@@ -7,17 +7,20 @@ using CSharpSynth.Synthesis;
 using CSharpSynth.Midi;
 
 [RequireComponent(typeof(AudioSource))]
-public class MIDIPlayer : MonoBehaviour
+public class MIDI2Note2 : MonoBehaviour
 {
     //Public
     //Check the Midi's file folder for different songs
-    public string midiFilePath = "Midis/Groove.mid";
+
+    //ÀÎ½ºÆåÅÍ Ã¢¿¡¼­ ¹Ù²ãÁÜ
+    //ÆÄÀÏ¸í(ÀÌ¸§): ÀüÃ¼ Àû¾îÁÖ±â
+    public string midiFilePath_name = "Groove.mid.txt";
     public bool ShouldPlayFile = true;
 
     //Try also: "FM Bank/fm" or "Analog Bank/analog" for some different sounds
     public string bankFilePath = "GM Bank/gm";
 
-    public int bufferSize = 1024;   //ìƒ˜í”Œ ë°ì´í„°ë¥¼ ì²˜ë¦¬í•˜ëŠ” ì–‘. ìž‘ì„ ìˆ˜ë¡ latencyê°€ ì§§ë‹¤
+    public int bufferSize = 1024;   //»ùÇÃ µ¥ÀÌÅÍ¸¦ Ã³¸®ÇÏ´Â ¾ç. ÀÛÀ» ¼ö·Ï latency°¡ Âª´Ù
     public int midiNote = 60;
     public int midiNoteVolume = 100;
 
@@ -30,6 +33,26 @@ public class MIDIPlayer : MonoBehaviour
     private MidiSequencer midiSequencer;
     private StreamSynthesizer midiStreamSynthesizer;
 
+    //synthesizer vs sequencer
+    //1) synthesizer: ÇÁ·Î±×·¥
+    //2) sequencer: ¿¬ÁÖ µ¥ÀÌÅÍ¸¦ Àç»ýÇÏ¿© ÀÚµ¿ ¿¬ÁÖÇÏ´Â °ÍÀ» ¸ñÀûÀ¸·Î ÇÑ ¼ÒÇÁÆ®¿þ¾î (½ºÇÇÄ¿?)
+
+    //StreamSynthesizer ¸Å°³º¯¼ö
+    //Streaming: ÆÄÀÏ Àü¼ÛÇÏ°í Àç»ýÇÏ´Â ¹æ½Ä
+    //(software) Synthesizer: µðÁöÅÐ ¿Àµð¿À¸¦ ¸¸µé¾î³»´Â ÄÄÇ»ÅÍ ÇÁ·Î±×·¥
+
+    // 1) sampleRate: Àü¼Û ¼Óµµ ´À³¦.
+    // sampleRate°¡ ³·À» ¼ö·Ï µ¥ÀÌÅÍ Å©±â°¡ ÀÛ¾ÆÁö°í, Àü¼ÛÀÌ ºü¸£´Ù.
+
+    // 2) audioChannel: ¼Ò¸®°¡ ¸î °³ÀÇ Ã¤³ÎÀ» Ç¥½ÃÇÏ´ÂÁö
+    // 2°³: ÁÂ¿ì, 5°³: ÁÂ¿ì, Áß¾Ó, ÈÄ¹æ µî
+
+    // 3) bufferSize: ¾Æ³¯·Î±× ½ÅÈ£¸¦ µðÁöÅÐ ½ÅÈ£·Î º¯È¯ÇÒ ¶§ »ùÇÃ µ¥ÀÌÅÍ¸¦ Ã³¸®ÇÏ´Â ¾ç.
+    // bufferSize°¡ ³·À» ¼ö·Ï latency°¡ ÁÙ¾îµé°í ÄÄÇ»ÅÍ°¡ Èûµé¾îÁü.
+
+    // 4) maxpoly: polyphony ´Ù¼º À½¾Ç, ´Ü¼± À½¾Ç µîÀÇ °³³ä
+    // È­À½À» ¾ó¸¶³ª ½×À» ¼ö ÀÖ´ÂÁöÀÇ °³³äÀÎ °Í °°À½
+
     private float sliderValue = 1.0f;
     private float maxSliderValue = 127.0f;
 
@@ -39,16 +62,20 @@ public class MIDIPlayer : MonoBehaviour
     {
         midiStreamSynthesizer = new StreamSynthesizer(44100, 2, bufferSize, 40);
         sampleBuffer = new float[midiStreamSynthesizer.BufferSize];
-        
+
+        //¾Ç±â ´ã¾ÆµÐ °Í musicBank
         midiStreamSynthesizer.LoadBank(bankFilePath);
 
+        //¿¬ÁÖÇØÁÙ ½ºÇÇÄ¿¸¦ ¹è´çÇØÁÖ´Â ´À³¦
         midiSequencer = new MidiSequencer(midiStreamSynthesizer);
 
         //These will be fired by the midiSequencer when a song plays. Check the console for messages if you uncomment these
-        //midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler (MidiNoteOnHandler);
+
+        midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler (MidiNoteOnHandler);
         //midiSequencer.NoteOffEvent += new MidiSequencer.NoteOffEventHandler (MidiNoteOffHandler);			
     }
 
+    //midiÀÐ¾î¿Í¼­ play±îÁö
     void LoadSong(string midiPath)
     {
         midiSequencer.LoadMidi(midiPath, false);
@@ -59,6 +86,22 @@ public class MIDIPlayer : MonoBehaviour
     // Update methods is called the first time.
     void Start()
     {
+        //1) °îÀ» loadÇÏ°í ´ë±â¿­(allNoteInfo)¿¡ ´ã´Â´Ù.>>> ÀÌ °úÁ¤À» ºü¸£°Ô ÇÏ´Â ¹æ¹ýÀ» °í¾È.
+        //1-1) ¹è¼Ó ÇØ¼­ ³Ö±â
+        //1-2) buffersize ÁÙ¿©º¸±â? 
+        midiSequencer.LoadMidi(midiFilePath_name, true);
+
+
+
+        //ÆÄÀÏÀ» ¹Þ¾Æ¿Í¼­ °³º° ³ëÆ®¿¡ ÇØ´çÇÏ´Â Á¤º¸ ÇÊ¿ä.
+
+
+
+        //2) ·¹ÀÏ ¹èºÐÇÏ±â (0~5±îÁö) >> pitch¿¡ ÇØ´çÇÏ´Â ·¹ÀÏ ¹øÈ£ ¹è´ç
+
+
+        //3) ³ëÆ® ±¸ºÐÇÏ±â (short, long, drag) >> note length¿Í ÀÌÀü À½°ú ¿Ã¶ó°¡´ÂÁö ±¸ºÐ
+        //4) ·¹ÀÏº° ´ë±â¿­(noteInfo_Rails)¿¡ ´ã´Â´Ù.
     }
 
     // Update is called every frame, if the
@@ -70,17 +113,21 @@ public class MIDIPlayer : MonoBehaviour
             //if (!GetComponent<AudioSource>().isPlaying)
             if (ShouldPlayFile)
             {
-                LoadSong(midiFilePath);
-           
+                LoadSong(midiFilePath_name);
+
             }
         }
-        else if (!ShouldPlayFile)
+        else if (!ShouldPlayFile) { LoadSong(midiFilePath_name); }
         {
-            midiSequencer.Stop(true);
+            midiSequencer.Stop(true);   //stop, pause Â÷ÀÌ Ã£¾Æº¸±â
         }
+
 
         if (Input.GetButtonDown("Fire1"))
         {
+            //midiNote: À½
+            //midiNoteVolume: velocity
+            //midiInstrument: ¾Ç±â
             midiStreamSynthesizer.NoteOn(0, midiNote, midiNoteVolume, midiInstrument);
         }
 
@@ -90,23 +137,9 @@ public class MIDIPlayer : MonoBehaviour
         }
 
 
-        }
-
-        // See http://unity3d.com/support/documentation/ScriptReference/MonoBehaviour.OnAudioFilterRead.html for reference code
-        //	If OnAudioFilterRead is implemented, Unity will insert a custom filter into the audio DSP chain.
-        //
-        //	The filter is inserted in the same order as the MonoBehaviour script is shown in the inspector. 	
-        //	OnAudioFilterRead is called everytime a chunk of audio is routed thru the filter (this happens frequently, every ~20ms depending on the samplerate and platform). 
-        //	The audio data is an array of floats ranging from [-1.0f;1.0f] and contains audio from the previous filter in the chain or the AudioClip on the AudioSource. 
-        //	If this is the first filter in the chain and a clip isn't attached to the audio source this filter will be 'played'. 
-        //	That way you can use the filter as the audio clip, procedurally generating audio.
-        //
-        //	If OnAudioFilterRead is implemented a VU meter will show up in the inspector showing the outgoing samples level. 
-        //	The process time of the filter is also measured and the spent milliseconds will show up next to the VU Meter 
-        //	(it turns red if the filter is taking up too much time, so the mixer will starv audio data). 
-        //	Also note, that OnAudioFilterRead is called on a different thread from the main thread (namely the audio thread) 
-        //	so calling into many Unity functions from this function is not allowed ( a warning will show up ). 	
-        private void OnAudioFilterRead(float[] data, int channels)
+    }
+	
+    private void OnAudioFilterRead(float[] data, int channels)
     {
         //This uses the Unity specific float method we added to get the buffer
         midiStreamSynthesizer.GetNext(sampleBuffer);
