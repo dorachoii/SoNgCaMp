@@ -5,13 +5,19 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 
-public class EventButton : MonoBehaviour, IPointerDownHandler
+public class EventButton : MonoBehaviour, IPointerDownHandler,IPointerUpHandler,IPointerExitHandler,IPointerClickHandler
+
 {
     public UnityEvent action;
-    public void OnPointerDown(PointerEventData eventData)
+
+    public void OnPointerClick(PointerEventData eventData)
     {
         action.Invoke();
     }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        //action.Invoke();sss
 
     // Start is called before the first frame update
     void Start()
@@ -29,4 +35,16 @@ public class EventButton : MonoBehaviour, IPointerDownHandler
     }
 
 
+}
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("¿Ö¾ÈµÊ?");
+        //action.Invoke();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        //throw new System.NotImplementedException();
+    }
 }

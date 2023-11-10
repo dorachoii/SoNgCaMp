@@ -269,10 +269,15 @@ namespace CSharpSynth.Sequencer
                         }
                         break;
                     case MidiHelper.MidiChannelEvent.Note_On:
+
                         if (blockList.Contains(midiEvent.channel))
                             return;
-                        if (this.NoteOnEvent != null)
+                        if (this.NoteOnEvent != null) {
+                            Debug.Log("ON~!");
+                            Debug.LogError(midiEvent.deltaTime);
                             this.NoteOnEvent(midiEvent.channel, midiEvent.parameter1, midiEvent.parameter2);
+                        
+                        }
                         synth.NoteOn(midiEvent.channel, midiEvent.parameter1, midiEvent.parameter2, currentPrograms[midiEvent.channel]);
                         break;
                     case MidiHelper.MidiChannelEvent.Note_Off:

@@ -5,14 +5,15 @@ using DH;
 using static DH.D_MidiManager;
 
 //악기 구조
-public struct _Instrument
+public class _Instrument
 {
-    public Sprite sprite;
-    public Instruments instruments;
+    public Sprite sprite; //악기 이미지 
+    public Instruments instruments; //어떤 악기인지
+    public int Channel;
+    
 }
 public class InstrumentButton : MonoBehaviour
 {
-
     //악기 변경 화면
     public Canvas ChangeCanva;
     public void ChangeInstrument() {
@@ -22,9 +23,8 @@ public class InstrumentButton : MonoBehaviour
     }
 
     //악기 선택 화면
-
     public void SelectInstrument() { 
-    
+        
     }
     void Start()
     {
@@ -36,4 +36,6 @@ public class InstrumentButton : MonoBehaviour
     {
         
     }
+
+
 }

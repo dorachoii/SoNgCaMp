@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Tile : MonoBehaviour, IPointerUpHandler
+public class Tile : MonoBehaviour,IPointerUpHandler
 
 {
 

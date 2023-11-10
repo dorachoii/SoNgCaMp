@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class UIManager : MonoBehaviour
 {
     public Stack<GameObject> UiLayer = new Stack<GameObject>();
     
-
-
 
     public static UIManager instance;
     
@@ -66,7 +64,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public Transform Board;
+   // public Transform Board;
     public GameObject Button;
     public int page = 1;
     int pageLength = 50;
@@ -76,7 +74,7 @@ public class UIManager : MonoBehaviour
     
     private void Start()
     {
-        trackButton();
+        //trackButton();
     }
     public List<NoteBlockInfo[]> NoteList
     {
@@ -99,11 +97,12 @@ public class UIManager : MonoBehaviour
         }
 
         noteList.Add(noteInfos);
-        GameObject go = Instantiate(Button,Board);
-        PageButton button = go.GetComponent<PageButton>();
-        pageList.Add(button);
-        button.text.text = page.ToString();
-        button.idx = page - 1;
+
+        //GameObject go = Instantiate(Button,Board);
+        //PageButton button = go.GetComponent<PageButton>();
+        //pageList.Add(button);
+        //button.text.text = page.ToString();
+        //button.idx = page - 1;
 
         page++;
 
@@ -126,11 +125,64 @@ public class UIManager : MonoBehaviour
         page--;
     }
 
+
+    public int currentPage = 0;
+    public void AdderPage(int adder) {
+
+        Debug.Log("TEST");
+        //더한값이 크거나 작으면 곤란 곤란
+        currentPage = (adder + currentPage) > page || (adder + currentPage) < 0 ? currentPage : currentPage + adder;
+        click(currentPage);
+        
+
+    }
+
+    public void click(int idx)
+    {
+        //몇 번째 노트 데이터를 알려주세요.
+        NoteBlockInfo[] notes = NoteList[idx];
+        Debug.Log("Loading!!");
+
+        //받은 데이터 렌더링 하기
+        for (int i = 0; i < notes.Length; i++)
+        {
+            
+            if (notes[i] != null)
+            {
+                Debug.LogError("왜 안되는지");
+
+                //불러올때는 노트의 정보가
+                Notes note = Board.instance.drags[i].Tile;
+                NoteBlockInfo info = note.info = notes[i];
+                note._IBeat = info.Beat;
+                note._IPitch = info.Pitch;
+
+                Debug.Log(info.pitch);
+                note.gameObject.SetActive(info.enable);
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
     public void Save(int page) { 
         
     }
 
     public void PlayMidi() {
+        
+
         bool IsPlay = MIDIPlayer1.instance.ShouldPlayFile;
         MIDIPlayer1.instance.ShouldPlayFile = IsPlay ? false : true; //false 일때는 true true 일때는 false
     }
@@ -152,15 +204,39 @@ public class UIManager : MonoBehaviour
 
 
 
+    //transform
+    public Transform TrackBtn;
     //트랙 증가
     public void trackButton()
     {
         GameObject go =  Instantiate(TrackButton, TrackBoard);
+        TrackBtn.SetAsLastSibling();
         TrackButton trButton =  go.GetComponent<TrackButton>();
+
+
+        //trButton.
         trButton.myPage = trackPage;
+
+        //trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
+        //trButton.OnClickTrackEv.AddListener(ChangeTrack);
         //트랙 증가
-        Tracks.Add(new Track());
-        trackPage++;
+
+        Track tr = new Track() { number = trackPage };
+        Tracks.Add(tr) ;
+
+        if (trackPage < 15) { trackPage++; }
+        
+
+        
+
+        trButton.mytrack = tr;
+
+        
+
+        //버튼을 맨 마지막으로 보냄
+
+
+        Debug.Log("근데 왜 안됨?");
     }
 
     public void EscapeButton() {
@@ -170,6 +246,7 @@ public class UIManager : MonoBehaviour
 
     
     public void Rendering() {
+        currentPage = 0;
         Debug.LogError("MyPageCount!!" + "0 부터 " + (pageList.Count - 1) + "까지 반복한다.");
 
         //int count = pageList.Count;
@@ -183,25 +260,61 @@ public class UIManager : MonoBehaviour
 
 
         //이유가, Remove 할때마다 Size가 감소해서 반복문이 의도한대로 진행되지 않음.
-        pageList.ForEach(i => {
-            Destroy(i.gameObject);
-        } );
-        pageList.Clear();
-        page = 1;
 
-        for (int i = 0; i < noteList.Count; i++)
+        //pageList.ForEach(i => {
+        //    Destroy(i.gameObject);
+        //} );
+        //pageList.Clear();
+        //page = 0;
+
+        for (int i = 0; i < noteList.Count - 1; i++)
         {
 
             Debug.LogError("추가가 된다.");
             //이만큼 버튼 추가
-            GameObject go = Instantiate(Button, Board);
-            PageButton button = go.GetComponent<PageButton>();
-            pageList.Add(button);
-            button.text.text = page.ToString();
-            button.idx = page - 1;
+            //GameObject go = Instantiate(Button, Board);
+            //PageButton button = go.GetComponent<PageButton>();
+            //pageList.Add(button);
+            //button.text.text = page.ToString();
+            //button.idx = page - 1;
             page++;
         }
+        click(0);
+        page = currentTrack.Notelist.Count -1 ;
+    }
 
 
+    public Image InsImage;
+    public TextMeshProUGUI InsText;
+    public void ChangeTrack(int chanel) {
+        currentTrack = Tracks[chanel];
+        TrackCanvas.gameObject.SetActive(false);
+        EditerCanvas.gameObject.SetActive(true);
+
+        //렌더링 방식을 변경
+        noteList = currentTrack.Notelist;
+        Rendering();
+    }
+
+    public void ChangeTrack(Track track)
+    {
+        currentTrack = track;
+        TrackCanvas.gameObject.SetActive(false);
+        EditerCanvas.gameObject.SetActive(true);
+        //렌더링 방식을 변경
+
+        if (track.number == 9)
+        {
+            InsImage.sprite = InstrumentManager.instance.iconlist[(int)InstrumentManager.Instype.Percussive];
+            InsText.text = "Drum Kit";
+        }
+        else {
+            int ins = (int)currentTrack.instrument;
+            InsImage.sprite = InstrumentManager.instance.iconlist[(int)InstrumentManager.retIns(ins)];
+            InsText.text = currentTrack.instrument.ToString();
+        }
+        
+        noteList = currentTrack.Notelist;
+        Rendering();
     }
 }

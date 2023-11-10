@@ -44,8 +44,8 @@ public class MIDIPlayer1 : MonoBehaviour
         midiSequencer = new MidiSequencer(midiStreamSynthesizer);
 
         //These will be fired by the midiSequencer when a song plays. Check the console for messages if you uncomment these
-        //midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler (MidiNoteOnHandler);
-        //midiSequencer.NoteOffEvent += new MidiSequencer.NoteOffEventHandler (MidiNoteOffHandler);			
+        midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler (MidiNoteOnHandler);
+        midiSequencer.NoteOffEvent += new MidiSequencer.NoteOffEventHandler (MidiNoteOffHandler);			
     }
 
     void LoadSong(string midiPath)
