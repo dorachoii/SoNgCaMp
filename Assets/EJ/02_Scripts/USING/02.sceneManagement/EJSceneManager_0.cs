@@ -11,6 +11,8 @@ public class EJSceneManager_0 : MonoBehaviour
     void Start()
     {
         SceneManager.GetSceneByBuildIndex(0);
+
+        EJSceneManager.GetInstance();
     }
 
     // Update is called once per frame
@@ -18,7 +20,7 @@ public class EJSceneManager_0 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene(1);
+         //   SceneManager.LoadScene(1);
         }
     }
 }
