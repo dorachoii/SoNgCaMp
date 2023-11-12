@@ -124,13 +124,13 @@ public class TrackChunk : Chunk
         //델타타임을 계산하고?
         //일단 1바이트를 읽고 
 
-        while (count < Data.Length) {
-            //함수를 안에서 진행한는것이?
-            int delta = Checkdelta(Data, ref count);
-            MEvent evt = MakeEvent(delta,Data,ref count);
-            eventList.Add(evt);
+        //while (count < Data.Length) {
+        //    //함수를 안에서 진행한는것이?
+        //    int delta = Checkdelta(Data, ref count);
+        //    MEvent evt = MakeEvent(delta,Data,ref count);
+        //    eventList.Add(evt);
 
-        }
+        //}
 
         
         
