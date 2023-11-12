@@ -6,11 +6,13 @@ using UnityEngine;
 
 //Note Storage
 
-//01. NoteType
-//02. NoteInfo
+//01. GameNoteType
+//02. GameNoteInfo
+
+//03. MidiNoteInfo
 
 //All Notes
-public enum NoteType
+public enum GameNoteType
 {
     SHORT,
     LONG,
@@ -19,7 +21,7 @@ public enum NoteType
 }
 
 [System.Serializable]
-public struct NoteInfo
+public struct GameNoteInfo
 {
     public int railIdx;
     public int type;
@@ -35,7 +37,13 @@ public struct NoteInfo
     public bool isNoteEnabled;
 }
 
-public class EJNoteStorage : MonoBehaviour
+public class MidiEventInfo
+{
+    public byte pitch;      //계이름
+    public float length;    //음 길이
+}
+
+public class EJGameNoteStorage : MonoBehaviour
 {
 
 }

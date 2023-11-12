@@ -7,9 +7,20 @@ using UnityEngine;
 
 namespace CSharpSynth.Sequencer
 {
+    //역할: 연주 데이터를 입력해줄 함수들만 존재
+    //01. LoadMidi
+    //02. 그 외 다양한 연주 함수 (Play, Stop, Mute 등)
+
     public class MidiSequencer
     {
+        //--Custom Dictionary
+        //LoadMidi 함수 안에서 midiNoteInfo를 담아 줄 딕셔너리 선언
+        //key -- int: 악기 정보
+        //value -- midiNoteInfo : event
+        public Dictionary<int, List<MidiEventInfo>> midiAllNoteEventsDic = new Dictionary<int, List<MidiEventInfo>>();
+
         //--Variables
+        #region default variables
         private MidiFile _MidiFile;
         private StreamSynthesizer synth;
         private int[] currentPrograms;
@@ -20,12 +31,18 @@ namespace CSharpSynth.Sequencer
         private MidiSequencerEvent seqEvt;
         private int sampleTime;
         private int eventIndex;
+        #endregion
+
         //--Events
+        #region default events
         public delegate void NoteOnEventHandler(int channel, int note, int velocity);
         public event NoteOnEventHandler NoteOnEvent;
         public delegate void NoteOffEventHandler(int channel, int note);
         public event NoteOffEventHandler NoteOffEvent;
+        #endregion
+
         //--Public Properties
+        #region default properties
         public bool isPlaying
         {
             get { return playing; }
@@ -52,7 +69,10 @@ namespace CSharpSynth.Sequencer
             get { return PitchWheelSemitoneRange; }
             set { PitchWheelSemitoneRange = value; }
         }
+        #endregion
+
         //--Public Methods
+        #region default Methods
         public MidiSequencer(StreamSynthesizer synth)
         {
             currentPrograms = new int[16]; //16 channels
@@ -61,17 +81,7 @@ namespace CSharpSynth.Sequencer
             blockList = new List<byte>();
             seqEvt = new MidiSequencerEvent();
         }
-        public string getProgramName(int channel)
-        {
-            if (channel == 9)
-                return synth.SoundBank.getInstrument(currentPrograms[channel], true).Name;
-            else
-                return synth.SoundBank.getInstrument(currentPrograms[channel], false).Name;
-        }
-        public int getProgramIndex(int channel)
-        {
-            return currentPrograms[channel];
-        }
+
         public void setProgram(int channel, int program)
         {
             currentPrograms[channel] = program;
@@ -81,11 +91,69 @@ namespace CSharpSynth.Sequencer
             get { return looping; }
             set { looping = value; }
         }
+
+        #endregion
+
+        #region EJUsing: program Methods - 악기정보 함수
+        public string getProgramName(int channel)
+        {
+            if (channel == 9)
+                return synth.SoundBank.getInstrument(currentPrograms[channel], true).Name;
+            else
+                return synth.SoundBank.getInstrument(currentPrograms[channel], false).Name;
+        }
+
+        public int getProgramIndex(int channel)
+        {
+            return currentPrograms[channel];
+        }
+
+        #endregion
+
+        #region EJUsing Loading Midi Method : midiAllNoteEvents 채워주는 부분 추가
         public bool LoadMidi(MidiFile midi, bool UnloadUnusedInstruments)
         {
-            if (playing == true)
-                return false;
+            if (playing == true) return false;
+
             _MidiFile = midi;
+
+            #region custom) midiEvent담아주는 부분
+            // j = track count
+            // i = events count
+
+            for (int j = 0; j < _MidiFile.Tracks.Length; j++)
+            {
+                MidiEvent[] midiEvents_tracks = _MidiFile.Tracks[j].MidiEvents;
+
+                List<MidiEventInfo> midiNoteEvents = new List<MidiEventInfo>();
+                MidiEventInfo midiEventInfo_each;
+
+                for (int i = 0; i < midiEvents_tracks.Length; i++)
+                {
+                    //Note_Off check
+                    if (midiEvents_tracks[i].midiChannelEvent == MidiHelper.MidiChannelEvent.Note_Off)
+                    {
+                        midiEventInfo_each = new MidiEventInfo();
+
+                        //수정 필요
+                        midiEventInfo_each.length = (midiEvents_tracks[i].deltaTime / 480.0f) * (60.0f / 120.0f);
+                        // deltaTime/ ticksPerBeat? * 1minute / bpm
+
+                        midiEventInfo_each.pitch = midiEvents_tracks[i].parameter1;
+                        midiNoteEvents.Add(midiEventInfo_each);
+                    }
+                }
+
+                if (midiNoteEvents.Count > 0)
+                {
+                    //midiAllNoteEvents[0] = midiNoteEvents;
+                    midiAllNoteEventsDic[getProgramIndex(j)] = midiNoteEvents;
+                }
+            }
+
+            #endregion
+
+            #region default - 연주 속도 설정 deltaTime >>> seconds?
             if (_MidiFile.SequencerReady == false)
             {
                 try
@@ -119,7 +187,9 @@ namespace CSharpSynth.Sequencer
                     return false;
                 }
             }
+            #endregion
             blockList.Clear();
+            #region default - 악기 설정
             if (UnloadUnusedInstruments == true)
             {
                 if (synth.SoundBank == null)
@@ -137,12 +207,15 @@ namespace CSharpSynth.Sequencer
                 }
             }
             return true;
+            #endregion
         }
+
         public bool LoadMidi(string file, bool UnloadUnusedInstruments)
         {
-            if (playing == true)
-                return false;
+            if (playing == true)  return false;
+
             MidiFile mf = null;
+
             try
             {
                 mf = new MidiFile(file);
@@ -155,6 +228,10 @@ namespace CSharpSynth.Sequencer
             }
             return LoadMidi(mf, UnloadUnusedInstruments);
         }
+
+        #endregion
+
+        #region default Methods - 연주 관련
         public void Play()
         {
             if (playing == true)
@@ -365,5 +442,7 @@ namespace CSharpSynth.Sequencer
             }
             sampleTime = sampleTime + amount;
         }
+        #endregion
     }
 }
+

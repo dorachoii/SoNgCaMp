@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine.UIElements;
 
 
-public class EJNote : MonoBehaviour
+public class EJGameNote : MonoBehaviour
 {
     //01.Note_Flow
     //02.Note_Connect
@@ -18,14 +18,14 @@ public class EJNote : MonoBehaviour
     public float speed = 5.5f;
 
     //02.Note_Connect Variables
-    public NoteInfo noteInfo;
+    public GameNoteInfo noteInfo;
     public GameObject linkNotePrefab;
     GameObject linkNote;
     GameObject startN;
     GameObject endN;
 
     //03.Note_autoDestroy
-    public Action<int, EJNote, bool> autoDestroyAction;
+    public Action<int, EJGameNote, bool> autoDestroyAction;
     Transform touchpad;
 
 
