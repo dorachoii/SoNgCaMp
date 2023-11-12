@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DHMidi;
+using DHMidi.Event;
+using static DH.D_MidiManager;
+using DH;
+
 public class UIManager : MonoBehaviour
 {
     public Stack<GameObject> UiLayer = new Stack<GameObject>();
@@ -24,6 +29,8 @@ public class UIManager : MonoBehaviour
 
         //}
         //noteList.Add(noteInfos);
+
+        LoadMidi();
     }
     
 
@@ -317,4 +324,73 @@ public class UIManager : MonoBehaviour
         noteList = currentTrack.Notelist;
         Rendering();
     }
+
+
+
+    void LoadMidi() {
+        MidiFile midifile =  MidiFileWriter.ReadMidi("example.mid.txt");
+
+
+
+
+        midifile.TrackLsit.ForEach(track => {
+            Track tr = new Track ();
+            
+            MidiEvent prevEvent = null;
+            track.eventList.ForEach(evt =>
+            {
+                //일단 채널 번호
+                //악기 정보 
+
+                MidiEvent midievt = evt is MidiEvent ? (MidiEvent)evt : null;
+                if (midievt != null) {
+
+                    switch (midievt.etype) {
+                        case 0xC:
+                            tr.instrument = (Instruments)midievt.fData;
+                            tr.number = midievt.chanel;
+                            break;
+                        case 0x9:
+                            prevEvent = midievt;
+                            
+                            break;
+
+
+                        case 0x8:
+                            //시작이 되었다면 끝맺음이 필요
+                            if (prevEvent != null) {
+                                int deltatime = midievt.deltatime;
+                                int pitch = prevEvent.fData;
+                                int velocity = prevEvent.sData;
+
+                                NoteBlockInfo noteinfo =  new NoteBlockInfo();
+
+                                
+                                 
+                                int condelta = ConvertSecondsToDeltatime(0.5f);
+                                noteinfo.Beat = deltatime / condelta; 
+                                noteinfo.Pitch = pitch;
+                                noteinfo.velocity = velocity;
+
+                            }
+
+
+                            break;
+                    }
+
+                }
+                    
+
+                //노드 정보
+
+
+
+            });
+
+
+        });
+
+    }
+
+   
 }

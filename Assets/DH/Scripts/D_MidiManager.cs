@@ -33,6 +33,11 @@ namespace DH {
             int Division = 60;
             return (int)(Division * seconds);
         }
+        public static int ConvertSecondsToDeltatime( float seconds, int division = 60)
+        {
+            
+            return (int)(division * seconds);
+        }
 
         /// <summary>
         /// 타입에 맞춰서 뒤에 0 지우는 함수
