@@ -5773,6 +5773,7 @@ MonoBehaviour:
   - {fileID: 143022921}
   - {fileID: 1528191776}
   - {fileID: 84683591}
+  allGameNoteInfo: []
   missMat: {fileID: 2100000, guid: ed95faebe3dc8d148b5f341758ba0795, type: 2}
   canvas: {fileID: 1599783460}
   scoreTexts:
@@ -6690,7 +6691,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 82fa19ef083f9c547b8b54c80ff2b7f5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a3f74fe4b0311e64d8612b8bbcaeb1c7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -6789,6 +6790,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flop: {fileID: 1470545358}
+  midiFilePath: Midis/Groove.mid
+  ShouldPlayFile: 1
+  bankFilePath: GM Bank/gm
+  bufferSize: 1024
+  midiNote: 100
+  midiNoteVolume: 100
+  midiInstrument: 0
+  currTime: 0
 --- !u!1001 &1471918372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7895,7 +7904,7 @@ Canvas:
   m_GameObject: {fileID: 1599783457}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1208885422}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

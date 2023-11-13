@@ -21,6 +21,7 @@ public class EJSceneManager_Back : MonoBehaviour
     public void ClickBack()
     {
         SceneManager.LoadScene(4);
+        print("Back버튼이 눌렸다");
     }
         
 }

@@ -12,7 +12,7 @@ using UnityEngine;
 public class EJNoteManager : MonoBehaviour
 {
     //ÀÓÀÇ
-    int bpm = 72;
+    int bpm = 80;
     public Camera maincam;
 
     //01. Note_Instantiate
@@ -87,11 +87,11 @@ public class EJNoteManager : MonoBehaviour
             gameNoteInstance_Rails[i] = new List<EJGameNote>();
         }
 
-        //InputTestSHORTNotes();    //test FINISHED!!!
+        InputTestSHORTNotes();    //test FINISHED!!!
         //InputTestLONGNotes();     //test FINISHED_1Â÷!!!
         //InputTestDRAGNote();
         //InputTestMIXEDNote();
-        InputTestFLOP();
+        //InputTestFLOP();
     }
 
     void Update()
@@ -859,6 +859,25 @@ public class EJNoteManager : MonoBehaviour
         info.DRAG_release_idx = 0;
         info.isNoteEnabled = true;
         allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 7 * bpm;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = 0;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 8 * bpm;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = 0;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
 
         for (int i = 0; i < gameNoteInfo_Rails.Length; i++)
         {

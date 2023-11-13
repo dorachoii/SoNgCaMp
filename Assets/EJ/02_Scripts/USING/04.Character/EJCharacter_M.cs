@@ -117,9 +117,9 @@ public class EJCharacter_M : MonoBehaviour
 
     IEnumerator moveToCenterPoint(GameObject go)
     {
-        while (!(Vector3.Distance(go.transform.position, centerPos.transform.position) < 0.01f))
+        while (!(Vector3.Distance(go.transform.position, centerPos.transform.position +Vector3.up*0.5f - Vector3.right *1.8f) < 0.01f))
         {
-            go.transform.position = Vector3.Lerp(go.transform.position, centerPos.transform.position, 0.1f);
+            go.transform.position = Vector3.Lerp(go.transform.position, centerPos.transform.position + Vector3.up*0.5f - Vector3.right*1.8f, 0.1f);
             yield return null;
         }
 
