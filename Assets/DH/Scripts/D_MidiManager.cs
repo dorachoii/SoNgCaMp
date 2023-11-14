@@ -102,6 +102,37 @@ namespace DH {
             return convertByte;
         }
 
+
+        /// <summary>
+        /// 가변 바이트 deltatime을 원상태 deltatime으로 복구하는 작업
+        /// </summary>
+        public static int ReadDeltaTime(byte[] buffer)
+        {
+            int time = 0;
+            byte b;
+            int offset = 0;
+            do
+            {
+                b = buffer[offset];
+                offset++;
+                //이거 왜하는가?
+                //0x7F = 0111 1111
+                //& 연산해서 같은거 1 나머지 0 
+
+                //기존에 있던 값을 7비트 이동시키고 현재 deltatime을 7비트 추가하는 행위를 하는 것.
+                //델타 타임이 누적이 된다~
+                time = (time << 7) | (b & 0x7F);
+
+                //why? 0111 1111을 and 시키니까 최상위 비트는 무조건 0이 됨. 즉 날아간다는 소리이다.
+                //time을 left shift 한다는 행위는 오른쪽에 비트가 7개 채워짐
+                //그것을 or 하면 현재 타임의 정보가 들어감.
+            }
+            //127 이하 수는 최상위 비트가 0이다. 따라서 127보다 클때만 time을 계산하는 수행을 반복한다.
+            while (b > 127);
+            return time;
+        }
+
+
         //128개의 악기를 모두 열거해야 하는가??
         public enum Instruments {
             Acoustic_Grand_Piano,

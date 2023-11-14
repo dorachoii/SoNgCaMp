@@ -254,8 +254,13 @@ namespace DHMidi.Event {
                     sData = buffer[count++];
                     break;
                 case 0x9:
-                    sData = buffer[++count];
+                    sData = buffer[count++];
                     etype = (byte) ((sData == 0) ? 0x8 : etype);
+                    break;
+                case 0xC:
+                    break;
+                case 0xB:
+                    sData = buffer[count++];
                     break;
 
             }

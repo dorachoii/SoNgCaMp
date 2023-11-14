@@ -7,6 +7,7 @@ using DHMidi;
 using DHMidi.Event;
 using static DH.D_MidiManager;
 using DH;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -326,7 +327,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-
+    int ctn;
     void LoadMidi() {
         MidiFile midifile =  MidiFileWriter.ReadMidi("example.mid.txt");
 
@@ -336,7 +337,8 @@ public class UIManager : MonoBehaviour
         midifile.TrackLsit.ForEach(track => {
             Track tr = new Track ();
             
-            MidiEvent prevEvent = null;
+            MidiEvent prevOnEvent = null;
+            MidiEvent prevOffEvent = null;
             track.eventList.ForEach(evt =>
             {
                 //일단 채널 번호
@@ -351,26 +353,39 @@ public class UIManager : MonoBehaviour
                             tr.number = midievt.chanel;
                             break;
                         case 0x9:
-                            prevEvent = midievt;
+                            prevOnEvent = midievt;
                             
+
+
                             break;
 
 
                         case 0x8:
                             //시작이 되었다면 끝맺음이 필요
-                            if (prevEvent != null) {
-                                int deltatime = midievt.deltatime;
-                                int pitch = prevEvent.fData;
-                                int velocity = prevEvent.sData;
-
+                            if (prevOnEvent != null && (prevOnEvent.fData == midievt.fData) && (prevOnEvent.chanel == midievt.chanel) ) {
+                                int deltatime = ReadDeltaTime(GetBytesCheckType(midievt.deltatime));
+                                int pitch = prevOnEvent.fData;
+                                int velocity = prevOnEvent.sData;
                                 NoteBlockInfo noteinfo =  new NoteBlockInfo();
-
-                                
-                                 
-                                int condelta = ConvertSecondsToDeltatime(0.5f);
-                                noteinfo.Beat = deltatime / condelta; 
+                                int condelta = ConvertSecondsToDeltatime(0.5f); 
+                                noteinfo.Beat = deltatime / condelta;  
                                 noteinfo.Pitch = pitch;
                                 noteinfo.velocity = velocity;
+
+
+                                int deltatime2 = ReadDeltaTime(GetBytesCheckType(prevOnEvent.deltatime));
+                                //몇칸 쉬었는지
+
+                                //내 Onevent
+
+                                //내 칸....
+                                ctn += (deltatime2 / condelta) + 1;
+
+                                Debug.Log("내 칸의 위치는 " + ctn + "입니다. 이벤트는" + prevOnEvent.fData + "and" +prevOnEvent.sData);
+                                ctn += (deltatime / condelta) -1;
+
+                                prevOnEvent = null;
+                                prevOffEvent = null;
 
                             }
 
