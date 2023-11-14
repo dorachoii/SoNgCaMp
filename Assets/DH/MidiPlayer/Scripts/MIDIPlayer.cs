@@ -11,7 +11,7 @@ public class MIDIPlayer : MonoBehaviour
 {
     //Public
     //Check the Midi's file folder for different songs
-    public string midiFilePath = "Midis/Groove.mid";
+    public string midiFilePath = /*"Midis/Groove.mid"*/"PianoTest1234.mid.txt";
     public bool ShouldPlayFile = true;
 
     //Try also: "FM Bank/fm" or "Analog Bank/analog" for some different sounds

@@ -4,6 +4,7 @@ using CSharpSynth.Midi;
 using CSharpSynth.Synthesis;
 using CSharpSynth.Banks;
 using UnityEngine;
+using Unity.VisualScripting.FullSerializer;
 
 namespace CSharpSynth.Sequencer
 {
@@ -148,8 +149,11 @@ namespace CSharpSynth.Sequencer
                 {
                     //midiAllNoteEvents[0] = midiNoteEvents;
                     midiAllNoteEventsDic[getProgramIndex(j)] = midiNoteEvents;
+
+                    Debug.Log("11111 LoadMidi 함수가 실행되었고, midiAllNoteEventsDic[getProgramIndex(j)]의 midiEvent의 개수는" + midiNoteEvents.Count + "가 담겼다");
                 }
             }
+
 
             #endregion
 
@@ -219,6 +223,7 @@ namespace CSharpSynth.Sequencer
             try
             {
                 mf = new MidiFile(file);
+                
             }
             catch (Exception ex)
             {

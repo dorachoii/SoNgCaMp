@@ -6,28 +6,36 @@ using CSharpSynth.Sequencer;
 using CSharpSynth.Synthesis;
 using CSharpSynth.Midi;
 
+//01. 누른 악기 버튼에 따라 접근할 트랙의 인덱스를 정해준다.
+//02. 트랙의 
+//03.
+//04.
+
 public class EJMidi2Note : MonoBehaviour
 {
     MidiSequencer midiSequencer;   
-    public string midiPath = "Midis/Groove.mid";
-    int trackIdx;
-    GameObject[] btns;
-
     EJNoteManager ejnotemanager;
 
-    int instrumentIdx;
+    public string midiPath = "PianoTest1234.mid.txt";
     
-    void ClickDrumBtn()
+
+    int instrumentIdx = 0;      //default : piano 0
+
+    GameObject[] btns;
+
+
+    
+    public void ClickDrumBtn()
     {
         instrumentIdx = 114;
     }
 
-    void ClickPianoBtn()
+    public void ClickPianoBtn()
     {
         instrumentIdx = 0;
     }
 
-    void ClickGuitarBtn()
+    public void ClickGuitarBtn()
     {
         instrumentIdx = 24;
     }
@@ -43,6 +51,8 @@ public class EJMidi2Note : MonoBehaviour
     void Start()
     {
         List<MidiEventInfo> midiEvents_selectedTrack = midiSequencer.midiAllNoteEventsDic[instrumentIdx];
+
+        print("22222 instrument index는" + instrumentIdx + "이고 midiEvent의 개수는" + midiEvents_selectedTrack.Count + "만큼 담겼다");
 
         for (int i = 0; i < midiEvents_selectedTrack.Count; i++)
         {
@@ -66,6 +76,7 @@ public class EJMidi2Note : MonoBehaviour
         {
             ejnotemanager.gameNoteInfo_Rails[ejnotemanager.allGameNoteInfo[i].railIdx].Add(ejnotemanager.allGameNoteInfo[i]);
         }
+
     }
 
     //0번째 읽어와서 도레미파솔 쇼츠 내려오게 하기

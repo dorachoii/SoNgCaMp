@@ -80,6 +80,7 @@ public class EJNoteManager : MonoBehaviour
 
     void Start()
     {
+        
         // instantiated note in hierarchy <<< Add EJNote Component 
         for (int i = 0; i < gameNoteInstance_Rails.Length; i++)
         {
@@ -87,7 +88,7 @@ public class EJNoteManager : MonoBehaviour
             gameNoteInstance_Rails[i] = new List<EJGameNote>();
         }
 
-        InputTestSHORTNotes();    //test FINISHED!!!
+        //InputTestSHORTNotes();    //test FINISHED!!!
         //InputTestLONGNotes();     //test FINISHED_1Â÷!!!
         //InputTestDRAGNote();
         //InputTestMIXEDNote();
