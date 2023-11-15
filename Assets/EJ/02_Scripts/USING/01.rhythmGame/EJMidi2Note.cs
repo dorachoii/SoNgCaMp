@@ -11,19 +11,23 @@ using CSharpSynth.Midi;
 //03.
 //04.
 
+[RequireComponent(typeof(AudioSource))]
 public class EJMidi2Note : MonoBehaviour
 {
-    MidiSequencer midiSequencer;   
-    EJNoteManager ejnotemanager;
-
-    public string midiPath = "PianoTest1234.mid.txt";
     
+
+    MidiSequencer midiSequencer;   
+    public EJNoteManager ejnotemanager;
+    private StreamSynthesizer midiStreamSynthesizer;
+    public string bankFilePath = "GM Bank/gm";
+    public int bufferSize = 1024;
+    private float[] sampleBuffer;
+
+    public string midiPath = "PianoTest1234.mid.txt";    
 
     int instrumentIdx = 0;      //default : piano 0
 
     GameObject[] btns;
-
-
     
     public void ClickDrumBtn()
     {
@@ -44,7 +48,13 @@ public class EJMidi2Note : MonoBehaviour
     
     private void Awake()
     {
-        midiSequencer.LoadMidi(midiPath, false);        
+
+        midiStreamSynthesizer = new StreamSynthesizer(44100, 2, bufferSize, 40);
+        sampleBuffer = new float[midiStreamSynthesizer.BufferSize];
+        midiStreamSynthesizer.LoadBank(bankFilePath);
+        midiSequencer = new MidiSequencer(midiStreamSynthesizer);
+        midiSequencer.LoadMidi(midiPath, false);
+      
     }
 
     // Start is called before the first frame update
@@ -58,11 +68,15 @@ public class EJMidi2Note : MonoBehaviour
         {
             GameNoteInfo gameNoteInfo = new GameNoteInfo();
 
+            gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
             gameNoteInfo.railIdx = SetRailIdx(midiEvents_selectedTrack[i],gameNoteInfo);
             gameNoteInfo.type = SetNoteType(midiEvents_selectedTrack, i, gameNoteInfo);
             gameNoteInfo.isLongNoteStart = false;
             gameNoteInfo.DRAG_release_idx = 0;
             gameNoteInfo.isNoteEnabled = false;
+            gameNoteInfo.time = midiEvents_selectedTrack[i].length;
+
+
 
             ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
         }
@@ -77,21 +91,13 @@ public class EJMidi2Note : MonoBehaviour
             ejnotemanager.gameNoteInfo_Rails[ejnotemanager.allGameNoteInfo[i].railIdx].Add(ejnotemanager.allGameNoteInfo[i]);
         }
 
+
     }
 
     //0번째 읽어와서 도레미파솔 쇼츠 내려오게 하기
     int SetRailIdx(MidiEventInfo midiNote, GameNoteInfo gameNoteInfo)
     {
-        switch (midiNote.pitch % 6)
-        {
-            case 0: return 0; break;
-            case 1: return 1; break;
-            case 2: return 2; break;
-            case 3: return 3; break;
-            case 4: return 4; break;
-            case 5: return 5; break;
-            default: return 0;
-        }
+        return (midiNote.pitch % 6);
     }
 
     int SetNoteType(List<MidiEventInfo> midiNote, int idx, GameNoteInfo gameNoteInfo)
@@ -118,6 +124,8 @@ public class EJMidi2Note : MonoBehaviour
                 }
             }
         }
+
     }
 
+    
 }

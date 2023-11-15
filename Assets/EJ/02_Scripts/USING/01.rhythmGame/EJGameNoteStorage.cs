@@ -35,12 +35,17 @@ public struct GameNoteInfo
 
     //longNote나 dragNote가 눌리다가 말아서 enable체크를 해야할 때
     public bool isNoteEnabled;
+
+    public byte pitch; 
 }
 
 public class MidiEventInfo
 {
     public byte pitch;      //계이름
     public float length;    //음 길이
+
+    public float startTime; //시작 시간이 필요함
+    
 }
 
 public class EJGameNoteStorage : MonoBehaviour

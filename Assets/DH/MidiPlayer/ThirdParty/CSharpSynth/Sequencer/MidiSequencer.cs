@@ -111,9 +111,15 @@ namespace CSharpSynth.Sequencer
 
         #endregion
 
+
+        float time;
+
         #region EJUsing Loading Midi Method : midiAllNoteEvents 채워주는 부분 추가
         public bool LoadMidi(MidiFile midi, bool UnloadUnusedInstruments)
         {
+            //time += base.Time.deltaTime;
+
+            
             if (playing == true) return false;
 
             _MidiFile = midi;
@@ -131,10 +137,18 @@ namespace CSharpSynth.Sequencer
 
                 for (int i = 0; i < midiEvents_tracks.Length; i++)
                 {
+                    midiEventInfo_each = new MidiEventInfo();
+
+                    if (midiEvents_tracks[i].midiChannelEvent == MidiHelper.MidiChannelEvent.Note_On)
+                    {
+                        //midiEventInfo_each.startTime = 
+                        //시작할 때 startTime을 넣도록 해야함
+                    }
+
                     //Note_Off check
                     if (midiEvents_tracks[i].midiChannelEvent == MidiHelper.MidiChannelEvent.Note_Off)
                     {
-                        midiEventInfo_each = new MidiEventInfo();
+                        //midiEventInfo_each = new MidiEventInfo();
 
                         //수정 필요
                         midiEventInfo_each.length = (midiEvents_tracks[i].deltaTime / 480.0f) * (60.0f / 120.0f);

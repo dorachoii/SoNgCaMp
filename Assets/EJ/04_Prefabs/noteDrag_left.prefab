@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 1433315881158573589}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0.3, z: 3}
+  m_LocalScale: {x: 3, y: 0.09, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6100381557510049872}
@@ -241,12 +241,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc89d884283a724298d8b497ac07f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5.5
   noteInfo:
     railIdx: 0
     type: 0
     time: 0
     isLongNoteStart: 0
-    press_idx: 0
+    DRAG_release_idx: 0
+    isNoteEnabled: 0
   linkNotePrefab: {fileID: 2711432886464089921, guid: cbdf2a3feeecb014bb0246b03456d9b1, type: 3}
 --- !u!1 &2340190656041953151
 GameObject:

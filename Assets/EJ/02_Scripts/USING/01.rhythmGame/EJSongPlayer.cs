@@ -29,7 +29,7 @@ public class EJSongPlayer : MonoBehaviour
     #endregion
 
     #region MIDI Play
-    public string midiFilePath = "Midis/Groove.mid";
+    public string midiFilePath = "PianoTest1234.mid.txt";
     public bool ShouldPlayFile = true;
 
 
@@ -65,7 +65,7 @@ public class EJSongPlayer : MonoBehaviour
         midiStreamSynthesizer.LoadBank(bankFilePath);
         midiSequencer = new MidiSequencer(midiStreamSynthesizer);
 
-        LoadSong(midiFilePath);
+        //LoadSong(midiFilePath);
         
         //These will be fired by the midiSequencer when a song plays. Check the console for messages if you uncomment these
         //midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler(MidiNoteOnHandler);

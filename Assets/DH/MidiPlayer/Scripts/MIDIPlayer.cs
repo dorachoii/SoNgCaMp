@@ -9,6 +9,7 @@ using CSharpSynth.Midi;
 [RequireComponent(typeof(AudioSource))]
 public class MIDIPlayer : MonoBehaviour
 {
+    public static MIDIPlayer instance;
     //Public
     //Check the Midi's file folder for different songs
     public string midiFilePath = /*"Midis/Groove.mid"*/"PianoTest1234.mid.txt";
@@ -37,6 +38,8 @@ public class MIDIPlayer : MonoBehaviour
     // is being loaded.
     void Awake()
     {
+        instance = this;
+
         midiStreamSynthesizer = new StreamSynthesizer(44100, 2, bufferSize, 40);
         sampleBuffer = new float[midiStreamSynthesizer.BufferSize];
         
@@ -70,7 +73,7 @@ public class MIDIPlayer : MonoBehaviour
             //if (!GetComponent<AudioSource>().isPlaying)
             if (ShouldPlayFile)
             {
-                LoadSong(midiFilePath);
+               // LoadSong(midiFilePath);
            
             }
         }
@@ -126,4 +129,17 @@ public class MIDIPlayer : MonoBehaviour
     {
         Debug.Log("NoteOff: " + note.ToString());
     }
+
+    public void PlayOnePitch(int note)
+    {
+        StartCoroutine(CoPlayOnePitch(note));
+    }
+
+    IEnumerator CoPlayOnePitch(int note)
+    {
+        midiStreamSynthesizer.NoteOn(0, note, 100, 0);
+        yield return new WaitForSeconds(1);
+        midiStreamSynthesizer.NoteOff(0, note);
+    }
+
 }

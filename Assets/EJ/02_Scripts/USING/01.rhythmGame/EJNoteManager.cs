@@ -80,7 +80,7 @@ public class EJNoteManager : MonoBehaviour
 
     void Start()
     {
-        
+
         // instantiated note in hierarchy <<< Add EJNote Component 
         for (int i = 0; i < gameNoteInstance_Rails.Length; i++)
         {
@@ -93,6 +93,22 @@ public class EJNoteManager : MonoBehaviour
         //InputTestDRAGNote();
         //InputTestMIXEDNote();
         //InputTestFLOP();
+
+        StartCoroutine(Test());
+    }
+
+    IEnumerator Test()
+    {
+        yield return new WaitForSeconds(0.2f);
+        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[0][0].noteInfo.pitch);
+        yield return new WaitForSeconds(0.2f);
+        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[1][0].noteInfo.pitch);
+        yield return new WaitForSeconds(0.2f);
+        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[2][0].noteInfo.pitch);
+        yield return new WaitForSeconds(0.2f);
+        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[4][0].noteInfo.pitch);
+        yield return new WaitForSeconds(0.2f);
+        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[5][0].noteInfo.pitch);
     }
 
     void Update()
