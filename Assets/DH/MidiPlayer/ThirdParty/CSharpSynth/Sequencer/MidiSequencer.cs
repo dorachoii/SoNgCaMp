@@ -5,6 +5,7 @@ using CSharpSynth.Synthesis;
 using CSharpSynth.Banks;
 using UnityEngine;
 using Unity.VisualScripting.FullSerializer;
+using UnityEngine.Assertions.Must;
 
 namespace CSharpSynth.Sequencer
 {
@@ -117,9 +118,7 @@ namespace CSharpSynth.Sequencer
         #region EJUsing Loading Midi Method : midiAllNoteEvents 채워주는 부분 추가
         public bool LoadMidi(MidiFile midi, bool UnloadUnusedInstruments)
         {
-            //time += base.Time.deltaTime;
-
-            
+            //time += base.Time.deltaTime;            
             if (playing == true) return false;
 
             _MidiFile = midi;
@@ -133,16 +132,22 @@ namespace CSharpSynth.Sequencer
                 MidiEvent[] midiEvents_tracks = _MidiFile.Tracks[j].MidiEvents;
 
                 List<MidiEventInfo> midiNoteEvents = new List<MidiEventInfo>();
-                MidiEventInfo midiEventInfo_each;
+                MidiEventInfo midiEventInfo_each = null;
+                float playedTime = 0;
 
                 for (int i = 0; i < midiEvents_tracks.Length; i++)
                 {
-                    midiEventInfo_each = new MidiEventInfo();
-
                     if (midiEvents_tracks[i].midiChannelEvent == MidiHelper.MidiChannelEvent.Note_On)
                     {
-                        //midiEventInfo_each.startTime = 
-                        //시작할 때 startTime을 넣도록 해야함
+                        midiEventInfo_each = new MidiEventInfo();
+                        
+                        midiEventInfo_each.length = (midiEvents_tracks[i].deltaTime / 480.0f) * (60.0f / 120.0f);
+                        playedTime += midiEventInfo_each.length;
+                        midiEventInfo_each.startTime = playedTime;
+                        midiEventInfo_each.endTime = playedTime + midiEventInfo_each.length;
+                        midiEventInfo_each.pitch = midiEvents_tracks[i].parameter1;
+
+                        midiNoteEvents.Add(midiEventInfo_each);
                     }
 
                     //Note_Off check
@@ -151,11 +156,10 @@ namespace CSharpSynth.Sequencer
                         //midiEventInfo_each = new MidiEventInfo();
 
                         //수정 필요
-                        midiEventInfo_each.length = (midiEvents_tracks[i].deltaTime / 480.0f) * (60.0f / 120.0f);
                         // deltaTime/ ticksPerBeat? * 1minute / bpm
 
-                        midiEventInfo_each.pitch = midiEvents_tracks[i].parameter1;
-                        midiNoteEvents.Add(midiEventInfo_each);
+                        //midiEventInfo_each.pitch = midiEvents_tracks[i].parameter1;
+                        //midiNoteEvents.Add(midiEventInfo_each);
                     }
                 }
 

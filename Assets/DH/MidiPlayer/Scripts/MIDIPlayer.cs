@@ -12,7 +12,7 @@ public class MIDIPlayer : MonoBehaviour
     public static MIDIPlayer instance;
     //Public
     //Check the Midi's file folder for different songs
-    public string midiFilePath = /*"Midis/Groove.mid"*/"PianoTest1234.mid.txt";
+    public string midiFilePath = /*"Midis/Groove.mid"*//*"PianoTest1234.mid.txt"*/"ichumonandodemo.mid.txt";
     public bool ShouldPlayFile = true;
 
     //Try also: "FM Bank/fm" or "Analog Bank/analog" for some different sounds
@@ -82,15 +82,15 @@ public class MIDIPlayer : MonoBehaviour
             midiSequencer.Stop(true);
         }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            midiStreamSynthesizer.NoteOn(0, midiNote, midiNoteVolume, midiInstrument);
-        }
+        //if (Input.GetButtonDown("Fire1"))
+        //{
+        //    midiStreamSynthesizer.NoteOn(0, midiNote, midiNoteVolume, midiInstrument);
+        //}
 
-        if (Input.GetButtonUp("Fire1"))
-        {
-            midiStreamSynthesizer.NoteOff(0, midiNote);
-        }
+        //if (Input.GetButtonUp("Fire1"))
+        //{
+        //    midiStreamSynthesizer.NoteOff(0, midiNote);
+        //}
 
 
         }
@@ -130,15 +130,25 @@ public class MIDIPlayer : MonoBehaviour
         Debug.Log("NoteOff: " + note.ToString());
     }
 
-    public void PlayOnePitch(int note)
+    public void PlayOneMidiEvent(int note)
     {
-        StartCoroutine(CoPlayOnePitch(note));
+        StartCoroutine(CoPlayOneMidiEvent(note));
     }
 
-    IEnumerator CoPlayOnePitch(int note)
+    IEnumerator CoPlayOneMidiEvent(int note)
     {
         midiStreamSynthesizer.NoteOn(0, note, 100, 0);
         yield return new WaitForSeconds(1);
+        midiStreamSynthesizer.NoteOff(0, note);
+    }
+
+    public void NoteOn(int note)
+    {
+        midiStreamSynthesizer.NoteOn(0, note, 100, 0);
+    }
+
+    public void NoteOff(int note)
+    {
         midiStreamSynthesizer.NoteOff(0, note);
     }
 

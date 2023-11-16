@@ -20,6 +20,11 @@ public class EJNoteManager : MonoBehaviour
     public Transform[] noteSpawnRail;
     public Transform[] touchpads;
 
+    //Touch와 연동해서 껐다 켤 것
+    public GameObject[] QuadRails;
+    public GameObject[] QuadTouches;
+    public Material[] QuadRails_Mat;
+
     GameObject note;
     GameObject startNote;
     GameObject endNote;
@@ -76,8 +81,6 @@ public class EJNoteManager : MonoBehaviour
     public Canvas canvas;
     public GameObject[] scoreTexts;
 
-
-
     void Start()
     {
 
@@ -94,21 +97,21 @@ public class EJNoteManager : MonoBehaviour
         //InputTestMIXEDNote();
         //InputTestFLOP();
 
-        StartCoroutine(Test());
+        //StartCoroutine(Test());
     }
 
     IEnumerator Test()
     {
         yield return new WaitForSeconds(0.2f);
-        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[0][0].noteInfo.pitch);
+        MIDIPlayer.instance.PlayOneMidiEvent(gameNoteInstance_Rails[0][0].noteInfo.pitch);
         yield return new WaitForSeconds(0.2f);
-        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[1][0].noteInfo.pitch);
+        MIDIPlayer.instance.PlayOneMidiEvent(gameNoteInstance_Rails[1][0].noteInfo.pitch);
         yield return new WaitForSeconds(0.2f);
-        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[2][0].noteInfo.pitch);
+        MIDIPlayer.instance.PlayOneMidiEvent(gameNoteInstance_Rails[2][0].noteInfo.pitch);
         yield return new WaitForSeconds(0.2f);
-        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[4][0].noteInfo.pitch);
+        MIDIPlayer.instance.PlayOneMidiEvent(gameNoteInstance_Rails[4][0].noteInfo.pitch);
         yield return new WaitForSeconds(0.2f);
-        MIDIPlayer.instance.PlayOnePitch(gameNoteInstance_Rails[5][0].noteInfo.pitch);
+        MIDIPlayer.instance.PlayOneMidiEvent(gameNoteInstance_Rails[5][0].noteInfo.pitch);
     }
 
     void Update()
@@ -477,9 +480,6 @@ public class EJNoteManager : MonoBehaviour
                                 }
                             }
                         }
-
-
-
                     }
 
                 }
@@ -563,25 +563,43 @@ public class EJNoteManager : MonoBehaviour
     //*****Dictionary<fingerID, startIdx>
     Dictionary<int, int> dicStartIdx = new Dictionary<int, int>();
 
+
+    int pitch = 20;
+
     void touchedFX(int n, int fingerId)
     {
+        //n = railIdx
+        //fingerId = touchpad
+
         if (dicCurrTouchPadIdx.ContainsKey(fingerId) == false) return;
         if (n == dicCurrTouchPadIdx[fingerId]) return;
 
+        if (gameNoteInstance_Rails[n].Count > 0)
+        {
+            pitch = gameNoteInstance_Rails[n][0].noteInfo.pitch;
+        }
 
         if (dicCurrTouchPadIdx[fingerId] != -1)
         {
             releasedFX(fingerId);
         }
 
-        if (!touchpads[n].GetComponent<MeshRenderer>().enabled)
+        if (/*!touchpads[n].GetComponent<MeshRenderer>().enabled &&*/ !QuadTouches[n].activeSelf)
         {
-            touchpads[n].GetComponent<MeshRenderer>().enabled = true;
+            /*touchpads[n].GetComponent<MeshRenderer>().enabled = true;*/
+            QuadTouches[n].SetActive(true);
+            QuadRails[n].GetComponent<MeshRenderer>().material = QuadRails_Mat[n];
+
+            MIDIPlayer.instance.NoteOn(/*gameNoteInstance_Rails[n][0].noteInfo.pitch*/pitch);
+
+            //on 해주고 해당음을 뗄 때 off해주고
+            //MIDIPlayer.instance.PlayOneMidiEvent();
         }
 
         dicCurrTouchPadIdx[fingerId] = n;
     }
 
+    
     void releasedFX(int fingerId)
     {
         if (dicCurrTouchPadIdx.ContainsKey(fingerId) == false) return;
@@ -589,9 +607,18 @@ public class EJNoteManager : MonoBehaviour
         print("releasedFX함수 실행");
         if (n == -1) return;
 
-        if (touchpads[n].GetComponent<MeshRenderer>().enabled)
+        if (/*touchpads[n].GetComponent<MeshRenderer>().enabled &&*/ QuadTouches[n].activeSelf)
         {
-            touchpads[n].GetComponent<MeshRenderer>().enabled = false;
+            /*touchpads[n].GetComponent<MeshRenderer>().enabled = false;*/
+            QuadTouches[n].SetActive(false);
+            QuadRails[n].GetComponent<MeshRenderer>().material = QuadRails_Mat[n+6];
+
+            MIDIPlayer.instance.NoteOff(/*gameNoteInstance_Rails[n][0].noteInfo.pitch*/pitch);
+        }
+
+        if (gameNoteInstance_Rails[n].Count == 0)
+        {
+            pitch = 20;
         }
     }
 

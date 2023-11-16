@@ -45,7 +45,7 @@ public class MidiEventInfo
     public float length;    //음 길이
 
     public float startTime; //시작 시간이 필요함
-    
+    public float endTime;    
 }
 
 public class EJGameNoteStorage : MonoBehaviour

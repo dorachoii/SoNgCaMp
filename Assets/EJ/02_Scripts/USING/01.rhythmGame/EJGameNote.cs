@@ -65,6 +65,7 @@ public class EJGameNote : MonoBehaviour
 
         if (autoDestroyAction != null) autoDestroyAction(noteInfo.railIdx, this, isPassed);
 
+
         print("*****현재 autoDestroy가 실행되는 Note의 isLongStart값은" + noteInfo.isLongNoteStart);
         Destroy(gameObject);
         

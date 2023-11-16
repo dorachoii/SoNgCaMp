@@ -13,9 +13,7 @@ using CSharpSynth.Midi;
 
 [RequireComponent(typeof(AudioSource))]
 public class EJMidi2Note : MonoBehaviour
-{
-    
-
+{    
     MidiSequencer midiSequencer;   
     public EJNoteManager ejnotemanager;
     private StreamSynthesizer midiStreamSynthesizer;
@@ -23,7 +21,7 @@ public class EJMidi2Note : MonoBehaviour
     public int bufferSize = 1024;
     private float[] sampleBuffer;
 
-    public string midiPath = "PianoTest1234.mid.txt";    
+    public string midiPath = "ichumonandodemo.mid.txt";    
 
     int instrumentIdx = 0;      //default : piano 0
 
@@ -32,6 +30,7 @@ public class EJMidi2Note : MonoBehaviour
     public void ClickDrumBtn()
     {
         instrumentIdx = 114;
+        //prefab번호도 할당해야함.
     }
 
     public void ClickPianoBtn()
@@ -70,13 +69,21 @@ public class EJMidi2Note : MonoBehaviour
 
             gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
             gameNoteInfo.railIdx = SetRailIdx(midiEvents_selectedTrack[i],gameNoteInfo);
-            gameNoteInfo.type = SetNoteType(midiEvents_selectedTrack, i, gameNoteInfo);
+            gameNoteInfo.type = 0/*SetNoteType(midiEvents_selectedTrack, i, gameNoteInfo)*/;
             gameNoteInfo.isLongNoteStart = false;
             gameNoteInfo.DRAG_release_idx = 0;
             gameNoteInfo.isNoteEnabled = false;
-            gameNoteInfo.time = midiEvents_selectedTrack[i].length;
+            gameNoteInfo.time = midiEvents_selectedTrack[i].startTime*120;
 
+            if(i == 0)
+            {
+                gameNoteInfo.time = 0.5f;
+            }
+            else
+            {
+                gameNoteInfo.time += midiEvents_selectedTrack[i - 1].length;
 
+            }
 
             ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
         }
@@ -90,8 +97,6 @@ public class EJMidi2Note : MonoBehaviour
         {
             ejnotemanager.gameNoteInfo_Rails[ejnotemanager.allGameNoteInfo[i].railIdx].Add(ejnotemanager.allGameNoteInfo[i]);
         }
-
-
     }
 
     //0번째 읽어와서 도레미파솔 쇼츠 내려오게 하기
@@ -102,7 +107,7 @@ public class EJMidi2Note : MonoBehaviour
 
     int SetNoteType(List<MidiEventInfo> midiNote, int idx, GameNoteInfo gameNoteInfo)
     {
-        if (midiNote[idx].length < 3f)
+        if (midiNote[idx].length < 2f)
         {
             return 0;   //short Note
         }
