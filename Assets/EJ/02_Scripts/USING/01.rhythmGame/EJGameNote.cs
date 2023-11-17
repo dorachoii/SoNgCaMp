@@ -47,9 +47,7 @@ public class EJGameNote : MonoBehaviour
 
         //02.Note_autoDestroy isPassed Check
         if (transform.position.y +3f < touchpad.position.y)
-        {
-            
-            
+        {           
             autoDestroy(true);
         }
 
@@ -83,6 +81,7 @@ public class EJGameNote : MonoBehaviour
 
         linkNote = Instantiate(linkNotePrefab, (startN.transform.position + endN.transform.position) / 2, Quaternion.identity);
         linkNote.transform.SetParent(endN.transform);
+        
         
 
         //넣게되면 pad를 지나간 것에 대한 체크를 또 하기 때문!

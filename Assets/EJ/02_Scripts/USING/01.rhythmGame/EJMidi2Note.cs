@@ -52,40 +52,73 @@ public class EJMidi2Note : MonoBehaviour
         sampleBuffer = new float[midiStreamSynthesizer.BufferSize];
         midiStreamSynthesizer.LoadBank(bankFilePath);
         midiSequencer = new MidiSequencer(midiStreamSynthesizer);
-        midiSequencer.LoadMidi(midiPath, false);
-      
+        midiSequencer.LoadMidi(midiPath, false);      
     }
+
+    GameNoteInfo gameNoteInfo;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         List<MidiEventInfo> midiEvents_selectedTrack = midiSequencer.midiAllNoteEventsDic[instrumentIdx];
 
-        print("22222 instrument index는" + instrumentIdx + "이고 midiEvent의 개수는" + midiEvents_selectedTrack.Count + "만큼 담겼다");
+        print("111 instrument index는" + instrumentIdx + "이고 midiEvent의 개수는" + midiEvents_selectedTrack.Count + "만큼 담겼다");
 
+        //i= midiEvent의 index
         for (int i = 0; i < midiEvents_selectedTrack.Count; i++)
         {
-            GameNoteInfo gameNoteInfo = new GameNoteInfo();
-
-            gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
-            gameNoteInfo.railIdx = SetRailIdx(midiEvents_selectedTrack[i],gameNoteInfo);
-            gameNoteInfo.type = 0/*SetNoteType(midiEvents_selectedTrack, i, gameNoteInfo)*/;
-            gameNoteInfo.isLongNoteStart = false;
-            gameNoteInfo.DRAG_release_idx = 0;
-            gameNoteInfo.isNoteEnabled = false;
-            gameNoteInfo.time = midiEvents_selectedTrack[i].startTime*120;
-
-            if(i == 0)
+            bool isLongNote = false;
+            // shortNote
+            if (midiEvents_selectedTrack[i].length * 960 < 480)
             {
-                gameNoteInfo.time = 0.5f;
+                gameNoteInfo = new GameNoteInfo();
+
+                gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
+                gameNoteInfo.railIdx = SetRailIdx(midiEvents_selectedTrack[i], gameNoteInfo);
+                gameNoteInfo.type = (int)GameNoteType.SHORT;
+
+                //gameNoteInfo.isLongNoteStart = false;
+                //gameNoteInfo.DRAG_release_idx = 0;
+                gameNoteInfo.isNoteEnabled = false;
+                gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
             }
+            // longNote, dragNote
             else
             {
-                gameNoteInfo.time += midiEvents_selectedTrack[i - 1].length;
+                isLongNote = true;
+                //Long_start
+                gameNoteInfo = new GameNoteInfo();
+
+                gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
+                gameNoteInfo.railIdx = SetRailIdx(midiEvents_selectedTrack[i], gameNoteInfo);
+                gameNoteInfo.type = (int)GameNoteType.LONG;
+
+                gameNoteInfo.isLongNoteStart = true;
+                //gameNoteInfo.DRAG_release_idx = 0;
+                gameNoteInfo.isNoteEnabled = false;
+                gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
 
             }
 
             ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
+
+            if (isLongNote)
+            {
+                //Long_end
+                GameNoteInfo gameNoteInfo_end = new GameNoteInfo();
+
+                gameNoteInfo_end.pitch = midiEvents_selectedTrack[i].pitch;
+                gameNoteInfo_end.railIdx = SetRailIdx(midiEvents_selectedTrack[i], gameNoteInfo);
+                gameNoteInfo_end.type = (int)GameNoteType.LONG;
+
+                gameNoteInfo_end.isLongNoteStart = false;
+                gameNoteInfo_end.isNoteEnabled = false;
+                gameNoteInfo_end.time = midiEvents_selectedTrack[i].endTime * 120;
+                ejnotemanager.allGameNoteInfo.Add(gameNoteInfo_end);
+            }
+
+            print("222 Midi2Note에서 MidiEvent를 GameNote로 변환했고, 이것을 옮겨 담은 결과 allGameNoteInfo에는" + ejnotemanager.allGameNoteInfo.Count + "개가 담겼다.");
         }
 
         for (int i = 0; i < ejnotemanager.gameNoteInfo_Rails.Length; i++)
@@ -105,32 +138,31 @@ public class EJMidi2Note : MonoBehaviour
         return (midiNote.pitch % 6);
     }
 
+
+    //longNote라면 endNote생성도 생각해야함.
     int SetNoteType(List<MidiEventInfo> midiNote, int idx, GameNoteInfo gameNoteInfo)
     {
-        if (midiNote[idx].length < 2f)
+        //long일 경우 endNote는 여기서 생성      
+        if (midiNote[idx].length * 960 < 480)
         {
             return 0;   //short Note
         }
         else
         {
-            if (idx == 0)   // 첫 노트는 무조건
-            {
-                return 1;       //long Note
-            }
-            else
-            {
-                if (midiNote[idx].length != midiNote[idx].length)
-                {
-                    return 2;
-                }
-                else
-                {
-                    return 1;   //long Note 일 때 짝 지어줘야 하는 것 생각
-                }
-            }
+            //드래그는 나중에 고안하고 일단 longNote생성
+            return 1;
+
+            gameNoteInfo.isLongNoteStart = true;
+
+            GameNoteInfo gameNoteInfo_end = new GameNoteInfo();
+            gameNoteInfo_end.pitch = midiNote[idx].pitch;
+            gameNoteInfo_end.railIdx = gameNoteInfo.railIdx;
+            gameNoteInfo_end.type = gameNoteInfo.type;
+            gameNoteInfo_end.isLongNoteStart = false;
+            gameNoteInfo_end.isNoteEnabled = false;
+            gameNoteInfo_end.time = midiNote[idx].endTime*120;
+
+            ejnotemanager.allGameNoteInfo.Add(gameNoteInfo_end);
         }
-
-    }
-
-    
+    }   
 }
