@@ -163,7 +163,6 @@ namespace CSharpSynth.Sequencer
 
                         //endTime 체크 필요!!!
                         midiEventInfo_each.endTime = playedTime;
-
                     }
                         
                 }

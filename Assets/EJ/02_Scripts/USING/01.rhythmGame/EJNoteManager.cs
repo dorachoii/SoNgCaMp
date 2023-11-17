@@ -402,6 +402,7 @@ public class EJNoteManager : MonoBehaviour
 
                         dicCurrTouchPadIdx[touch.fingerId] = -1;
                         touchedFX(touchIdx, touch.fingerId);
+
                         print(i + "번째 touch일 때" + touchIdx + "번의 터치패드가 눌렸고" + "touchedFX 함수가 실행되었다.");
 
                         if (gameNoteInstance_Rails[touchIdx].Count > 0)
@@ -577,6 +578,7 @@ public class EJNoteManager : MonoBehaviour
         if (gameNoteInstance_Rails[n].Count > 0)
         {
             pitch = gameNoteInstance_Rails[n][0].noteInfo.pitch;
+                
         }
 
         if (dicCurrTouchPadIdx[fingerId] != -1)
@@ -592,6 +594,9 @@ public class EJNoteManager : MonoBehaviour
 
             MIDIPlayer.instance.NoteOn(/*gameNoteInstance_Rails[n][0].noteInfo.pitch*/pitch);
 
+
+
+
             //on 해주고 해당음을 뗄 때 off해주고
             //MIDIPlayer.instance.PlayOneMidiEvent();
         }
@@ -605,6 +610,7 @@ public class EJNoteManager : MonoBehaviour
         if (dicCurrTouchPadIdx.ContainsKey(fingerId) == false) return;
         int n = dicCurrTouchPadIdx[fingerId];
         print("releasedFX함수 실행");
+
         if (n == -1) return;
 
         if (/*touchpads[n].GetComponent<MeshRenderer>().enabled &&*/ QuadTouches[n].activeSelf)
