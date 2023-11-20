@@ -45,7 +45,7 @@ public class EJColorSlide_M : MonoBehaviour
         charIdx = EJCharacter_M.instance.WhatCharSelected();
         changeModeIdx = EJCharacter_M.instance.WhatClicked();
 
-        char_M_Mats = character_M[charIdx].GetComponent<MeshRenderer>().materials;
+        char_M_Mats = character_M[charIdx].GetComponent<SkinnedMeshRenderer>().materials;
 
     }
 }

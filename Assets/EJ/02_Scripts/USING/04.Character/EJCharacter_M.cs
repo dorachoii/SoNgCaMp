@@ -80,8 +80,11 @@ public class EJCharacter_M : MonoBehaviour
             print("마우스 왼쪽 버튼을 눌렀다");
             if (Physics.Raycast(ray, out hitInfo, 100f, 1 << LayerMask.NameToLayer("character")))
             {
+                print("부딪힌 녀석이 character다");
+                print("hitInfo의 이름은" + hitInfo.transform.name);
+
                 string characterName = hitInfo.transform.name;
-                characterName = characterName.Replace("Ch_", "");
+                characterName = characterName.Replace("Object00", "");
                 int characterIndex = int.Parse(characterName) - 1;
 
                 //outline

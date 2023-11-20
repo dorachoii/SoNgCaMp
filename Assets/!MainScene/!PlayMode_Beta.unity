@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3522,7 +3522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fa7422909e5244786a79dcd7adc333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midiFilePath: PianoTest1234.mid.txt
+  midiFilePath: solati.mid.txt
   ShouldPlayFile: 1
   bankFilePath: GM Bank/gm
   bufferSize: 1024
@@ -8435,6 +8435,7 @@ MonoBehaviour:
   - {fileID: 8946263236910229840, guid: 616f6090790b24f4387ec8a115e0193e, type: 3}
   - {fileID: 5119678665360020807, guid: cff4bdd6e403baa47a898b55cd0c0401, type: 3}
   - {fileID: 1433315881158573589, guid: 804271bd9ec2c2842ae4ce3c60e8ad27, type: 3}
+  - {fileID: 8946263236910229840, guid: 2532a8e9febaf7e40875e19a2bb1c340, type: 3}
   noteSpawnRail:
   - {fileID: 2140195094}
   - {fileID: 492973348}
@@ -8696,7 +8697,7 @@ MonoBehaviour:
   ejnotemanager: {fileID: 1271823016}
   bankFilePath: GM Bank/gm
   bufferSize: 1024
-  midiPath: PianoTest1234.mid.txt
+  midiPath: solati.mid.txt
 --- !u!82 &1283865690
 AudioSource:
   m_ObjectHideFlags: 0

@@ -17,7 +17,8 @@ public enum GameNoteType
     SHORT,
     LONG,
     DRAG_RIGHT,
-    DRAG_LEFT
+    DRAG_LEFT,
+    DRAG_empty
 }
 
 [System.Serializable]

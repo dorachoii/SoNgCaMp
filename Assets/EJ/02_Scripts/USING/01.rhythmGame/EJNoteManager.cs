@@ -23,6 +23,8 @@ public class EJNoteManager : MonoBehaviour
     //Touch와 연동해서 껐다 켤 것
     public GameObject[] QuadRails;
     public GameObject[] QuadTouches;
+    int[] pitches_rail = new int[6];
+
     public Material[] QuadRails_Mat;
 
     GameObject note;
@@ -194,6 +196,10 @@ public class EJNoteManager : MonoBehaviour
                         //Pass >> remove from List
                         //
                         gameNoteInstance_Rails[railIdx].Remove(noteInfo);
+                        
+
+                        //!!!!!autoDestroy가 될 때, 해당 레일의 음이 플레이되고 있다면 꺼라.
+
 
                         //if (noteInstance.noteInfo.type == (int)NoteType.LONG && !noteInstance.noteInfo.isLongNoteStart && noteInstance.noteInfo.isNoteEnabled) return;
 
@@ -299,7 +305,7 @@ public class EJNoteManager : MonoBehaviour
                                     gameNoteInstance_Rails[touchStartedIdx][0].noteInfo.type == (int)GameNoteType.DRAG_LEFT)
                                 {
                                     print("현재 idx는" + touchIdx + "이고" + " startedIdx는" + touchStartedIdx);
-                                    print("왼쪽으로 드래그되고 있습니다");
+                                    //print("왼쪽으로 드래그되고 있습니다");
 
                                     //deltaPos가 오른쪽인지를 체크하기! 같은 방향으로 움직이고 있는지
                                     PressingScore(touchStartedIdx);
@@ -313,7 +319,7 @@ public class EJNoteManager : MonoBehaviour
                                 if (gameNoteInstance_Rails[touchStartedIdx].Count > 0 &&
                                     gameNoteInstance_Rails[touchStartedIdx][0].noteInfo.type == (int)GameNoteType.DRAG_RIGHT)
                                 {
-                                    print("오른쪽으로 드래그되고 있습니다");
+                                    //print("오른쪽으로 드래그되고 있습니다");
                                     PressingScore(touchStartedIdx);
                                     //showScoreText(10);
                                 }
@@ -326,7 +332,7 @@ public class EJNoteManager : MonoBehaviour
                             if (gameNoteInstance_Rails[touchIdx][0].noteInfo.type == (int)GameNoteType.LONG)
                             {
                                 PressingScore(touchIdx);
-                                print("*55666 LongNote가 눌리고 있습니다");
+                                //print("*55666 LongNote가 눌리고 있습니다");
                                 //showScoreText(7);
                             }
                         }
@@ -565,20 +571,36 @@ public class EJNoteManager : MonoBehaviour
     Dictionary<int, int> dicStartIdx = new Dictionary<int, int>();
 
 
-    int pitch = 20;
+    
+    //pitch를 Rail로 만들기
 
     void touchedFX(int n, int fingerId)
     {
         //n = railIdx
         //fingerId = touchpad
 
+        print("touchTEST: touchedFX가 실행되었고 실행된 레일은" + n + "이다.");
+
         if (dicCurrTouchPadIdx.ContainsKey(fingerId) == false) return;
         if (n == dicCurrTouchPadIdx[fingerId]) return;
 
         if (gameNoteInstance_Rails[n].Count > 0)
         {
-            pitch = gameNoteInstance_Rails[n][0].noteInfo.pitch;
-                
+            pitches_rail[n] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
+
+            //if (gameNoteInstance_Rails[3][0].noteInfo.type == (int)GameNoteType.DRAG_RIGHT)
+            //{
+            //    pitches_rail[3] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
+            //    pitches_rail[4] = gameNoteInstance_Rails[n][0].noteInfo.pitch+10;
+            //    pitches_rail[5] = gameNoteInstance_Rails[n][0].noteInfo.pitch+20;
+            //}
+            //else if (gameNoteInstance_Rails[3][0].noteInfo.type == (int)GameNoteType.DRAG_LEFT)
+            //{
+            //    pitches_rail[2] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
+            //    pitches_rail[1] = gameNoteInstance_Rails[n][0].noteInfo.pitch-10;
+            //    pitches_rail[0] = gameNoteInstance_Rails[n][0].noteInfo.pitch-20;
+            //}
+
         }
 
         if (dicCurrTouchPadIdx[fingerId] != -1)
@@ -592,9 +614,7 @@ public class EJNoteManager : MonoBehaviour
             QuadTouches[n].SetActive(true);
             QuadRails[n].GetComponent<MeshRenderer>().material = QuadRails_Mat[n];
 
-            MIDIPlayer.instance.NoteOn(/*gameNoteInstance_Rails[n][0].noteInfo.pitch*/pitch);
-
-
+            MIDIPlayer.instance.NoteOn(pitches_rail[n]);
 
 
             //on 해주고 해당음을 뗄 때 off해주고
@@ -607,7 +627,11 @@ public class EJNoteManager : MonoBehaviour
     
     void releasedFX(int fingerId)
     {
+        print("touchTEST:  releasedFX가 실행되었고 실행된 fingerId" + fingerId  + "이다.");
+
+
         if (dicCurrTouchPadIdx.ContainsKey(fingerId) == false) return;
+
         int n = dicCurrTouchPadIdx[fingerId];
         print("releasedFX함수 실행");
 
@@ -619,12 +643,13 @@ public class EJNoteManager : MonoBehaviour
             QuadTouches[n].SetActive(false);
             QuadRails[n].GetComponent<MeshRenderer>().material = QuadRails_Mat[n+6];
 
-            MIDIPlayer.instance.NoteOff(/*gameNoteInstance_Rails[n][0].noteInfo.pitch*/pitch);
+            MIDIPlayer.instance.NoteOff(pitches_rail[n]);
+            print("touchTEST:  releasedFX가 실행되었고 NoteOFF가 실행되었다.");
         }
 
         if (gameNoteInstance_Rails[n].Count == 0)
         {
-            pitch = 20;
+            pitches_rail[n] = 20;
         }
     }
 
@@ -815,7 +840,7 @@ public class EJNoteManager : MonoBehaviour
 
         //if (distAbs < badZone)
         {
-            EJScoreManager.instance.SCORE += pressScore * Time.deltaTime;
+            EJScoreManager.instance.SCORE += pressScore * Time.deltaTime ;
 
         }
         //else

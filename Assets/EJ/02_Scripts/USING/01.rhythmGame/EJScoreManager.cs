@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class EJScoreManager : MonoBehaviour
 {
@@ -47,7 +48,9 @@ public class EJScoreManager : MonoBehaviour
         }
         set
         {
+            
             score = value;
+            
             numScore.text = "Score : " + score;
             scoreSlider.value = score;
         }

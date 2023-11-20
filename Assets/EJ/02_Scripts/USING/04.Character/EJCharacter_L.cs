@@ -117,69 +117,69 @@ public class EJCharacter_L : MonoBehaviour
     //동시 착용 안되는 것들: 모자와 헤드폰
     public void Click_Item_Cap()
     {
-        if (!items[0].activeSelf)
+        if (!items[1].activeSelf)
         {
-            items[0].SetActive(true);
+            items[1].SetActive(true);
             characterInfo.isCapON = true;
         }
         else 
         {
-            items[0].SetActive(false);
+            items[1].SetActive(false);
             characterInfo.isCapON = false;
         }
 
 
-        if (items[1].activeSelf)
+        if (items[2].activeSelf)
         {
-            items[1].SetActive(false);
+            items[2].SetActive(false);
             characterInfo.isCrownON = false;
         }
     }
 
     public void Click_Item_Headphone()
     {
-        if (!items[1].activeSelf)
+        if (!items[2].activeSelf)
         {
-            items[1].SetActive(true);
+            items[2].SetActive(true);
             characterInfo.isCrownON = true;
         }
         else
         {
-            items[1].SetActive(false);
+            items[2].SetActive(false);
             characterInfo.isCrownON = false;
         }
 
-        if (items[0].activeSelf)
+        if (items[1].activeSelf)
         {
-            items[0].SetActive(false);
+            items[1].SetActive(false);
             characterInfo.isCapON = false;
         }
     }
 
     public void Click_Item_Glasses()
     {
-        if (!items[2].activeSelf)
+        if (!items[3].activeSelf)
         {
-            items[2].SetActive(true);
+            items[3].SetActive(true);
             characterInfo.isGlassON = true;
         }
         else
         {
-            items[2].SetActive(false);
+            items[3].SetActive(false);
             characterInfo.isGlassON = false;
         }
     }
 
     public void Click_Item_Bag()
     {
-        if (!items[3].activeSelf)
+        if (!items[0].activeSelf)
         {
-            items[3].SetActive(true);
+            items[0].SetActive(true);
             characterInfo.isBagON = true;
         }
         else
         {
-            items[3].SetActive(false);
+            items[0].SetActive(false);
             characterInfo.isGlassON = false;
         }
     }
@@ -331,10 +331,10 @@ public class EJCharacter_L : MonoBehaviour
     //수정 필요
     public void ColorInfoCheck_L()
     {
-        Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
+        Material[] char_L_Mats = character_L.GetComponent<SkinnedMeshRenderer>().materials;
 
         characterInfo.hexString_cloth = char_L_Mats[0].ToString();
-        characterInfo.hexString_skin = char_L_Mats[1].ToString();
+        characterInfo.hexString_skin = char_L_Mats[2].ToString();
         characterInfo.hexString_ribbon = char_L_Mats[1].ToString();
         characterInfo.hexString_face = char_L_Mats[3].ToString();
         //Color albedoColor = ColorUtility.HexToColor(hexString)

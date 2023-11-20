@@ -27,7 +27,7 @@ public class EJColorChange_M : MonoBehaviour, IPointerDownHandler
         int charIdx = EJCharacter_M.instance.WhatCharSelected();
         int changeModeIdx = EJCharacter_M.instance.WhatClicked();
         
-        Material[] char_M_Mats = character_M[charIdx].GetComponent<MeshRenderer>().materials;
+        Material[] char_M_Mats = character_M[charIdx].GetComponent<SkinnedMeshRenderer>().materials;
         Color color = GetComponent<Image>().color;
 
         char_M_Mats[changeModeIdx].color = color;

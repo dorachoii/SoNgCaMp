@@ -145,11 +145,19 @@ public class MIDIPlayer : MonoBehaviour
     public void NoteOn(int note)
     {
         midiStreamSynthesizer.NoteOn(0, note, 100, 0);
+
     }
 
     public void NoteOff(int note)
     {
         midiStreamSynthesizer.NoteOff(0, note);
+    }
+
+    IEnumerator AutoStop(int note, float time)
+    {
+        yield return new WaitForSeconds(time);
+        NoteOff(note);
+
     }
 
 }

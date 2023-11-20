@@ -42,7 +42,7 @@ public class EJColorSlide_L : MonoBehaviour
         color1 = sliderBackgroundImg.GetComponent<EJ_UIGradient>().m_color1;
         color2 = sliderBackgroundImg.GetComponent<EJ_UIGradient>().m_color2;
 
-        char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
+        char_L_Mats = character_L.GetComponent<SkinnedMeshRenderer>().materials;
         i = EJCharacter_L.instance.WhatClicked();
 
     }

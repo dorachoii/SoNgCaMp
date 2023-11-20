@@ -25,7 +25,7 @@ public class EJColorChange_L : MonoBehaviour, IPointerDownHandler
     {
         GetComponent<EJColorSlide_L>().enabled = false;
 
-        Material[] char_L_Mats = character_L.GetComponent<MeshRenderer>().materials;
+        Material[] char_L_Mats = character_L.GetComponent<SkinnedMeshRenderer>().materials;
         color = GetComponent<Image>().color;
 
         int i = EJCharacter_L.instance.WhatClicked();
