@@ -8,128 +8,54 @@ using UnityEngine.Networking;
 
 public class HttpController : MonoBehaviour
 {
-    public static string default_host = "192.168.0.19";
+    public static string default_host = "192.168.56.1";
     //Manager 
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //StartCoroutine(Upload());
-
-
-        //HttpRequest rq = new HttpBuilder().Type(Re).Url().Data().Action().build;
-
-
-        string data = JsonUtility.ToJson(new Info() { age = 10, name = "name" });
-        //Debug.LogError(data);
-        //StartCoroutine(SendRequest(new HttpRequest(ReqType.POST, "192.168.0.86/test1234/test", data, (i) => { Debug.Log(i.text); })));
-
-        //HttpRequest rq = new HttpBuilder().Type(ReqType.POST)
-        //    .Url("192.168.0.86/test1234/test")
-        //    .Data(data)
-        //    .Action((i) => { Debug.Log(i.text); })
-        //    .build();
-
-        //Send(rq);
-
-
-        //rq = new HttpBuilder().Url("192.168.0.86/test1234/test").Type(ReqType.GET).Data("Hello!").build();
-        //WWWForm test = new WWWForm();
-        //test.AddField("data", "1234");
-        //rq.test = test;
-
-        //SendRequest(rq,new List<IMultipartFormSection>());
-
-
-        //StartCoroutine(Upload());
-
-        HttpRequest rq = new HttpBuilder().Uri("192.168.56.1/test1234/test").Type(ReqType.POST).build();
-        Dictionary<string, string> datas = new Dictionary<string, string>();
-        datas.Add("age", "10");
-        datas.Add("name", "안녕하시오");
-        datas.Add("title", "몰라");
-        StartCoroutine(SendRequest(rq, datas));
-
-
-
-        rq = new HttpBuilder().Uri("192.168.56.1/test1234/download")
-            .Type(ReqType.GET)
-            .Success((i) => {
-                File.WriteAllBytes("C:\\test\\test.txt",i.data); 
-                
-            })
-            .build();
-
-        rq = new HttpBuilder().Uri("192.168.56.1/test1234/midi")
-            .Type(ReqType.GET)
-            .Success((i) => {
-                Info2 info = JsonUtility.FromJson<Info2>(i.text);
-                Debug.Log(info.songArtist);
-                Debug.Log(info.songTitle);
-                Debug.Log(info.needSession);
-            })
-            .build();
-
-        StartCoroutine(SendRequest(rq));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Send(HttpRequest info)
-    {
-        Debug.Log("요청징행중" + info);
-        StartCoroutine(SendRequest(info));
-
-    }
     //요청 타입
     //GET, POST, PUT, DELETE
     //enctype.
-    IEnumerator Upload() {
-        List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
+    //IEnumerator Upload() {
+    //    List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
 
-        string path = Application.persistentDataPath + "/" + "example.mid.txt";
-        byte[] bytes = File.ReadAllBytes(path);
-
-
-        formData.Add(new MultipartFormFileSection("fileList", new byte[] { 0, 0, 0, 0 }, "example.png", "multipart/form-data"));
-        formData.Add(new MultipartFormFileSection("fileList", new byte[] {0,0,0,0 }, "example.mp3", "multipart/form-data"));
-        formData.Add(new MultipartFormFileSection("fileList", bytes, "example.mid", "multipart/form-data")  );
+    //    string path = Application.persistentDataPath + "/" + "example.mid.txt";
+    //    byte[] bytes = File.ReadAllBytes(path);
 
 
-        List< Info3 > testlist =  new List<Info3>();
-        testlist.Add(new Info3() { sessionType = 1, userNo = 1234 });
-        testlist.Add(new Info3() { sessionType = 2, userNo = 1242 });
+    //    formData.Add(new MultipartFormFileSection("fileList", new byte[] { 0, 0, 0, 0 }, "example.png", "multipart/form-data"));
+    //    formData.Add(new MultipartFormFileSection("fileList", new byte[] {0,0,0,0 }, "example.mp3", "multipart/form-data"));
+    //    formData.Add(new MultipartFormFileSection("fileList", bytes, "example.mid", "multipart/form-data")  );
 
-        string s = JsonUtility.ToJson(new Info2() { needSession = "4", participantList = new List<Info3>(), songArtist = "TestArtist", songTitle = "Test" });
-        formData.Add(new MultipartFormDataSection("fileRequest", s , "application/json"));
 
-        WWWForm wwwForm = new WWWForm();
-        wwwForm.AddBinaryData("file", bytes, "example.mid");
-        //wwwForm.AddBinaryData("fileList", new byte[] { 0, 0, 0, 0 });
-        //wwwForm.AddBinaryData("fileList", new byte[] { 0, 0, 0, 0 });
-        //wwwForm.AddBinaryData("fileRequest", Encoding.UTF8.GetBytes(JsonUtility.ToJson(new Info2() { needSession = "4", particlpantList = new List<Info3>(), songArtist = "TestArtist", songTitle = "Test" })), "data.json", "application/json");
-        //wwwForm.AddField("fileRequest", JsonUtility.ToJson(new Info2() { needSession = "4", particlpantList = new List<Info3>(), songArtist = "TestArtist", songTitle = "Test" }));
+    //    List< Info3 > testlist =  new List<Info3>();
+    //    testlist.Add(new Info3() { sessionType = 1, userNo = 1234 });
+    //    testlist.Add(new Info3() { sessionType = 2, userNo = 1242 });
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.0.4:8080/api/v1/fileUpload", formData))
-        {
+    //    //string s = JsonUtility.ToJson(new Info2() { needSession = "4", participantList = new List<Info3>(), songArtist = "TestArtist", songTitle = "Test" });
+    //    formData.Add(new MultipartFormDataSection("fileRequest", s , "application/json"));
+
+    //    WWWForm wwwForm = new WWWForm();
+    //    wwwForm.AddBinaryData("file", bytes, "example.mid");
+    //    //wwwForm.AddBinaryData("fileList", new byte[] { 0, 0, 0, 0 });
+    //    //wwwForm.AddBinaryData("fileList", new byte[] { 0, 0, 0, 0 });
+    //    //wwwForm.AddBinaryData("fileRequest", Encoding.UTF8.GetBytes(JsonUtility.ToJson(new Info2() { needSession = "4", particlpantList = new List<Info3>(), songArtist = "TestArtist", songTitle = "Test" })), "data.json", "application/json");
+    //    //wwwForm.AddField("fileRequest", JsonUtility.ToJson(new Info2() { needSession = "4", particlpantList = new List<Info3>(), songArtist = "TestArtist", songTitle = "Test" }));
+
+    //    using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.0.4:8080/api/v1/fileUpload", formData))
+    //    {
             
-            yield return www.SendWebRequest();
-            if (www.error != null)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Debug.Log("F");
-            }
-        }
+    //        yield return www.SendWebRequest();
+    //        if (www.error != null)
+    //        {
+    //            Debug.Log(www.error);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("F");
+    //        }
+    //    }
           
-    }
+    //}
 
 
     //GET에 딕셔너리를 사용해버리면.. POST에 JSOn은?
@@ -162,14 +88,16 @@ public class HttpController : MonoBehaviour
         }
         yield return www.SendWebRequest();
 
-        if (www.error == null) {
-            Debug.Log("요청이 성공적으로 진행되었습니다.");
-
+        if (www.error == null)
+        {
+            Debug.Log("요청 성공");
             info.OnSuccessCallback?.Invoke(www.downloadHandler);
+
         }
-        else {
-            Debug.LogWarning("요청 오류!");
-            Debug.LogWarning(www.error);
+        if (www.error != null)
+        {
+            Debug.LogError("Request Error!!");
+            Debug.LogError(www.error);
             info.OnFailureCallback?.Invoke(www.downloadHandler);
         }
 
@@ -227,6 +155,28 @@ public class HttpController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// One parameter Or JSON
+    /// </summary>
+    ///<returns>Start Request, Coroutine</returns>
+    public Coroutine Send(HttpRequest info) {
+        return StartCoroutine(SendRequest(info));
+    }
+
+    /// <summary>
+    /// key , value parameter
+    /// </summary>
+    ///<returns>Start Request, Coroutine</returns>
+    public Coroutine Send(HttpRequest info,Dictionary<string,string> data) {
+        return StartCoroutine(SendRequest(info,data));
+    }
+    /// <summary>
+    /// multipart - form request
+    /// </summary>
+    ///<returns>Start Request, Coroutine</returns>
+    public Coroutine Send(HttpRequest info, List<IMultipartFormSection> formData) {
+        return StartCoroutine(SendRequest(info,formData));
+    }
     public enum ReqType { 
         GET,
         POST,
@@ -258,7 +208,6 @@ public class HttpController : MonoBehaviour
             return "HTTP - REQUEST : " + " type : " + type + " url : " + uri + " data : " + data;
         }
 
-       
     }
 
     public class HttpBuilder
@@ -328,26 +277,7 @@ public class HttpController : MonoBehaviour
         return stringBuilder.ToString();
     }
 
-    [System.Serializable]
-    struct Info {
-        public int age;
-        public string name;
-    }
-
-
-    [System.Serializable]
-    struct Info2
-    {
-        public string needSession;
-        public List<Info3> participantList;
-        public string songArtist;
-        public string songTitle;
-    }
-    [System.Serializable]
-    struct Info3 {
-        public int sessionType;
-        public int userNo;
-    }
+ 
 
 
     [System.Serializable]
@@ -377,4 +307,7 @@ public class HttpController : MonoBehaviour
             this.sss = sss;
         }
     }
+
+
+
 }

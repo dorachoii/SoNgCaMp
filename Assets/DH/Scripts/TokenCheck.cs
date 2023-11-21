@@ -10,15 +10,17 @@ public class TokenCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Checking();
-        HashMap<string, string> hash = new HashMap<string, string>();
-        hash.Add("name", "김도현");
-        hash.Add("age", "12");
-        TestHash<string> test = new TestHash<string>("안녕","하세","du");
-        test.list.Add("DD");
-        test.list.Add("SS");
-        string s = JsonUtility.ToJson(hash);
-        Debug.Log(s);
+        HttpRequest rq = new HttpBuilder().Uri("/test1234/test1234")
+            .Type(ReqType.GET)
+            .Success((download)=> {
+                Debug.Log(download.text);
+                ResponceDTO<Info2> dto = JsonUtility.FromJson<ResponceDTO<Info2>>(download.text);
+                string s = dto.results.toString();
+                Debug.Log(s);
+            })
+            .build();
+            
+        
     }
 
     // Update is called once per frame
@@ -45,7 +47,8 @@ public class TokenCheck : MonoBehaviour
 
     public void Access(DownloadHandler download) {
         //토큰 있음.. 입장 가능...
-        Debug.Log("토큰 있음.." + download.text);
+        ResponceDTO<LoginResponseDTO> responce = JsonUtility.FromJson<ResponceDTO<LoginResponseDTO>>(download.text);
+        Debug.Log(responce);
     }
     public void GoBack(DownloadHandler download) {
         Debug.Log("토큰 없음..");

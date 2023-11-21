@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class ConnectionManager : MonoBehaviourPunCallbacks
 {
-    
-    // Start is called before the first frame update
-    void Start()
+    static ConnectionManager instance;
+    public static ConnectionManager Get
     {
-        ConnectToPhoton();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        get {
+            if (instance != null)
+                return instance;
+            //없을시
+            GameObject conn = new GameObject("ConnectionManager");
+            DontDestroyOnLoad(conn);
+            //인스턴스 생성하기
+            instance = conn.AddComponent<ConnectionManager>();
+            return instance;
         
+        }
     }
-
     public void ConnectToPhoton() { 
         PhotonNetwork.ConnectUsingSettings();
     }
