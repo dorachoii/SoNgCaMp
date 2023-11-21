@@ -32,6 +32,8 @@ public class Track {
 [System.Serializable]
 public class NoteBlockInfo{
 
+    
+
     public int Pitch = 60;
     public Pitch pitch;
 

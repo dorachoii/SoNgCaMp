@@ -27,6 +27,8 @@ public class NoteManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        D_MidiManager.ConvertDeltaTime(240);
+
 
         byte[] bytes = BitConverter.GetBytes(10);
         Debug.Log(bytes);
@@ -88,7 +90,7 @@ public class NoteManager : MonoBehaviour
         List<byte> bytelist = new List<byte>();
 
         NoteBlockInfo prevNote = null;
-        int count = 1;//얼마나 공백이 존재하는지
+        int count = 0;//얼마나 공백이 존재하는지
         int shim = 0;
 
 
