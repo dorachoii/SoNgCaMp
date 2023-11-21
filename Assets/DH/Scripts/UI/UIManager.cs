@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DHMidi;
+using DHMidi.Event;
+using static DH.D_MidiManager;
+using DH;
+using System;
+
 public class UIManager : MonoBehaviour
 {
     public Stack<GameObject> UiLayer = new Stack<GameObject>();
@@ -24,6 +30,8 @@ public class UIManager : MonoBehaviour
 
         //}
         //noteList.Add(noteInfos);
+
+        LoadMidi();
     }
     
 
@@ -212,8 +220,6 @@ public class UIManager : MonoBehaviour
         GameObject go =  Instantiate(TrackButton, TrackBoard);
         TrackBtn.SetAsLastSibling();
         TrackButton trButton =  go.GetComponent<TrackButton>();
-
-
         //trButton.
         trButton.myPage = trackPage;
 
@@ -232,6 +238,30 @@ public class UIManager : MonoBehaviour
         trButton.mytrack = tr;
 
         
+
+        //버튼을 맨 마지막으로 보냄
+
+
+        Debug.Log("근데 왜 안됨?");
+    }
+
+    public void trackButton(Track track)
+    {
+        GameObject go = Instantiate(TrackButton, TrackBoard);
+        TrackBtn.SetAsLastSibling();
+        TrackButton trButton = go.GetComponent<TrackButton>();
+        //trButton.
+        trButton.myPage = trackPage;
+
+        //trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
+        //trButton.OnClickTrackEv.AddListener(ChangeTrack);
+        //트랙 증가
+
+        Tracks.Add(track);
+
+        trButton.mytrack = track;
+
+
 
         //버튼을 맨 마지막으로 보냄
 
@@ -317,4 +347,105 @@ public class UIManager : MonoBehaviour
         noteList = currentTrack.Notelist;
         Rendering();
     }
+
+
+    public NoteBlockInfo[] full_NoteInfo(int size) {
+        NoteBlockInfo[] infos = new NoteBlockInfo[size];
+        for (int i = 0; i < size; i++) {
+            infos[i] = new NoteBlockInfo();
+        }
+        return infos;
+    }
+
+    int ctn;
+    void LoadMidi() {
+        MidiFile midifile =  MidiFileWriter.ReadMidi("example.mid.txt");
+
+
+
+        midifile.TrackLsit.ForEach(track => {
+            Track tr = new Track ();
+            ctn = 0;
+            tr.Notelist.Clear();
+            MidiEvent prevOnEvent = null;
+            MidiEvent prevOffEvent = null;
+            NoteBlockInfo[] notelist = full_NoteInfo(16);
+            track.eventList.ForEach(evt =>
+            {
+                //일단 채널 번호
+                //악기 정보 
+
+                MidiEvent midievt = evt is MidiEvent ? (MidiEvent)evt : null;
+                if (midievt != null) {
+
+                    switch (midievt.etype) {
+                        case 0xC:
+                            tr.instrument = (Instruments)midievt.fData;
+                            tr.number = midievt.chanel;
+                            break;
+                        case 0x9:
+                            prevOnEvent = midievt;
+                            
+
+
+                            break;
+
+
+                        case 0x8:
+                            //시작이 되었다면 끝맺음이 필요
+                            if (prevOnEvent != null && (prevOnEvent.fData == midievt.fData) && (prevOnEvent.chanel == midievt.chanel) ) {
+
+
+                                int deltatime = ReadDeltaTime(GetBytesCheckType(midievt.deltatime));
+                                int pitch = prevOnEvent.fData;
+                                int velocity = prevOnEvent.sData;
+                                NoteBlockInfo noteinfo =  new NoteBlockInfo();
+                                int condelta = ConvertSecondsToDeltatime(0.5f); 
+                                noteinfo.Beat = deltatime / condelta;  
+                                noteinfo.Pitch = pitch;
+                                noteinfo.velocity = velocity;
+                                noteinfo.enable = true;
+
+                                int deltatime2 = ReadDeltaTime(GetBytesCheckType(prevOnEvent.deltatime));
+                                //몇칸 쉬었는지
+
+                                //내 Onevent
+
+                                //내 칸....Ondelta 가 0이면 1칸이동해야하고 Ondelta가 0 이 아니면 delta/condelta만큼 이동하려고 하는데.
+                                ctn += (deltatime2 / condelta) <= 0 ? 0 : (deltatime2 / condelta);
+                                //여기서 조건이 들어가지.
+
+                                if (ctn / 16 > 0) {
+                                    tr.Notelist.Add(notelist);
+                                    notelist = full_NoteInfo(16);
+                                }
+                                ctn = ctn % 16;
+                                notelist[ctn] = noteinfo;
+
+                                ctn += ( (deltatime - condelta ) / condelta) + 1; //나 포함 끝나는 바박자가 이박자라서 -1을 해주자.
+
+                                prevOnEvent = null;
+                                prevOffEvent = null;
+
+                            }
+
+
+                            break;
+                    }
+
+                }
+                    
+
+                //노드 정보
+
+
+
+            });
+            tr.Notelist.Add(notelist);
+            trackButton(tr);
+        });
+
+    }
+
+   
 }
