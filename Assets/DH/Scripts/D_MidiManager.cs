@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 namespace DH {
@@ -56,7 +57,6 @@ namespace DH {
             {
                 Debug.Log(num >> 16);
                 Debug.Log("Short 입니다~람쥐");
-
                 bytes = BitConverter.GetBytes((short)num);
             }
             //최상위 비트 = 부호비트?
@@ -66,6 +66,7 @@ namespace DH {
                 Debug.Log("int 입니다~람쥐");
 
                 bytes = BitConverter.GetBytes((int)num);
+                
             }
             if (bytes == null)
             {
@@ -94,8 +95,12 @@ namespace DH {
             {
                 convertDelta = (convertDelta << 8) | (deltaTime | 128);
                 deltaTime = deltaTime >> 7;
-            }
+            } 
+
             byte[] convertByte = GetBytesCheckType(convertDelta);
+
+            if(!BitConverter.IsLittleEndian)
+                Array.Reverse(convertByte);
             //byte일수도 있고 int일수도 있는데?
             //문제점 : int 형식인데 수가 Byte라면 미달된 바이트가 0이 되버림 따라서 체크가 필요함. 
 
@@ -108,6 +113,10 @@ namespace DH {
         /// </summary>
         public static int ReadDeltaTime(byte[] buffer)
         {
+            //델타타임을 계산할때는 Bigendian 방식으로 되어있어야 함.
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(buffer);
+
             int time = 0;
             byte b;
             int offset = 0;
