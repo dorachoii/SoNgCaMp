@@ -25,6 +25,12 @@ public class EJNoteManager : MonoBehaviour
     public GameObject[] QuadTouches;
     int[] pitches_rail = new int[6];
 
+    public GameObject touchFX;
+    public GameObject touchfireFX;
+
+    public Transform[] touchFX_pos;
+    public Transform[] touchfireFX_pos;
+
     public Material[] QuadRails_Mat;
 
     GameObject note;
@@ -100,6 +106,9 @@ public class EJNoteManager : MonoBehaviour
         //InputTestFLOP();
 
         //StartCoroutine(Test());
+
+        
+
     }
 
     IEnumerator Test()
@@ -118,6 +127,13 @@ public class EJNoteManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            StartCoroutine(finaleFX());
+        }
+
+
+
         currTime += Time.deltaTime;
 
         //01. Note_Instantiate & Destroy    //test FINISHED!!!
@@ -587,20 +603,7 @@ public class EJNoteManager : MonoBehaviour
         if (gameNoteInstance_Rails[n].Count > 0)
         {
             pitches_rail[n] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
-
-            //if (gameNoteInstance_Rails[3][0].noteInfo.type == (int)GameNoteType.DRAG_RIGHT)
-            //{
-            //    pitches_rail[3] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
-            //    pitches_rail[4] = gameNoteInstance_Rails[n][0].noteInfo.pitch+10;
-            //    pitches_rail[5] = gameNoteInstance_Rails[n][0].noteInfo.pitch+20;
-            //}
-            //else if (gameNoteInstance_Rails[3][0].noteInfo.type == (int)GameNoteType.DRAG_LEFT)
-            //{
-            //    pitches_rail[2] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
-            //    pitches_rail[1] = gameNoteInstance_Rails[n][0].noteInfo.pitch-10;
-            //    pitches_rail[0] = gameNoteInstance_Rails[n][0].noteInfo.pitch-20;
-            //}
-
+            
         }
 
         if (dicCurrTouchPadIdx[fingerId] != -1)
@@ -613,6 +616,10 @@ public class EJNoteManager : MonoBehaviour
             /*touchpads[n].GetComponent<MeshRenderer>().enabled = true;*/
             QuadTouches[n].SetActive(true);
             QuadRails[n].GetComponent<MeshRenderer>().material = QuadRails_Mat[n];
+
+            GameObject touchEffect = Instantiate(touchFX, touchFX_pos[n]);
+            Destroy(touchEffect, 1);
+            
 
             MIDIPlayer.instance.NoteOn(pitches_rail[n]);
 
@@ -652,6 +659,48 @@ public class EJNoteManager : MonoBehaviour
             pitches_rail[n] = 20;
         }
     }
+
+    int finaleCount = 30;
+    int n = 0;
+
+    public IEnumerator finaleFX()
+    {
+        for (int i = 0; i < finaleCount; i++)
+        {
+            //n++;
+
+            if (i % 6 == 5)
+            {
+                while (i % 6 == 0)
+                {
+                    n--;
+
+                    if (n<0)
+                    {
+                        n = 0;
+                    }
+                    GameObject fx = Instantiate(touchfireFX, touchfireFX_pos[n]);
+                    yield return new WaitForSeconds(0.3f);
+
+                    
+                }
+            }else
+            {
+                n++;
+
+                if (n>=touchfireFX_pos.Length)
+                {
+                    n = 0;
+                }
+
+                GameObject fx = Instantiate(touchfireFX, touchfireFX_pos[n]);
+                yield return new WaitForSeconds(0.3f);
+            }
+          
+        }
+    }
+
+
 
     public void ScoreCheck_SHORT(int n)
     {
