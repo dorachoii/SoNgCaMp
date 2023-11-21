@@ -6,8 +6,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-public class NetworkTest: MonoBehaviour
+public class EJHttpPOSTtest: MonoBehaviour
 {
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,17 +32,17 @@ public class NetworkTest: MonoBehaviour
         //"api/v1/users"
         HttpInfo httpInfo = new HttpInfo(); 
         
-        httpInfo.Set(RequestType.POST, "api/v1/authentication/login", (DownloadHandler downHandler) => {
+        httpInfo.Set(RequestType.POST, /*"api/v1/authentication/login"*/ "/api/v1/users", (DownloadHandler downHandler) => {
             print(downHandler.text);
             //정상적으로 요청받았을 때 값을 프린트
         }, true);
+
+
         //httpInfo.body = JsonUtility.ToJson(userInfo);
         httpInfo.body = "{\r\n  \"userEmail\": \"hellodoradora7@gmail.com\",\r\n  \"userPwd\": \"1234abcd!\"\r\n}";
-        HttpManager.Get().SendRequest(httpInfo);
-
-
-        //이미지와, 곡
-
+        
+        
+        //HttpManager.Get().SendRequest(httpInfo);
     }
 
     #region 은정코드

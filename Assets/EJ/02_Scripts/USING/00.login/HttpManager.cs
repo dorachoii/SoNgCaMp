@@ -39,7 +39,7 @@ public class HttpInfo
 
         requestType = type;
         
-        if (useDefaultUrl) url = "http://192.168.0.24:8080/";
+        if (useDefaultUrl) url = "http://192.168.0.19:8080/";
 
         //  default url을 쓴다면, 바뀌는 부분만 추가 입력
         url += u;
@@ -89,6 +89,47 @@ public struct UserInfo_login
         this.userPwd = userPwd;
     }
 }
+
+public struct UserInfo_customizing
+{
+    public int characterType;
+
+    // Colors
+    public string hexStringCloth;
+    public string hexStringFace;
+    public string hexStringRibbon;
+    public string hexStringSkin;
+
+    //Items
+    public bool isBagOn;
+    public bool isCapOn;
+    public bool isCrownOn;
+    public bool isGlassOn;
+
+    //회원 번호
+    public int userNo;
+
+
+    // new 생성 시, 매개변수 받아서 바로 세팅해주는 역할
+    public UserInfo_customizing( int characterType, string hexStringCloth, string hexStringFace, string hexStringRibbon, string hexStringSkin, bool isBagOn, bool isCapOn, bool isCrownOn, bool isGlassOn, int userNo)
+    {
+        this.characterType = characterType;
+
+        this.hexStringCloth = hexStringCloth;
+        this.hexStringFace = hexStringFace;
+        this.hexStringRibbon = hexStringRibbon;
+        this.hexStringSkin = hexStringSkin;
+
+        this.isBagOn = isBagOn;
+        this.isCapOn = isCapOn;
+        this.isCrownOn = isCrownOn;
+        this.isGlassOn = isGlassOn;
+
+        this.userNo = userNo;
+               
+    }
+}
+
 #endregion
 
 #region 곡정보
@@ -121,13 +162,14 @@ public class HttpManager : MonoBehaviour
         //"api/v1/users"
         HttpInfo httpInfo = new HttpInfo();
 
-        httpInfo.Set(RequestType.POST, "api/v1/authentication/login", (DownloadHandler downHandler) => {
+        httpInfo.Set(RequestType.POST, /*"api/v1/authentication/login"*/"api/v1/users", (DownloadHandler downHandler) => {
             print(downHandler.text);
             //정상적으로 요청받았을 때 값을 프린트
         }, true);
+
         //httpInfo.body = JsonUtility.ToJson(userInfo);
         httpInfo.body = "{\r\n  \"userEmail\": \"hellodoradora7@gmail.com\",\r\n  \"userPwd\": \"1234abcd!\"\r\n}";
-        HttpManager.Get().SendRequest(httpInfo);
+        //HttpManager.Get().SendRequest(httpInfo);
     }
 
     //register값에 넣으면 셋팅 되게끔??

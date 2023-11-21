@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class EJLogIn : MonoBehaviour
+public class EJLogIn_UI : MonoBehaviour
 {
     //UI
     public GameObject a;
@@ -89,6 +89,8 @@ public class EJLogIn : MonoBehaviour
         HttpInfo httpInfo = new HttpInfo();
         UserInfo_login userInfo_Login = new UserInfo_login(ID.text, PW.text);
 
+
+        //GET? 조회해서 있다면.
         httpInfo.Set(RequestType.POST, "api/v1/authentication/login", (DownloadHandler downHandler) =>
         {
             print(downHandler.text);
@@ -102,6 +104,7 @@ public class EJLogIn : MonoBehaviour
 
     public void Resister_m()
     {
+        //POST로 올리기.
         HttpInfo httpInfo = new HttpInfo();
         UserInfo_register userInfo_register_m = new UserInfo_register(ID.text, PW.text, NickName_m.text,instrument_m.value, genre_m.value, mood_m.value, true);
 
@@ -116,8 +119,13 @@ public class EJLogIn : MonoBehaviour
 
     public void Register_l()
     {
+        //POST로 올리기.
+
         HttpInfo httpInfo = new HttpInfo();
-        UserInfo_register userInfo_register_l = new UserInfo_register(ID.text, PW.text, NickName_m.text, 0, 0, mood_m.value, false);
+        UserInfo_register userInfo_register_l = new UserInfo_register(ID.text, PW.text, NickName_l.text, 0, 0,mood_l.value, false);
+
+        print(NickName_l.text);
+        print(mood_l.value);
 
         httpInfo.Set(RequestType.POST, "api/v1/users", (DownloadHandler downHandler) =>
         {

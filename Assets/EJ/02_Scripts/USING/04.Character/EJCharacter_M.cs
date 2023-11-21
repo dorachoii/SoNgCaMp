@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
-
+using UnityEngine.Networking;
 
 public class EJCharacter_M : MonoBehaviour
 {
@@ -49,6 +49,10 @@ public class EJCharacter_M : MonoBehaviour
 
     //03. singleton
     public static EJCharacter_M instance;
+
+    //04. Animator
+    public Animator[] animator;
+    CharacterInfo characterInfo_M;
 
     private void Awake()
     {
@@ -415,12 +419,12 @@ public class EJCharacter_M : MonoBehaviour
     //수정 필요
     public void ColorInfoCheck_M()
     {
-        Material[] char_L_Mats = characters_M[0].GetComponent<MeshRenderer>().materials;
+        Material[] char_L_Mats = characters_M[0].GetComponent<SkinnedMeshRenderer>().materials;
 
-        characterInfo.hexString_cloth = char_L_Mats[0].ToString();
-        characterInfo.hexString_skin = char_L_Mats[1].ToString();
-        characterInfo.hexString_ribbon = char_L_Mats[1].ToString();
-        characterInfo.hexString_face = char_L_Mats[3].ToString();
+        characterInfo.hexString_cloth = char_L_Mats[0].color.ToString();
+        characterInfo.hexString_skin = char_L_Mats[1].color.ToString();
+        characterInfo.hexString_ribbon = char_L_Mats[1].color.ToString();
+        characterInfo.hexString_face = char_L_Mats[3].color.ToString();
         //Color albedoColor = ColorUtility.HexToColor(hexString)
     }
 
@@ -428,5 +432,36 @@ public class EJCharacter_M : MonoBehaviour
     {
         ColorInfoCheck_M();
         //server에 업로드 한다.
+
+        if (characters_M[0].activeSelf)
+        {
+            animator[0].SetTrigger("Spin");
+            characterInfo.characterType = 1;
+        }
+        else if (characters_M[1].activeSelf)
+        {
+            animator[1].SetTrigger("Spin");
+            characterInfo.characterType = 2;
+
+        }
+        else if (characters_M[2].activeSelf)
+        {
+            animator[2].SetTrigger("Spin");
+            characterInfo.characterType = 3;
+
+
+        }
+
+        HttpInfo httpInfo = new HttpInfo();
+
+        UserInfo_customizing userInfo_Customizing = new UserInfo_customizing(characterInfo.characterType, characterInfo.hexString_cloth, characterInfo.hexString_face, characterInfo.hexString_ribbon, characterInfo.hexString_skin, characterInfo.isBagON, characterInfo.isCapON, characterInfo.isCrownON, characterInfo.isGlassON, 5);
+
+        httpInfo.Set(RequestType.POST, "api/v1/users/customize", (DownloadHandler downHandler) =>
+        {
+            print(downHandler.text);
+        }, true);
+
+        httpInfo.body = JsonUtility.ToJson(userInfo_Customizing);
+        HttpManager.Get().SendRequest(httpInfo);
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.Networking;
+
 
 [System.Serializable]
 public struct CharacterInfo
@@ -57,6 +59,9 @@ public class EJCharacter_L : MonoBehaviour
 
     //03. singleton
     public static EJCharacter_L instance;
+
+    //04. Animator
+    public Animator animator;
 
     private void Awake()
     {
@@ -333,16 +338,34 @@ public class EJCharacter_L : MonoBehaviour
     {
         Material[] char_L_Mats = character_L.GetComponent<SkinnedMeshRenderer>().materials;
 
-        characterInfo.hexString_cloth = char_L_Mats[0].ToString();
-        characterInfo.hexString_skin = char_L_Mats[2].ToString();
-        characterInfo.hexString_ribbon = char_L_Mats[1].ToString();
-        characterInfo.hexString_face = char_L_Mats[3].ToString();
+        characterInfo.hexString_cloth = char_L_Mats[0].color.ToString();        
+        characterInfo.hexString_skin = char_L_Mats[2].color.ToString();
+        characterInfo.hexString_ribbon = char_L_Mats[1].color.ToString();
+        characterInfo.hexString_face = char_L_Mats[3].color.ToString();
+
         //Color albedoColor = ColorUtility.HexToColor(hexString)
     }
 
     public void Click_CompleteBtn()
     {
+        animator.SetTrigger("Spin");
+
         ColorInfoCheck_L();
-        //server에 업로드 한다.
+        //characterInfo를 server에 업로드 한다.
+        print("캐릭터 정보는 이래요" + characterInfo.hexString_cloth);
+
+        HttpInfo httpInfo = new HttpInfo();
+
+        UserInfo_customizing userInfo_Customizing = new UserInfo_customizing(0, characterInfo.hexString_cloth, characterInfo.hexString_face, characterInfo.hexString_ribbon, characterInfo.hexString_skin, characterInfo.isBagON, characterInfo.isCapON, characterInfo.isCrownON, characterInfo.isGlassON, 3);
+
+        httpInfo.Set(RequestType.POST, "api/v1/users/customize", (DownloadHandler downHandler) =>
+        {
+            print(downHandler.text);
+        }, true);
+
+        httpInfo.body = JsonUtility.ToJson(userInfo_Customizing);
+        HttpManager.Get().SendRequest(httpInfo);    
     }
+
+    
 }

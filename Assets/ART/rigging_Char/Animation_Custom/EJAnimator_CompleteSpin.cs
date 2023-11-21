@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EJAnimator_Spin : MonoBehaviour
+
+
+
+public class EJAnimator_CompleteSpin : MonoBehaviour
 {
     public Animator[] animator;
     public GameObject[] chars;
+
+    CharacterInfo characterInfo;
 
 
     // Start is called before the first frame update
@@ -20,18 +25,26 @@ public class EJAnimator_Spin : MonoBehaviour
         
     }
 
-    public void Spin()
+    public void CompleteSpin()
     {
         print("spin이 실행되었다");
+
         if (chars[0].activeSelf)
         {
             animator[0].SetTrigger("Spin");
-        }else if (chars[1].activeSelf)
+            characterInfo.characterType = 0;
+        }
+        else if (chars[1].activeSelf)
         {
             animator[1].SetTrigger("Spin");
-        }else if (chars[2].activeSelf)
+            characterInfo.characterType = 1;
+
+        }
+        else if (chars[2].activeSelf)
         {
             animator[2].SetTrigger("Spin");
+            characterInfo.characterType = 2;
+
         }
     }
 }

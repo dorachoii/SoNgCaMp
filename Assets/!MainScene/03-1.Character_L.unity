@@ -1830,9 +1830,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 903718973}
-        m_TargetAssemblyTypeName: EJAnimator_Spin_Listener, Assembly-CSharp
-        m_MethodName: Spin
+      - m_Target: {fileID: 903718972}
+        m_TargetAssemblyTypeName: EJCharacter_L, Assembly-CSharp
+        m_MethodName: Click_CompleteBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5935,6 +5935,7 @@ MonoBehaviour:
   CP_Cloth: {fileID: 207572011}
   CP_Face: {fileID: 1739536036}
   CP_Skin: {fileID: 762388345}
+  animator: {fileID: 466935634}
 --- !u!114 &903718973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5942,7 +5943,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903718967}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 674bf7edaa760bf40a6355abb60a2695, type: 3}
   m_Name: 
