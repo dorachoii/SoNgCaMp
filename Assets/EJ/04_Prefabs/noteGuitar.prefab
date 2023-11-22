@@ -238,6 +238,7 @@ MonoBehaviour:
     isLongNoteStart: 0
     DRAG_release_idx: 0
     isNoteEnabled: 0
+    pitch: 0
   linkNotePrefab: {fileID: 2711432886464089921, guid: cbdf2a3feeecb014bb0246b03456d9b1, type: 3}
 --- !u!1 &4336873006957057498
 GameObject:

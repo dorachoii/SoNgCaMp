@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5988,6 +5988,9 @@ MonoBehaviour:
   - {fileID: 143022921}
   - {fileID: 1528191776}
   - {fileID: 84683591}
+  QuadRails: []
+  QuadTouches: []
+  QuadRails_Mat: []
   allGameNoteInfo: []
   missMat: {fileID: 2100000, guid: ed95faebe3dc8d148b5f341758ba0795, type: 2}
   canvas: {fileID: 1599783460}
