@@ -5,24 +5,26 @@ using CSharpSynth.Effects;
 using CSharpSynth.Sequencer;
 using CSharpSynth.Synthesis;
 using CSharpSynth.Midi;
-
+using Melanchall.DryWetMidi.MusicTheory;
 
 [RequireComponent(typeof(AudioSource))]
 
 public class EJSongPlayer : MonoBehaviour
 {
     #region MP3 Play
-    public AudioSource flop;
-    bool isPlaying;
+    public AudioSource audio;
+    int playCount = 0;
+
+    public EJNoteManager noteManager;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Note"))
         {
-            if (!isPlaying)
+            if (!audio.isPlaying)
             {
-                isPlaying = true;
-                flop.Play();
+                audio.Play();
+                playCount++;    
             }
         }
     }
@@ -83,43 +85,53 @@ public class EJSongPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!audio.isPlaying)
+        {
+            if (playCount > 0)
+            {
+                noteManager.startcoFinaleFX();
+            }
+        }
+
+
         #region customÄÚµå
 
-        currTime += Time.deltaTime;
+        //currTime += Time.deltaTime;
 
-        if (currIndex <= midiSequencer.midiAllNoteEventsDic[0].Count && currTime > delayTime)
-        {
+        //if (currIndex <= midiSequencer.midiAllNoteEventsDic[0].Count && currTime > delayTime)
+        //{
 
-            if (currIndex > 0)
-            {
-                midiStreamSynthesizer.NoteOff(0, midiSequencer.midiAllNoteEventsDic[0][currIndex - 1].pitch);
-            }
+        //    if (currIndex > 0)
+        //    {
+        //        midiStreamSynthesizer.NoteOff(0, midiSequencer.midiAllNoteEventsDic[0][currIndex - 1].pitch);
+        //    }
 
-            if (currIndex < midiSequencer.midiAllNoteEventsDic[0].Count)
-            {
-                currTime -= delayTime;
+        //    if (currIndex < midiSequencer.midiAllNoteEventsDic[0].Count)
+        //    {
+        //        currTime -= delayTime;
 
-                midiStreamSynthesizer.NoteOn(0, midiSequencer.midiAllNoteEventsDic[0][currIndex].pitch, midiNoteVolume, midiInstrument);
+        //        midiStreamSynthesizer.NoteOn(0, midiSequencer.midiAllNoteEventsDic[0][currIndex].pitch, midiNoteVolume, midiInstrument);
 
 
-                delayTime = midiSequencer.midiAllNoteEventsDic[0][currIndex].length;
-                currIndex++;
-            }
-        }
+        //        delayTime = midiSequencer.midiAllNoteEventsDic[0][currIndex].length;
+        //        currIndex++;
+        //    }
+        //}
         #endregion
 
-        if (!midiSequencer.isPlaying)
-        {
-            //if (!GetComponent<AudioSource>().isPlaying)
-            if (ShouldPlayFile)
-            {
-                //  LoadSong(midiFilePath);               
-            }
-        }
-        else if (!ShouldPlayFile)
-        {
-            midiSequencer.Stop(true);
-        }
+        //if (!midiSequencer.isPlaying)
+        //{
+        //    //if (!GetComponent<AudioSource>().isPlaying)
+        //    if (ShouldPlayFile)
+        //    {
+        //        //  LoadSong(midiFilePath);               
+        //    }
+        //}
+        //else if (!ShouldPlayFile)
+        //{
+        //    midiSequencer.Stop(true);
+        //}
     }
 
     #endregion

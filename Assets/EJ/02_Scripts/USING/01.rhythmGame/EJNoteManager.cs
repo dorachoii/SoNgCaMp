@@ -27,9 +27,11 @@ public class EJNoteManager : MonoBehaviour
 
     public GameObject touchFX;
     public GameObject touchfireFX;
+    public GameObject fireworkFX;
 
     public Transform[] touchFX_pos;
     public Transform[] touchfireFX_pos;
+    public Transform[] fireworkFX_pos;
 
     public Material[] QuadRails_Mat;
 
@@ -130,6 +132,7 @@ public class EJNoteManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             StartCoroutine(finaleFX());
+            StartCoroutine(fireworkkFX());
         }
 
 
@@ -619,6 +622,8 @@ public class EJNoteManager : MonoBehaviour
 
             GameObject touchEffect = Instantiate(touchFX, touchFX_pos[n]);
             Destroy(touchEffect, 1);
+
+            
             
 
             MIDIPlayer.instance.NoteOn(pitches_rail[n]);
@@ -661,45 +666,69 @@ public class EJNoteManager : MonoBehaviour
     }
 
     int finaleCount = 30;
+    int fireworkCount = 15;
     int n = 0;
+    int k = 0;
+    int dir = 1;
 
     public IEnumerator finaleFX()
     {
         for (int i = 0; i < finaleCount; i++)
         {
-            //n++;
+            n += dir;
 
-            if (i % 6 == 5)
+            print("nÀº" + n);
+
+            if (n == 5)
             {
-                while (i % 6 == 0)
-                {
-                    n--;
-
-                    if (n<0)
-                    {
-                        n = 0;
-                    }
-                    GameObject fx = Instantiate(touchfireFX, touchfireFX_pos[n]);
-                    yield return new WaitForSeconds(0.3f);
-
-                    
-                }
-            }else
-            {
-                n++;
-
-                if (n>=touchfireFX_pos.Length)
-                {
-                    n = 0;
-                }
-
-                GameObject fx = Instantiate(touchfireFX, touchfireFX_pos[n]);
-                yield return new WaitForSeconds(0.3f);
+                dir *= -1;
+                                   
             }
-          
+            
+            if (n == 0)
+            {
+                dir *= -1;
+                
+            }
+                GameObject fx = Instantiate(touchfireFX, touchfireFX_pos[n]);
+                yield return new WaitForSeconds(0.3f);                             
         }
+        n = 0;
     }
 
+
+    public IEnumerator fireworkkFX()
+    {
+        for (int i = 0; i < fireworkCount; i++)
+        {
+            k += dir;
+
+            print("Àº" + n);
+
+            if (k == 2)
+            {
+                dir *= -1;
+
+            }
+
+            if (k == 0)
+            {
+                dir *= -1;
+
+            }
+
+            GameObject fx = Instantiate(fireworkFX, fireworkFX_pos[k]);
+
+            yield return new WaitForSeconds(1);
+        }
+        k = 0;
+    }
+
+    public void startcoFinaleFX()
+    {
+        StartCoroutine(finaleFX());
+        StartCoroutine(fireworkkFX());
+    }
 
 
     public void ScoreCheck_SHORT(int n)
