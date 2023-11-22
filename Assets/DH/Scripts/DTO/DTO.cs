@@ -54,26 +54,42 @@ public struct AuthorityDTO {
 
 
 [Serializable]
-public struct Info2 
+public struct SongDTO 
 {
     public string needSession;
-    public List<Info3> particlpantList;
+    public List<SongUserDTO> participantList;
     public string songArtist;
     public string songTitle;
-
-    public string toString()
-    {
-        return needSession + songArtist + songTitle;
+    public SongDTO(string needSession,List<SongUserDTO> participantList,string songArtist,string songTitle) {
+        this.needSession = needSession;
+        this.participantList = participantList;
+        this.songArtist = songArtist;
+        this.songTitle = songTitle;
     }
 }
 [Serializable]
-public struct Info3 
+public struct SongUserDTO 
 {
     public int sessionType;
     public int userNo;
 
-    public string toString()
-    {
-        return "" + sessionType + userNo;
-    }
+}
+
+[Serializable]
+public struct FileDTO
+{
+    public int fileNo;
+    public int[] createdDate;
+    public int[] modifiedDate;
+    public string songTitle;
+    public string songArtist;
+    public string needSession;
+    public string imageFileUrl;
+    public string musicFileUrl;
+    public string midFileUrl;
+}
+
+[Serializable]
+public struct FileListDTO {
+    public List<FileDTO> files;
 }
