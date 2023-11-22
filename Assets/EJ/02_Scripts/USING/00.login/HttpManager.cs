@@ -39,7 +39,7 @@ public class HttpInfo
 
         requestType = type;
         
-        if (useDefaultUrl) url = "http://192.168.0.19:8080/";
+        if (useDefaultUrl) url = "http://192.168.0.23:8080/";
 
         //  default url을 쓴다면, 바뀌는 부분만 추가 입력
         url += u;

@@ -14,6 +14,7 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
     void Start()
     {
         ConnectToChatServer();
+        
     }
     void Update()
     {
@@ -28,7 +29,11 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
     }
     public void Send(string message)
     {
-        chatClient.PublishMessage(channel, message); // "General"은 채팅 채널의 이름
+        chatClient.PublishMessage(channel, message);
+    }
+
+    public void SendPrivate(string target,string message) {
+        chatClient.SendPrivateMessage(target,message);
     }
 
     public void ChangeChannell(string channel) {
@@ -47,6 +52,8 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
         Debug.Log("Connect");
         //use Default Channel
         chatClient.Subscribe(channel);
+        
+        Debug.Log("My NickName " + chatClient.UserId);
     }
 
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
@@ -60,7 +67,7 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
             string messageString = messageObject.ToString();
 
             chatService.CreateChat(sender + " : " + messageString);
-
+            
         }
     }
 
@@ -81,7 +88,8 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
 
     public void OnPrivateMessage(string sender, object message, string channelName)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("귓속말이 왔슴." + sender + " : " + message);
+
     }
 
     public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
