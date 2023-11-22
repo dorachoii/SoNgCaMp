@@ -7,15 +7,24 @@ public class DTO {
 
 }
 [Serializable]
-public struct ResponceDTO<T>
+public struct ResponseDTO<T>
 {
     public int httpStatus;
     public string message;
     public T results;
 
 }
+
 [Serializable]
-public struct LoginResponseDTO : IToString{
+public struct LoginDTO
+{
+    public LoginResponseDTO loginResponse;
+    
+}
+
+
+[Serializable]
+public struct LoginResponseDTO {
     public int userNo;
     public string userNickname;
     public int musician;
@@ -23,38 +32,29 @@ public struct LoginResponseDTO : IToString{
     public int genre;
     public int mood;
     public int chracterType;
-    public Color hexStringCloth;
-    public Color hexStringFace;
-    public Color hexStringSkin;
-    public Color hexStringRibbon;
+
+    public string hexStringCloth;
+    public string hexStringFace;
+    public string hexStringSkin;
+    public string hexStringRibbon;
+
     public bool isCrownOn;
     public bool isGlassOn;
     public bool isBagOn;
     public bool isCapOn;
-    public AuthorityDTO authority;
+    public List<AuthorityDTO> authority;
 
-    public string toString()
-    {
-        return null;
-    }
 }
 [Serializable]
-public struct AuthorityDTO : IToString{
+public struct AuthorityDTO {
     public string accessToken;
     public string refreshToken;
 
-    public string toString()
-    {
-        return accessToken + "refreshToken : " + refreshToken;
-    }
 }
 
-public interface IToString {
-    string toString();
-}
 
 [Serializable]
-public struct Info2 : IToString
+public struct Info2 
 {
     public string needSession;
     public List<Info3> particlpantList;
@@ -67,7 +67,7 @@ public struct Info2 : IToString
     }
 }
 [Serializable]
-public struct Info3 : IToString
+public struct Info3 
 {
     public int sessionType;
     public int userNo;

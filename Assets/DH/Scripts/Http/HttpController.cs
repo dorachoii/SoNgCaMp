@@ -8,7 +8,8 @@ using UnityEngine.Networking;
 
 public class HttpController : MonoBehaviour
 {
-    public static string default_host = "192.168.56.1";
+    //IP, PORT Number
+    public static string default_host = "http://192.168.0.23:8080";
     //Manager 
 
 
@@ -69,7 +70,7 @@ public class HttpController : MonoBehaviour
         switch (info.type) {
             case ReqType.GET:
                 www = UnityWebRequest.Get(info.host + info.uri + "/" + info.data); //1234, 
-
+                Debug.Log(info.host + info.uri + "/" + info.data);
                 break;
             case ReqType.POST:
                 Debug.Log(info);

@@ -94,6 +94,18 @@ public class EJLogIn_UI : MonoBehaviour
         httpInfo.Set(RequestType.POST, "api/v1/authentication/login", (DownloadHandler downHandler) =>
         {
             print(downHandler.text);
+            //로그인시 TokenManager Set Token. 
+            //LoginResponse. 필.
+
+            //ResponseDTO 변환
+            ResponseDTO<LoginDTO> dto = JsonUtility.FromJson<ResponseDTO<LoginDTO>>(downHandler.text);
+
+            //토큰 저장
+            TokenManager.Token = dto.results.loginResponse.authority[0].accessToken;
+
+            
+            //Player 관리 클래스
+            //PlayerManager.Get.infoList.Add("loginResponse",dto);
         }, true);
 
         httpInfo.body = JsonUtility.ToJson(userInfo_Login);

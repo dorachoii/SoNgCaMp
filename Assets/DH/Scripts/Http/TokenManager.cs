@@ -9,7 +9,7 @@ public class TokenManager : MonoBehaviour
     private static string token; 
     public static string Token
     {
-        get { return token;  }
+        get { return PlayerPrefs.GetString(tokenKey);  }
         set {
             token = value;
             PlayerPrefs.SetString(tokenKey, value); //set 될때 새로 저장
@@ -19,6 +19,5 @@ public class TokenManager : MonoBehaviour
     {
         //저장된 토큰 불러오기
         Token = PlayerPrefs.GetString(tokenKey); //시작할때 토큰 불러오기 
-        
     }
 }
