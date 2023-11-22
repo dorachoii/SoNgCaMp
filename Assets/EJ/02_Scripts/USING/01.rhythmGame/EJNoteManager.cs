@@ -29,6 +29,9 @@ public class EJNoteManager : MonoBehaviour
     public GameObject touchfireFX;
     public GameObject fireworkFX;
 
+    public AudioSource[] audiosource;
+    public AudioClip[] SFXs;
+
     public Transform[] touchFX_pos;
     public Transform[] touchfireFX_pos;
     public Transform[] fireworkFX_pos;
@@ -131,8 +134,10 @@ public class EJNoteManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            StartCoroutine(finaleFX());
-            StartCoroutine(fireworkkFX());
+            //StartCoroutine(finaleFX());
+            //StartCoroutine(fireworkkFX());
+
+            startcoFinaleFX();
         }
 
 
@@ -691,7 +696,8 @@ public class EJNoteManager : MonoBehaviour
                 
             }
                 GameObject fx = Instantiate(touchfireFX, touchfireFX_pos[n]);
-                yield return new WaitForSeconds(0.3f);                             
+            //audiosource.PlayOneShot(SFXs[0]);
+            yield return new WaitForSeconds(0.3f);                             
         }
         n = 0;
     }
@@ -718,6 +724,7 @@ public class EJNoteManager : MonoBehaviour
             }
 
             GameObject fx = Instantiate(fireworkFX, fireworkFX_pos[k]);
+            audiosource[1].PlayOneShot(SFXs[1]);
 
             yield return new WaitForSeconds(1);
         }
@@ -726,6 +733,7 @@ public class EJNoteManager : MonoBehaviour
 
     public void startcoFinaleFX()
     {
+        audiosource[0].PlayOneShot(SFXs[0]);
         StartCoroutine(finaleFX());
         StartCoroutine(fireworkkFX());
     }

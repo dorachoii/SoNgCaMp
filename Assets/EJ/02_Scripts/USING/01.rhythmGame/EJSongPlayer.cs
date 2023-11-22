@@ -82,15 +82,18 @@ public class EJSongPlayer : MonoBehaviour
         currTime = 0;
     }
 
+    bool isFXplayed;
     // Update is called once per frame
     void Update()
     {
 
         if (!audio.isPlaying)
         {
-            if (playCount > 0)
+            if (playCount > 0 &&!isFXplayed)
             {
+                isFXplayed = true;
                 noteManager.startcoFinaleFX();
+                EJGameUIManager.instance.successUI();
             }
         }
 
