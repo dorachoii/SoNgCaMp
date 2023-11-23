@@ -782,7 +782,7 @@ public class EJNoteManager : MonoBehaviour
             EJScoreManager.instance.SCORE += excellentScore;
         }
 
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
         PressDestroy(n);
     } //check_FINISHED!!!
 

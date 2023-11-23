@@ -100,7 +100,7 @@ public class EJmobileInput : MonoBehaviour
 
     private void OnVibrate()
     {
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
     }
 
     private void OnSigleTouch()

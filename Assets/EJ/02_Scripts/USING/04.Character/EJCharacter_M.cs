@@ -1,12 +1,14 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using static HttpController;
 
 public class EJCharacter_M : MonoBehaviour
 {
@@ -448,17 +450,39 @@ public class EJCharacter_M : MonoBehaviour
         {
             animator[2].SetTrigger("Spin");
             characterInfo.characterType = 3;
-
-
         }
 
         HttpInfo httpInfo = new HttpInfo();
+        LoginResponseDTO dto = (LoginResponseDTO)PlayerManager.Get.GetValue("LoginInfo");
+        UserInfo_customizing userInfo_Customizing = new UserInfo_customizing(characterInfo.characterType, characterInfo.hexString_cloth, characterInfo.hexString_face, characterInfo.hexString_ribbon, characterInfo.hexString_skin, characterInfo.isBagON, characterInfo.isCapON, characterInfo.isCrownON, characterInfo.isGlassON, dto.userNo);
 
-        UserInfo_customizing userInfo_Customizing = new UserInfo_customizing(characterInfo.characterType, characterInfo.hexString_cloth, characterInfo.hexString_face, characterInfo.hexString_ribbon, characterInfo.hexString_skin, characterInfo.isBagON, characterInfo.isCapON, characterInfo.isCrownON, characterInfo.isGlassON, 5);
+        dto.characterType = characterInfo.characterType;
+        dto.hexStringCloth = characterInfo.hexString_cloth;
+        dto.hexStringFace = characterInfo.hexString_face;
+        dto.hexStringRibbon = characterInfo.hexString_ribbon;
+        dto.hexStringSkin = characterInfo.hexString_skin;
+        dto.isBagOn = characterInfo.isBagON;
+        dto.isCapOn = characterInfo.isCapON;
+        dto.isCrownOn = characterInfo.isCrownON;
+        dto.isGlassOn = characterInfo.isGlassON;
 
+
+        PlayerManager.Get.Add("LoginInfo",dto);
+
+        //커스터마이징 저장
         httpInfo.Set(RequestType.POST, "api/v1/users/customize", (DownloadHandler downHandler) =>
         {
+            //저장하면 로비로 이동
             print(downHandler.text);
+
+            //요청하고 한번 더 불러오고
+
+            ConnectionManager.Get.onJoinRoom = () =>
+            {
+                PhotonNetwork.LoadLevel(4);
+            };
+            ConnectionManager.Get.ConnectToPhoton();
+
         }, true);
 
         httpInfo.body = JsonUtility.ToJson(userInfo_Customizing);

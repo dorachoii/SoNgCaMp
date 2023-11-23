@@ -1,9 +1,12 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static HttpController;
 
 public class EJLogIn_UI : MonoBehaviour
 {
@@ -30,10 +33,15 @@ public class EJLogIn_UI : MonoBehaviour
     public TMP_Dropdown mood_l;
 
 
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -83,7 +91,8 @@ public class EJLogIn_UI : MonoBehaviour
         //Idontknow
     }
 
-
+    [SerializeField]
+    int connectedIndex;
     public void LogInCheck()
     {
         HttpInfo httpInfo = new HttpInfo();
@@ -94,6 +103,21 @@ public class EJLogIn_UI : MonoBehaviour
         httpInfo.Set(RequestType.POST, "api/v1/authentication/login", (DownloadHandler downHandler) =>
         {
             print(downHandler.text);
+            //로그인시 TokenManager Set Token. 
+            //LoginResponse. 필.
+
+            //ResponseDTO 변환
+            ResponseDTO<LoginDTO> dto = JsonUtility.FromJson<ResponseDTO<LoginDTO>>(downHandler.text);
+            PlayerManager.Get.Add("LoginInfo", dto.results.loginResponse);
+            //토큰 저장
+            TokenManager.Token = dto.results.loginResponse.authority[0].accessToken;
+
+            //포톤연결까지.
+            ConnectionManager.Get.onJoinRoom = () =>
+            {
+                PhotonNetwork.LoadLevel(connectedIndex);
+            };
+            ConnectionManager.Get.ConnectToPhoton();
         }, true);
 
         httpInfo.body = JsonUtility.ToJson(userInfo_Login);
@@ -122,7 +146,7 @@ public class EJLogIn_UI : MonoBehaviour
         //POST로 올리기.
 
         HttpInfo httpInfo = new HttpInfo();
-        UserInfo_register userInfo_register_l = new UserInfo_register(ID.text, PW.text, NickName_l.text, 0, 0,mood_l.value, false);
+        UserInfo_register userInfo_register_l = new UserInfo_register(NickName_l.text, "dohyeon123!", "dohyeon" + Random.Range(1,1000), 0, 0,mood_l.value, false);
 
         print(NickName_l.text);
         print(mood_l.value);
@@ -130,10 +154,43 @@ public class EJLogIn_UI : MonoBehaviour
         httpInfo.Set(RequestType.POST, "api/v1/users", (DownloadHandler downHandler) =>
         {
             print(downHandler.text);
+            //Custom Scene
+            //회원가입하면 로그인 하고 커스텀 -> 진행
+            registerLogin(userInfo_register_l);
+            //
+
         }, true);
 
         httpInfo.body = JsonUtility.ToJson(userInfo_register_l) ;
         HttpManager.Get().SendRequest(httpInfo);
+    }
+
+    //회원가입 후 바로 로그인
+    public void registerLogin(UserInfo_register regInfo)
+    {
+        UserInfo_login loginInfo = new UserInfo_login(regInfo.userEmail,regInfo.userPwd);
+        string data = JsonUtility.ToJson(loginInfo);
+        HttpRequest rq = new HttpBuilder()
+            .Uri("/api/v1/authentication/login")
+            .Data(data)
+            .Type(ReqType.POST)
+            .Success((down) =>
+            {
+                Debug.Log("로그인 성공 ");
+                //데이터 저장
+                LoginDTO dto = JsonUtility.FromJson<LoginDTO>(down.text);
+
+                //로컬에 정보 저장
+                PlayerManager.Get.Add("LoginInfo", dto.loginResponse);
+
+                //씬 이동 
+                SceneManager.LoadScene(3);
+
+            })
+            .build();
+
+        StartCoroutine(SendRequest(rq));
+        
     }
 
 }

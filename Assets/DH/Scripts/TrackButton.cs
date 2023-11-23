@@ -27,7 +27,7 @@ public class TrackButton : MonoBehaviour
     {
         //버튼을 눌렀을 때 이런 액션을 취하자
         event1.action.AddListener( ()=> { UIManager.instance.currentTrack = mytrack; InstrumentManager.instance.ChangeTrack(image); });
-        event2.action.AddListener(()=>  { UIManager.instance.ChangeTrack(mytrack);  });
+        event2.action.AddListener(()=>  { UIManager.instance.ChangeTrack(mytrack); Debug.Log("??");  });
         //ChanelBtn.text.text = "CH" + myPage;
         ChanelBtn.Count = myPage; 
     }
