@@ -146,7 +146,7 @@ public class EJLogIn_UI : MonoBehaviour
         //POST로 올리기.
 
         HttpInfo httpInfo = new HttpInfo();
-        UserInfo_register userInfo_register_l = new UserInfo_register(NickName_l.text, "dohyeon123!", "dohyeon" + Random.Range(1,1000), 0, 0,mood_l.value, false);
+        UserInfo_register userInfo_register_l = new UserInfo_register(ID.text, PW.text, NickName_l.text , 0, 0,mood_l.value, false);
 
         print(NickName_l.text);
         print(mood_l.value);
@@ -178,10 +178,10 @@ public class EJLogIn_UI : MonoBehaviour
             {
                 Debug.Log("로그인 성공 ");
                 //데이터 저장
-                LoginDTO dto = JsonUtility.FromJson<LoginDTO>(down.text);
+                ResponseDTO<LoginDTO> dto = JsonUtility.FromJson<ResponseDTO<LoginDTO>>(down.text);
 
                 //로컬에 정보 저장
-                PlayerManager.Get.Add("LoginInfo", dto.loginResponse);
+                PlayerManager.Get.Add("LoginInfo", dto.results.loginResponse);
 
                 //씬 이동 
                 SceneManager.LoadScene(3);

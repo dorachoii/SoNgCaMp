@@ -13,6 +13,7 @@ using static HttpController;
 public class EJCharacter_M : MonoBehaviour
 {
     //00. Server에 저장할 정보
+    public
     CharacterInfo characterInfo = new CharacterInfo();
 
     //01. character prefabs
@@ -421,7 +422,8 @@ public class EJCharacter_M : MonoBehaviour
     //수정 필요
     public void ColorInfoCheck_M()
     {
-        Material[] char_L_Mats = characters_M[0].GetComponent<SkinnedMeshRenderer>().materials;
+        // Material[] char_L_Mats = characters_M[0].GetComponent<SkinnedMeshRenderer>().materials; //선택된 애가 아니라 첫번째 애의 색을 가져옴??
+        Material[] char_L_Mats = characters_M[WhatCharSelected()].GetComponent<SkinnedMeshRenderer>().materials;
 
         characterInfo.hexString_cloth = char_L_Mats[0].color.ToString();
         characterInfo.hexString_skin = char_L_Mats[1].color.ToString();
