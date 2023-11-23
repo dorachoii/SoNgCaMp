@@ -16,9 +16,6 @@ public class EJConcertCamchange : MonoBehaviour
         StartCoroutine(camChange());
     }
 
-    float curTime = 0f;
-    float waitTime = 2f;
-
     // Update is called once per frame
     void Update()
     {
@@ -45,7 +42,7 @@ public class EJConcertCamchange : MonoBehaviour
             cams[camIdx].SetActive(true);
 
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(4f);
 
         }
     }
