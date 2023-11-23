@@ -13,20 +13,20 @@ using CSharpSynth.Midi;
 
 [RequireComponent(typeof(AudioSource))]
 public class EJMidi2Note : MonoBehaviour
-{
-    MidiSequencer midiSequencer;
+{    
+    MidiSequencer midiSequencer;   
     public EJNoteManager ejnotemanager;
     private StreamSynthesizer midiStreamSynthesizer;
     public string bankFilePath = "GM Bank/gm";
     public int bufferSize = 1024;
     private float[] sampleBuffer;
 
-    public string midiPath = "ichumonandodemo.mid.txt";
+    public string midiPath = "ichumonandodemo.mid.txt";    
 
     int instrumentIdx = 0;      //default : piano 0
 
     GameObject[] btns;
-
+    
     public void ClickDrumBtn()
     {
         instrumentIdx = 114;
@@ -44,7 +44,7 @@ public class EJMidi2Note : MonoBehaviour
     }
 
     //악기정보 값에 따라, UI다르게 띄울 수 있도록 정해야 함.
-
+    
     private void Awake()
     {
 
@@ -52,11 +52,11 @@ public class EJMidi2Note : MonoBehaviour
         sampleBuffer = new float[midiStreamSynthesizer.BufferSize];
         midiStreamSynthesizer.LoadBank(bankFilePath);
         midiSequencer = new MidiSequencer(midiStreamSynthesizer);
-        midiSequencer.LoadMidi(midiPath, false);
+        midiSequencer.LoadMidi(midiPath, false);      
     }
 
     GameNoteInfo gameNoteInfo;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +70,7 @@ public class EJMidi2Note : MonoBehaviour
         {
             bool isLongNote = false;
             bool isDragNote = false;
-
+            
 
             // shortNote
             if (midiEvents_selectedTrack[i].length * 960 < 480)
@@ -129,62 +129,141 @@ public class EJMidi2Note : MonoBehaviour
                 #endregion
 
                 #region 은정
-                //연달아 세 음이 오름차순이라면!
+                //연달아 세 음이 오름차순이라면! 
+                //if (i > 1 && midiEvents_selectedTrack[i].pitch > midiEvents_selectedTrack[i - 1].pitch && midiEvents_selectedTrack[i - 1].pitch > midiEvents_selectedTrack[i - 2].pitch)
+                //if (i < midiEvents_selectedTrack[i].length-1 && midiEvents_selectedTrack[i+2].pitch > midiEvents_selectedTrack[i + 1].pitch && midiEvents_selectedTrack[i + 1].pitch > midiEvents_selectedTrack[i - 2].pitch)               
+                //{
+                //    isDragNote = true;
+                //    gameNoteInfo = new GameNoteInfo();
 
-                if (i > 1 && midiEvents_selectedTrack[i].pitch > midiEvents_selectedTrack[i - 1].pitch && midiEvents_selectedTrack[i - 1].pitch > midiEvents_selectedTrack[i - 2].pitch)
-                {
-                    isDragNote = true;
+                //    gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
+                //    gameNoteInfo.railIdx = 2;
+                //    gameNoteInfo.type = (int)GameNoteType.DRAG_LEFT;
+                //    gameNoteInfo.DRAG_release_idx = 0;
+                //    gameNoteInfo.isNoteEnabled = false;
+                //    gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;                                    
 
-                    gameNoteInfo = new GameNoteInfo();
+                //}             
+                //else
+                //{
+                //    gameNoteInfo = new GameNoteInfo();
 
-                    gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
-                    gameNoteInfo.railIdx = 2;
-                    gameNoteInfo.type = (int)GameNoteType.DRAG_LEFT;
-                    gameNoteInfo.DRAG_release_idx = 0;
-                    gameNoteInfo.isNoteEnabled = false;
-                    gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
-                    ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
+                //    gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
+                //    gameNoteInfo.railIdx = SetRailIdx(midiEvents_selectedTrack[i], gameNoteInfo);
+                //    gameNoteInfo.type = (int)GameNoteType.SHORT;
 
-                    gameNoteInfo = new GameNoteInfo();
-
-                    gameNoteInfo.pitch = midiEvents_selectedTrack[i-1].pitch;
-                    gameNoteInfo.railIdx = 1;
-                    gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
-                    gameNoteInfo.DRAG_release_idx = 0;
-                    gameNoteInfo.isNoteEnabled = false;
-                    gameNoteInfo.time = midiEvents_selectedTrack[i-1].startTime * 120;
-                    ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
-
-                    gameNoteInfo = new GameNoteInfo();
-
-                    gameNoteInfo.pitch = midiEvents_selectedTrack[i-2].pitch;
-                    gameNoteInfo.railIdx = 0;
-                    gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
-                    gameNoteInfo.DRAG_release_idx = 0;
-                    gameNoteInfo.isNoteEnabled = false;
-                    gameNoteInfo.time = midiEvents_selectedTrack[i-2].startTime * 120;
-                    
-
-                }
-                else
-                {
-                    gameNoteInfo = new GameNoteInfo();
-
-                    gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
-                    gameNoteInfo.railIdx = SetRailIdx(midiEvents_selectedTrack[i], gameNoteInfo);
-                    gameNoteInfo.type = (int)GameNoteType.SHORT;
-
-                    //gameNoteInfo.isLongNoteStart = false;
-                    //gameNoteInfo.DRAG_release_idx = 0;
-                    gameNoteInfo.isNoteEnabled = false;
-                    gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
-                }
+                //    //gameNoteInfo.isLongNoteStart = false;
+                //    //gameNoteInfo.DRAG_release_idx = 0;
+                //    gameNoteInfo.isNoteEnabled = false;
+                //    gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
+                //}
                 #endregion
+                
+
+                if (i < midiEvents_selectedTrack[i].length - 2)
+                {
+                    // 나보다 뒤에 나올 것들이 오름차순인지 비교
+                    if (midiEvents_selectedTrack[i + 2].pitch > midiEvents_selectedTrack[i + 1].pitch && midiEvents_selectedTrack[i + 1].pitch > midiEvents_selectedTrack[i].pitch)
+                    {
+                        //나보다 앞의 것들이 오름차순인지 비교
+                        //
+                        if (i == 1 && ejnotemanager.allGameNoteInfo[i - 1].type != (int)GameNoteType.DRAG_LEFT && ejnotemanager.allGameNoteInfo[i - 1].type != (int)GameNoteType.DRAG_RIGHT)
+                        {
+                            //dragNote 생성
+                            isDragNote = true;
+
+                            gameNoteInfo = new GameNoteInfo();
+
+                            gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
+                            gameNoteInfo.railIdx = 2;
+                            gameNoteInfo.type = (int)GameNoteType.DRAG_LEFT;
+                            gameNoteInfo.DRAG_release_idx = 0;
+                            gameNoteInfo.isNoteEnabled = false;
+                            gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
+                        }
+                        else if (i > 1 && ejnotemanager.allGameNoteInfo[i - 1].type != (int)GameNoteType.DRAG_LEFT &&
+                            ejnotemanager.allGameNoteInfo[i - 2].type != (int)GameNoteType.DRAG_LEFT && ejnotemanager.allGameNoteInfo[i - 1].type != (int)GameNoteType.DRAG_RIGHT &&
+                            ejnotemanager.allGameNoteInfo[i - 2].type != (int)GameNoteType.DRAG_RIGHT)
+                        {
+                            //dragNote 생성
+                            isDragNote = true;
+
+                            gameNoteInfo = new GameNoteInfo();
+
+                            gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
+                            gameNoteInfo.railIdx = 2;
+                            gameNoteInfo.type = (int)GameNoteType.DRAG_LEFT;
+                            gameNoteInfo.DRAG_release_idx = 0;
+                            gameNoteInfo.isNoteEnabled = false;
+                            gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
+                        }
+                    }else
+                    {
+                        //shortNote생성
+
+                        gameNoteInfo = new GameNoteInfo();
+
+                        gameNoteInfo.pitch = midiEvents_selectedTrack[i].pitch;
+                        gameNoteInfo.railIdx = SetRailIdx(midiEvents_selectedTrack[i], gameNoteInfo);
+                        gameNoteInfo.type = (int)GameNoteType.SHORT;
+                        //gameNoteInfo.isLongNoteStart = false;
+                        //gameNoteInfo.DRAG_release_idx = 0;
+                        gameNoteInfo.isNoteEnabled = false;
+                        gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
+
+
+                        //dragEmptyNote 생성
+                        if (i == 1 && ejnotemanager.allGameNoteInfo[i - 1].type == (int)GameNoteType.DRAG_LEFT || ejnotemanager.allGameNoteInfo[i - 1].type == (int)GameNoteType.DRAG_RIGHT)
+                        {
+                            //emptyNote 생성: 0,1,2이 dragNote로 묶일 상황, 0이 drag, 1,2이 empty 
+                            gameNoteInfo = new GameNoteInfo();
+
+                            gameNoteInfo.railIdx = 1;
+                            gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
+                            gameNoteInfo.isNoteEnabled = false;
+                            gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
+
+                            gameNoteInfo = new GameNoteInfo();
+
+                            gameNoteInfo.railIdx = 0;
+                            gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
+                            gameNoteInfo.isNoteEnabled = false;
+                            gameNoteInfo.time = midiEvents_selectedTrack[i+1].startTime * 120;
+
+
+                        }
+                        else if (i > 1 && ejnotemanager.allGameNoteInfo[i - 1].type == (int)GameNoteType.DRAG_LEFT ||
+                            ejnotemanager.allGameNoteInfo[i - 1].type == (int)GameNoteType.DRAG_RIGHT)
+                        {
+                            //emptyNote 생성: i=1일 때, 0,1,2이 drag로 묶일 상황, 0이 drag 1,2가 empty
+                            gameNoteInfo = new GameNoteInfo();
+
+                            gameNoteInfo.railIdx = 1;
+                            gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
+                            gameNoteInfo.isNoteEnabled = false;
+                            gameNoteInfo.time = midiEvents_selectedTrack[i - 1].startTime * 120;
+
+                        }
+                        else if (i > 1 && ejnotemanager.allGameNoteInfo[i - 2].type == (int)GameNoteType.DRAG_LEFT ||
+                            ejnotemanager.allGameNoteInfo[i - 2].type == (int)GameNoteType.DRAG_RIGHT)
+                        {
+                            //emptyNote 생성: i=2일 때 0,1,2가 drag로 묶일 상황이고 0이 drag, 1,2가 empty
+
+                            gameNoteInfo = new GameNoteInfo();
+
+                            gameNoteInfo.railIdx = 0;
+                            gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
+                            gameNoteInfo.isNoteEnabled = false;
+                            gameNoteInfo.time = midiEvents_selectedTrack[i - 2].startTime * 120;
+
+                        }
+                    }
+                }
 
             }
             // longNote
             else
-            {
+            {                
                 isLongNote = true;
                 //Long_start
                 gameNoteInfo = new GameNoteInfo();
@@ -229,27 +308,7 @@ public class EJMidi2Note : MonoBehaviour
 
                 gameNoteInfo_dragRight.isNoteEnabled = false;
                 gameNoteInfo_dragRight.time = midiEvents_selectedTrack[i].startTime * 120;
-                ejnotemanager.allGameNoteInfo.Add(gameNoteInfo_dragRight);
-
-                gameNoteInfo = new GameNoteInfo();
-
-                gameNoteInfo.pitch = midiEvents_selectedTrack[i - 1].pitch;
-                gameNoteInfo.railIdx = 4;
-                gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
-                gameNoteInfo.DRAG_release_idx = 0;
-                gameNoteInfo.isNoteEnabled = false;
-                gameNoteInfo.time = midiEvents_selectedTrack[i - 1].startTime * 120;
-                ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
-
-                gameNoteInfo = new GameNoteInfo();
-
-                gameNoteInfo.pitch = midiEvents_selectedTrack[i - 2].pitch;
-                gameNoteInfo.railIdx = 5;
-                gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
-                gameNoteInfo.DRAG_release_idx = 0;
-                gameNoteInfo.isNoteEnabled = false;
-                gameNoteInfo.time = midiEvents_selectedTrack[i - 2].startTime * 120;
-                ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
+                ejnotemanager.allGameNoteInfo.Add(gameNoteInfo_dragRight);                        
             }
 
             print("222 Midi2Note에서 MidiEvent를 GameNote로 변환했고, 이것을 옮겨 담은 결과 allGameNoteInfo에는" + ejnotemanager.allGameNoteInfo.Count + "개가 담겼다.");
@@ -294,9 +353,9 @@ public class EJMidi2Note : MonoBehaviour
             gameNoteInfo_end.type = gameNoteInfo.type;
             gameNoteInfo_end.isLongNoteStart = false;
             gameNoteInfo_end.isNoteEnabled = false;
-            gameNoteInfo_end.time = midiNote[idx].endTime * 120;
+            gameNoteInfo_end.time = midiNote[idx].endTime*120;
 
             ejnotemanager.allGameNoteInfo.Add(gameNoteInfo_end);
         }
-    }
+    }   
 }

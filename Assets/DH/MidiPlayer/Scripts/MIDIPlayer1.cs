@@ -78,15 +78,15 @@ public class MIDIPlayer1 : MonoBehaviour
             midiSequencer.Stop(true);
         }
 
-        //if (Input.GetButtonDown("Fire1"))
-        //{
-        //    midiStreamSynthesizer.NoteOn(9, midiNote, midiNoteVolume, midiInstrument);
-        //}
+        if (Input.GetButtonDown("Fire1"))
+        {
+            midiStreamSynthesizer.NoteOn(9, midiNote, midiNoteVolume, midiInstrument);
+        }
 
-        //if (Input.GetButtonUp("Fire1"))
-        //{
-        //    midiStreamSynthesizer.NoteOff(9, midiNote);
-        //}
+        if (Input.GetButtonUp("Fire1"))
+        {
+            midiStreamSynthesizer.NoteOff(9, midiNote);
+        }
 
 
         }

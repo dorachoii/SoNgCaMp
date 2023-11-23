@@ -25,17 +25,6 @@ public class EJNoteManager : MonoBehaviour
     public GameObject[] QuadTouches;
     int[] pitches_rail = new int[6];
 
-    public GameObject touchFX;
-    public GameObject touchfireFX;
-    public GameObject fireworkFX;
-
-    public AudioSource[] audiosource;
-    public AudioClip[] SFXs;
-
-    public Transform[] touchFX_pos;
-    public Transform[] touchfireFX_pos;
-    public Transform[] fireworkFX_pos;
-
     public Material[] QuadRails_Mat;
 
     GameObject note;
@@ -111,9 +100,6 @@ public class EJNoteManager : MonoBehaviour
         //InputTestFLOP();
 
         //StartCoroutine(Test());
-
-        
-
     }
 
     IEnumerator Test()
@@ -132,16 +118,6 @@ public class EJNoteManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            //StartCoroutine(finaleFX());
-            //StartCoroutine(fireworkkFX());
-
-            startcoFinaleFX();
-        }
-
-
-
         currTime += Time.deltaTime;
 
         //01. Note_Instantiate & Destroy    //test FINISHED!!!
@@ -611,7 +587,20 @@ public class EJNoteManager : MonoBehaviour
         if (gameNoteInstance_Rails[n].Count > 0)
         {
             pitches_rail[n] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
-            
+
+            //if (gameNoteInstance_Rails[3][0].noteInfo.type == (int)GameNoteType.DRAG_RIGHT)
+            //{
+            //    pitches_rail[3] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
+            //    pitches_rail[4] = gameNoteInstance_Rails[n][0].noteInfo.pitch+10;
+            //    pitches_rail[5] = gameNoteInstance_Rails[n][0].noteInfo.pitch+20;
+            //}
+            //else if (gameNoteInstance_Rails[3][0].noteInfo.type == (int)GameNoteType.DRAG_LEFT)
+            //{
+            //    pitches_rail[2] = gameNoteInstance_Rails[n][0].noteInfo.pitch;
+            //    pitches_rail[1] = gameNoteInstance_Rails[n][0].noteInfo.pitch-10;
+            //    pitches_rail[0] = gameNoteInstance_Rails[n][0].noteInfo.pitch-20;
+            //}
+
         }
 
         if (dicCurrTouchPadIdx[fingerId] != -1)
@@ -624,12 +613,6 @@ public class EJNoteManager : MonoBehaviour
             /*touchpads[n].GetComponent<MeshRenderer>().enabled = true;*/
             QuadTouches[n].SetActive(true);
             QuadRails[n].GetComponent<MeshRenderer>().material = QuadRails_Mat[n];
-
-            GameObject touchEffect = Instantiate(touchFX, touchFX_pos[n]);
-            Destroy(touchEffect, 1);
-
-            
-            
 
             MIDIPlayer.instance.NoteOn(pitches_rail[n]);
 
@@ -669,75 +652,6 @@ public class EJNoteManager : MonoBehaviour
             pitches_rail[n] = 20;
         }
     }
-
-    int finaleCount = 30;
-    int fireworkCount = 15;
-    int n = 0;
-    int k = 0;
-    int dir = 1;
-
-    public IEnumerator finaleFX()
-    {
-        for (int i = 0; i < finaleCount; i++)
-        {
-            n += dir;
-
-            print("nÀº" + n);
-
-            if (n == 5)
-            {
-                dir *= -1;
-                                   
-            }
-            
-            if (n == 0)
-            {
-                dir *= -1;
-                
-            }
-                GameObject fx = Instantiate(touchfireFX, touchfireFX_pos[n]);
-            //audiosource.PlayOneShot(SFXs[0]);
-            yield return new WaitForSeconds(0.3f);                             
-        }
-        n = 0;
-    }
-
-
-    public IEnumerator fireworkkFX()
-    {
-        for (int i = 0; i < fireworkCount; i++)
-        {
-            k += dir;
-
-            print("Àº" + n);
-
-            if (k == 2)
-            {
-                dir *= -1;
-
-            }
-
-            if (k == 0)
-            {
-                dir *= -1;
-
-            }
-
-            GameObject fx = Instantiate(fireworkFX, fireworkFX_pos[k]);
-            audiosource[1].PlayOneShot(SFXs[1]);
-
-            yield return new WaitForSeconds(1);
-        }
-        k = 0;
-    }
-
-    public void startcoFinaleFX()
-    {
-        audiosource[0].PlayOneShot(SFXs[0]);
-        StartCoroutine(finaleFX());
-        StartCoroutine(fireworkkFX());
-    }
-
 
     public void ScoreCheck_SHORT(int n)
     {
