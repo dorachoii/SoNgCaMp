@@ -108,7 +108,7 @@ public class EJNoteManager : MonoBehaviour
         //InputTestLONGNotes();     //test FINISHED_1Â÷!!!
         //InputTestDRAGNote();
         //InputTestMIXEDNote();
-        //InputTestFLOP();
+        InputTestFLOP();
 
         //StartCoroutine(Test());
 

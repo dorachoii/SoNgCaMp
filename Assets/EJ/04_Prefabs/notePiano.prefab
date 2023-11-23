@@ -166,7 +166,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 382aec80f6c79e049acd826f2d8315b8, type: 2}
+  - {fileID: 2100000, guid: f96ca07043464404abdeddd864b20e0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -349,6 +349,7 @@ MonoBehaviour:
     isLongNoteStart: 0
     DRAG_release_idx: 0
     isNoteEnabled: 0
+    pitch: 0
   linkNotePrefab: {fileID: 2711432886464089921, guid: cbdf2a3feeecb014bb0246b03456d9b1, type: 3}
 --- !u!1 &8946263237025681888
 GameObject:
@@ -412,7 +413,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 382aec80f6c79e049acd826f2d8315b8, type: 2}
+  - {fileID: 2100000, guid: f96ca07043464404abdeddd864b20e0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
