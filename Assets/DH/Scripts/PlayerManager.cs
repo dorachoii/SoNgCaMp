@@ -21,9 +21,12 @@ public class PlayerManager : MonoBehaviour
 
         }
     }
+    //그냥 필요한 데이터를 담아두자.
     //딕셔너리.
     public Dictionary<string, System.Object> infoList = new Dictionary<string, System.Object>();
-
+    public void Add(string key,System.Object value) {
+        infoList.Add(key,value);
+    }
     // Start is called before the first frame update
     void Start()
     {

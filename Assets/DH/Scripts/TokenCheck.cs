@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,14 @@ using static HttpController;
 public class TokenCheck : MonoBehaviour
 {
 
+    private void Awake()
+    {
+        Checking();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        Checking();
+        
     }
 
     // Update is called once per frame
@@ -43,14 +48,29 @@ public class TokenCheck : MonoBehaviour
     [SerializeField]
     int accesIndex;
     public void Access(DownloadHandler download) {
+
+        Debug.Log(SceneManager.sceneCountInBuildSettings);
+        if (accesIndex > SceneManager.sceneCountInBuildSettings)
+            return;
+        
         //토큰 있음.. 입장 가능...
         ResponseDTO<LoginResponseDTO> responce = JsonUtility.FromJson<ResponseDTO<LoginResponseDTO>>(download.text);
-        SceneManager.LoadScene(accesIndex);
+        PlayerManager.Get.Add("LoginInfo", responce.results);
+        //포톤연결까지.
+        ConnectionManager.Get.onJoinRoom = () =>
+        {
+
+            PhotonNetwork.LoadLevel(accesIndex);
+        };
+        ConnectionManager.Get.ConnectToPhoton();
     }
 
     [SerializeField]
     int backIndex;
     public void GoBack(DownloadHandler download) {
+        if (accesIndex > SceneManager.sceneCountInBuildSettings)
+            return;
+
         Debug.Log("토큰 없음..");
         //로그인 페이지로 이동.
         SceneManager.LoadScene(backIndex);

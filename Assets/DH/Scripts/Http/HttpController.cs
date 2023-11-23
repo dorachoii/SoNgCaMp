@@ -9,7 +9,7 @@ using UnityEngine.Networking;
 public class HttpController : MonoBehaviour
 {
     //IP, PORT Number
-    public static string default_host = "http://192.168.0.23:8080";
+    public static string default_host = "http://192.168.0.33:8080";
     //Manager 
 
 
@@ -43,7 +43,7 @@ public class HttpController : MonoBehaviour
         //wwwForm.AddBinaryData("fileRequest", Encoding.UTF8.GetBytes(JsonUtility.ToJson(new Info2() { needSession = "4", particlpantList = new List<Info3>(), songArtist = "TestArtist", songTitle = "Test" })), "data.json", "application/json");
         //wwwForm.AddField("fileRequest", JsonUtility.ToJson(new Info2() { needSession = "4", particlpantList = new List<Info3>(), songArtist = "TestArtist", songTitle = "Test" }));
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.0.23:8080/api/v1/fileUpload", formData))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.0.33:8080/api/v1/fileUpload", formData))
         {
 
             yield return www.SendWebRequest();
@@ -170,9 +170,11 @@ public class HttpController : MonoBehaviour
     {
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(info.host + info.uri, AudioType.MPEG))
         {
+            Debug.Log(info.host + info.uri);
             yield return www.SendWebRequest();
 
             if (www.error == null) {
+                Debug.Log("요청 성공");
                 info.OnSuccessCallback?.Invoke(www.downloadHandler);
                 
                 // AudioClip으로 변환
@@ -181,6 +183,7 @@ public class HttpController : MonoBehaviour
             }
             if(www.error != null)
             {
+                Debug.Log("요청실패" + www.error);
                 info.OnFailureCallback?.Invoke(www.downloadHandler);
 
             }

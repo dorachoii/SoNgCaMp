@@ -51,16 +51,16 @@ public class LoadSong : MonoBehaviour
                 //Byte to sprite
                 Sprite sprite = LoadSpriteFromBytes(down.data);
                 //텍스트 세팅
-                img.Set(info.songTitle, info.songArtist, info.needSession, "?",sprite);
+                img.Set(info.songTitle, info.songArtist, info.needSession, "?",sprite,info);
             })
             .Failure((down)=> {
                 Sprite sprite = LoadSpriteFromBytes(down.data);
                 //이미지 요청 실패. 
-                img.Set(info.songTitle, info.songArtist, info.needSession, "?", null);
+                img.Set(info.songTitle, info.songArtist, info.needSession, "?", null, info);
             })
             .build();
 
-            img.Set(info.songTitle, info.songArtist, info.needSession, "?", null);
+            //img.Set(info.songTitle, info.songArtist, info.needSession, "?", null, info);
             StartCoroutine(SendRequest(rq));
           
         });

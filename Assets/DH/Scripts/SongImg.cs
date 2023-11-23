@@ -16,13 +16,14 @@ public class SongImg : MonoBehaviour
     public TMP_Text genre;
     public bool isSelect;
     FileDTO dto;
-    public void Set(string title,string musician,string session,string genre,Sprite sprite) {
+    public void Set(string title,string musician,string session,string genre,Sprite sprite,FileDTO dto) {
         image.sprite = sprite;
         this.title.text = title;
         this.musician.text = musician;
         this.session.text = session;
         this.genre.text = genre;
         this.image.sprite = sprite;
+        this.dto = dto;
         
     }
 
@@ -36,6 +37,8 @@ public class SongImg : MonoBehaviour
     string musicFilePath = null;
     const string saveFilePath = "music";
     public void Click() {
+
+        Debug.Log("CLICK");
         if (isSelect) { 
             //넘어가기
             //DTO 넘겨주기
@@ -52,7 +55,9 @@ public class SongImg : MonoBehaviour
             .Type(ReqType.GET)
             .Success((down) => {
                 musicFilePath = Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3";
-                File.WriteAllBytes(Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3",down.data); 
+                File.WriteAllBytes(Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3",down.data);
+                //파일 다운로드
+                Debug.Log("Down!!");
             })
             .build();
         }

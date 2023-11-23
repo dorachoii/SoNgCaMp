@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -30,10 +31,15 @@ public class EJLogIn_UI : MonoBehaviour
     public TMP_Dropdown mood_l;
 
 
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -83,7 +89,8 @@ public class EJLogIn_UI : MonoBehaviour
         //Idontknow
     }
 
-
+    [SerializeField]
+    int connectedIndex;
     public void LogInCheck()
     {
         HttpInfo httpInfo = new HttpInfo();
@@ -99,13 +106,16 @@ public class EJLogIn_UI : MonoBehaviour
 
             //ResponseDTO 변환
             ResponseDTO<LoginDTO> dto = JsonUtility.FromJson<ResponseDTO<LoginDTO>>(downHandler.text);
-
+            PlayerManager.Get.Add("LoginInfo", dto.results.loginResponse);
             //토큰 저장
             TokenManager.Token = dto.results.loginResponse.authority[0].accessToken;
 
-            
-            //Player 관리 클래스
-            //PlayerManager.Get.infoList.Add("loginResponse",dto);
+            //포톤연결까지.
+            ConnectionManager.Get.onJoinRoom = () =>
+            {
+                PhotonNetwork.LoadLevel(connectedIndex);
+            };
+            ConnectionManager.Get.ConnectToPhoton();
         }, true);
 
         httpInfo.body = JsonUtility.ToJson(userInfo_Login);
