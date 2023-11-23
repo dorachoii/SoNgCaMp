@@ -22,6 +22,10 @@ public struct LoginDTO
     
 }
 
+[Serializable]
+public struct LoginDTO2 { 
+    public LoginResponseDTO authority;
+}
 
 [Serializable]
 public struct LoginResponseDTO {
@@ -31,7 +35,7 @@ public struct LoginResponseDTO {
     public int sessionType;
     public int genre;
     public int mood;
-    public int chracterType;
+    public int characterType;
 
     public string hexStringCloth;
     public string hexStringFace;

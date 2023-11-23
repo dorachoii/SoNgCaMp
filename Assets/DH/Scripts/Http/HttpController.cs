@@ -9,7 +9,7 @@ using UnityEngine.Networking;
 public class HttpController : MonoBehaviour
 {
     //IP, PORT Number
-    public static string default_host = "http://192.168.0.33:8080";
+    public static string default_host = "http://192.168.0.45:8080";
     //Manager 
 
 

@@ -447,8 +447,6 @@ public class EJCharacter_M : MonoBehaviour
         {
             animator[2].SetTrigger("Spin");
             characterInfo.characterType = 3;
-
-
         }
 
         HttpInfo httpInfo = new HttpInfo();

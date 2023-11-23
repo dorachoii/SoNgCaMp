@@ -8,10 +8,12 @@ using static HttpController;
 
 public class TokenCheck : MonoBehaviour
 {
-
+    [SerializeField]
+    bool isTokenCheck;
     private void Awake()
     {
-        Checking();
+        if(isTokenCheck)
+            Checking();
     }
     // Start is called before the first frame update
     void Start()
@@ -54,8 +56,11 @@ public class TokenCheck : MonoBehaviour
             return;
         
         //토큰 있음.. 입장 가능...
-        ResponseDTO<LoginResponseDTO> responce = JsonUtility.FromJson<ResponseDTO<LoginResponseDTO>>(download.text);
-        PlayerManager.Get.Add("LoginInfo", responce.results);
+        ResponseDTO<LoginDTO2> responce = JsonUtility.FromJson<ResponseDTO<LoginDTO2>>(download.text);
+        Debug.Log(download.text);
+
+        
+        PlayerManager.Get.Add("LoginInfo", responce.results.authority);
         //포톤연결까지.
         ConnectionManager.Get.onJoinRoom = () =>
         {
@@ -68,11 +73,13 @@ public class TokenCheck : MonoBehaviour
     [SerializeField]
     int backIndex;
     public void GoBack(DownloadHandler download) {
-        if (accesIndex > SceneManager.sceneCountInBuildSettings)
+        if (backIndex > SceneManager.sceneCountInBuildSettings)
             return;
 
         Debug.Log("토큰 없음..");
         //로그인 페이지로 이동.
         SceneManager.LoadScene(backIndex);
     }
+
+
 }

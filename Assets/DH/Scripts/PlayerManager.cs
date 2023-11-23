@@ -26,7 +26,12 @@ public class PlayerManager : MonoBehaviour
     public Dictionary<string, System.Object> infoList = new Dictionary<string, System.Object>();
     public void Add(string key,System.Object value) {
         infoList.Add(key,value);
+        
     }
+
+    public System.Object GetValue(string key) {
+        return infoList[key];
+    }   
     // Start is called before the first frame update
     void Start()
     {

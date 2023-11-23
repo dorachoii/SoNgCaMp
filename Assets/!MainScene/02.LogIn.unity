@@ -9520,6 +9520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b722bf128a13d42aac2faaa0705c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTokenCheck: 1
   accesIndex: 4
   backIndex: 95
 --- !u!4 &995675463

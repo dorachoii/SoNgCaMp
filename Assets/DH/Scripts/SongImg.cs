@@ -6,8 +6,9 @@ using UnityEngine.UI;
 using static HttpController;
 using System;
 using System.IO;
+using UnityEngine.EventSystems;
 
-public class SongImg : MonoBehaviour
+public class SongImg : MonoBehaviour,IPointerClickHandler
 {
     public Image image;
     public TMP_Text title;
@@ -78,4 +79,21 @@ public class SongImg : MonoBehaviour
     }
 
 
+
+    //나 클릭했을때
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (isSelect)
+            return;
+
+        if (ClickEvent.instance.prevImg == null || ClickEvent.instance.prevImg != this)
+            ClickEvent.instance.prevImg = this;
+        else if (ClickEvent.instance.prevImg == this)
+        {
+            Debug.Log("두번 클릭");
+            //dto 넘기기...
+            isSelect = true;
+        }
+
+    }
 }

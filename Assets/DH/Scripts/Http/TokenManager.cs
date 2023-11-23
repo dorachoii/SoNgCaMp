@@ -20,4 +20,9 @@ public class TokenManager : MonoBehaviour
         //저장된 토큰 불러오기
         Token = PlayerPrefs.GetString(tokenKey); //시작할때 토큰 불러오기 
     }
+
+    public void Logout() {
+        PlayerPrefs.DeleteKey(tokenKey);
+        
+    }
 }
