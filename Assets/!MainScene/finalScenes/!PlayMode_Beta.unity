@@ -3985,7 +3985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fa7422909e5244786a79dcd7adc333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midiFilePath: solati.mid.txt
+  midiFilePath: /files/compose.mid
   ShouldPlayFile: 1
   bankFilePath: GM Bank/gm
   bufferSize: 1024
@@ -9923,7 +9923,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271823014}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 82fa19ef083f9c547b8b54c80ff2b7f5, type: 3}
@@ -10216,7 +10216,7 @@ MonoBehaviour:
   ejnotemanager: {fileID: 1271823016}
   bankFilePath: GM Bank/gm
   bufferSize: 1024
-  midiPath: solati.mid.txt
+  midiPath: /files/compose.mid
 --- !u!82 &1283865690
 AudioSource:
   m_ObjectHideFlags: 0

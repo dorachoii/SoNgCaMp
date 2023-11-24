@@ -18,7 +18,7 @@ public class MIDIPlayer : MonoBehaviour
     //Try also: "FM Bank/fm" or "Analog Bank/analog" for some different sounds
     public string bankFilePath = "GM Bank/gm";
 
-    public int bufferSize = 1024;   //샘플 데이터를 처리하는 양. 작을 수록 latency가 짧다
+    public int bufferSize = 1024;   //샘플 데 이터를 처리하는 양. 작을 수록 latency가 짧다
     public int midiNote = 60;
     public int midiNoteVolume = 100;
 
