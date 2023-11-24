@@ -5,7 +5,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.EnhancedTouch;
+//using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.Networking;
 
 
