@@ -25,7 +25,7 @@ public class PhotonPlayerManager : MonoBehaviour
         Debug.Log(myType);
         //클라이언트의 Infod에따라서 다르게 생성
         //타입에 따라 다르게 생성
-        PhotonNetwork.Instantiate(myType.ToString(), spawnPostion, Quaternion.identity) ;
+        PhotonNetwork.Instantiate("Ch_0" + (dto.characterType - 1), spawnPostion, Quaternion.identity) ;
     }
     // Start is called before the first frame update
 

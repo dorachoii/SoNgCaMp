@@ -25,6 +25,10 @@ public class PlayerManager : MonoBehaviour
     //µñ¼Å³Ê¸®.
     public Dictionary<string, System.Object> infoList = new Dictionary<string, System.Object>();
     public void Add(string key,System.Object value) {
+        if (infoList.ContainsKey(key)) {
+            infoList[key] = value;
+            return;
+        }
         infoList.Add(key,value);
         
     }
