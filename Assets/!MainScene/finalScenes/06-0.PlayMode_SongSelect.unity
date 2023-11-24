@@ -2901,7 +2901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.00030517578, y: 0}
+  m_AnchoredPosition: {x: 0.00024414062, y: 0}
   m_SizeDelta: {x: -0.00048828, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1510062594
@@ -3124,6 +3124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 1250059051}
   songImgObj: {fileID: 1425395647733669002, guid: 302f5a870a548e04d9bfbc20b3f26dfe, type: 3}
+  selectScene: 9
 --- !u!4 &1555517139
 Transform:
   m_ObjectHideFlags: 0

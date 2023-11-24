@@ -23,9 +23,9 @@ public class MidiUpload : MonoBehaviour
 
         SongDTO dto = new SongDTO();
 
-        dto.needSession = "test";
-        dto.songArtist = "Dohyeon Kim";
-        dto.songTitle = "Hello Hello";
+        dto.needSession = "Guitar";
+        dto.songArtist = "Doss";
+        dto.songTitle = "Winter With Me";
 
         string js_dto = JsonUtility.ToJson(dto);
 
