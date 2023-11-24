@@ -11,9 +11,13 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
     public ChatService chatService;
     public string channel = "DEFAULT";
 
+    public string[] names = new string[]  { "Dora", "messi", "Sally" } ;
+
     void Start()
     {
         ConnectToChatServer();
+        
+        
         
     }
     void Update()
@@ -60,7 +64,8 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
     {
         for (int i = 0; i < senders.Length; i++)
         {
-            string sender = senders[i];
+            //string sender = senders[i];
+            string sender = names[Random.Range(0,names.Length)];            
             object messageObject = messages[i];
 
             // Message 객체를 문자열로 변환
