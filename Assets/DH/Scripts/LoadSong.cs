@@ -36,6 +36,8 @@ public class LoadSong : MonoBehaviour
     Transform content;
     [SerializeField]
     GameObject songImgObj;
+
+    public int selectScene;
     public void Setlist(FileListDTO dto)
     {
         dto.files.ForEach((info)=> {
@@ -51,12 +53,12 @@ public class LoadSong : MonoBehaviour
                 //Byte to sprite
                 Sprite sprite = LoadSpriteFromBytes(down.data);
                 //텍스트 세팅
-                img.Set(info.songTitle, info.songArtist, info.needSession, "?",sprite,info);
+                img.Set(info.songTitle, info.songArtist, info.needSession, "?",sprite,info, selectScene);
             })
             .Failure((down)=> {
                 Sprite sprite = LoadSpriteFromBytes(down.data);
                 //이미지 요청 실패. 
-                img.Set(info.songTitle, info.songArtist, info.needSession, "?", null, info);
+                img.Set(info.songTitle, info.songArtist, info.needSession, "?", null, info, selectScene);
             })
             .build();
 

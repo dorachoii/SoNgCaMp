@@ -7,6 +7,7 @@ using static HttpController;
 using System;
 using System.IO;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class SongImg : MonoBehaviour,IPointerClickHandler
 {
@@ -17,7 +18,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
     public TMP_Text genre;
     public bool isSelect;
     FileDTO dto;
-    public void Set(string title,string musician,string session,string genre,Sprite sprite,FileDTO dto) {
+    public void Set(string title,string musician,string session,string genre,Sprite sprite,FileDTO dto,int clickChangeScene) {
         image.sprite = sprite;
         this.title.text = title;
         this.musician.text = musician;
@@ -25,6 +26,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
         this.genre.text = genre;
         this.image.sprite = sprite;
         this.dto = dto;
+        this.clickChangeScene = clickChangeScene;
         
     }
 
@@ -80,6 +82,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
 
 
 
+    public int clickChangeScene;
     //나 클릭했을때
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -91,8 +94,10 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
         else if (ClickEvent.instance.prevImg == this)
         {
             Debug.Log("두번 클릭");
+            PlayerManager.Get.Add("FileDTO",dto);
             //dto 넘기기...
             isSelect = true;
+            SceneManager.LoadScene(clickChangeScene);
         }
 
     }
