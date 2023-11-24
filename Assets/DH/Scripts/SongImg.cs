@@ -95,6 +95,11 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
         {
             Debug.Log("두번 클릭");
             PlayerManager.Get.Add("FileDTO",dto);
+            
+
+            
+            
+            //PlayerManager.Get.Add("MidiPath",);
             //dto 넘기기...
             isSelect = true;
             SceneManager.LoadScene(clickChangeScene);

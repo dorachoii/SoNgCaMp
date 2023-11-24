@@ -59,7 +59,7 @@ public class TokenCheck : MonoBehaviour
         ResponseDTO<LoginDTO2> responce = JsonUtility.FromJson<ResponseDTO<LoginDTO2>>(download.text);
         Debug.Log(download.text);
 
-        
+        SceneController.PlayUI();
         PlayerManager.Get.Add("LoginInfo", responce.results.authority);
         //포톤연결까지.
         ConnectionManager.Get.onJoinRoom = () =>

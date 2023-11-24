@@ -112,10 +112,12 @@ public class EJLogIn_UI : MonoBehaviour
             //토큰 저장
             TokenManager.Token = dto.results.loginResponse.authority[0].accessToken;
 
+            SceneController.PlayUI();
             //포톤연결까지.
             ConnectionManager.Get.onJoinRoom = () =>
             {
-                PhotonNetwork.LoadLevel(connectedIndex);
+                PhotonNetwork.LoadLevel(4);
+                //SceneController.LoadSceneAsync(true,4,()=> { Debug.Log("처리할것들."); });
             };
             ConnectionManager.Get.ConnectToPhoton();
         }, true);
@@ -146,7 +148,7 @@ public class EJLogIn_UI : MonoBehaviour
         //POST로 올리기.
 
         HttpInfo httpInfo = new HttpInfo();
-        UserInfo_register userInfo_register_l = new UserInfo_register(NickName_l.text, "dohyeon123!", "dohyeon" + Random.Range(1,1000), 0, 0,mood_l.value, false);
+        UserInfo_register userInfo_register_l = new UserInfo_register(ID.text, PW.text, NickName_l.text, 0, 0,mood_l.value, false);
 
         print(NickName_l.text);
         print(mood_l.value);
@@ -183,14 +185,15 @@ public class EJLogIn_UI : MonoBehaviour
                 //로컬에 정보 저장
                 PlayerManager.Get.Add("LoginInfo", dto.loginResponse);
 
-                //씬 이동 
-                SceneManager.LoadScene(3);
+                //씬 이동
+
+                SceneController.StartLoadSceneAsync(this,false,3,null);
 
             })
             .build();
 
         StartCoroutine(SendRequest(rq));
-        
+
     }
 
 }
