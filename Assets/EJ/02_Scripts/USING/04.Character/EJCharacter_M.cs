@@ -427,7 +427,7 @@ public class EJCharacter_M : MonoBehaviour
 
         characterInfo.hexString_cloth = char_L_Mats[0].color.ToString();
         characterInfo.hexString_skin = char_L_Mats[1].color.ToString();
-        characterInfo.hexString_ribbon = char_L_Mats[1].color.ToString();
+        characterInfo.hexString_ribbon = char_L_Mats[2].color.ToString(); 
         characterInfo.hexString_face = char_L_Mats[3].color.ToString();
         //Color albedoColor = ColorUtility.HexToColor(hexString)
     }
@@ -455,39 +455,49 @@ public class EJCharacter_M : MonoBehaviour
         }
 
         HttpInfo httpInfo = new HttpInfo();
-        LoginResponseDTO dto = (LoginResponseDTO)PlayerManager.Get.GetValue("LoginInfo");
-        UserInfo_customizing userInfo_Customizing = new UserInfo_customizing(characterInfo.characterType, characterInfo.hexString_cloth, characterInfo.hexString_face, characterInfo.hexString_ribbon, characterInfo.hexString_skin, characterInfo.isBagON, characterInfo.isCapON, characterInfo.isCrownON, characterInfo.isGlassON, dto.userNo);
-
-        dto.characterType = characterInfo.characterType;
-        dto.hexStringCloth = characterInfo.hexString_cloth;
-        dto.hexStringFace = characterInfo.hexString_face;
-        dto.hexStringRibbon = characterInfo.hexString_ribbon;
-        dto.hexStringSkin = characterInfo.hexString_skin;
-        dto.isBagOn = characterInfo.isBagON;
-        dto.isCapOn = characterInfo.isCapON;
-        dto.isCrownOn = characterInfo.isCrownON;
-        dto.isGlassOn = characterInfo.isGlassON;
 
 
-        PlayerManager.Get.Add("LoginInfo",dto);
+        ResponseDTO<LoginDTO2> dto = new ResponseDTO<LoginDTO2>();
+       
+        HttpRequest rq = new HttpBuilder()
+            .Uri("/api/v1/users/byToken")
+            .Data(TokenManager.Token)
+            .Success((down)=> {
+                dto = JsonUtility.FromJson<ResponseDTO<LoginDTO2>>(down.text);
 
-        //커스터마이징 저장
-        httpInfo.Set(RequestType.POST, "api/v1/users/customize", (DownloadHandler downHandler) =>
-        {
-            //저장하면 로비로 이동
-            print(downHandler.text);
 
-            //요청하고 한번 더 불러오고
+                //커스터마이징 저장
+                httpInfo.Set(RequestType.POST, "api/v1/users/customize", (DownloadHandler downHandler) =>
+                {
+                    //저장하면 로비로 이동
+                    print(downHandler.text);
 
-            ConnectionManager.Get.onJoinRoom = () =>
-            {
-                PhotonNetwork.LoadLevel(4);
-            };
-            ConnectionManager.Get.ConnectToPhoton();
+                    //요청하고 한번 더 불러오고
 
-        }, true);
+                    //로딩창
+                    SceneController.PlayUI();
 
-        httpInfo.body = JsonUtility.ToJson(userInfo_Customizing);
-        HttpManager.Get().SendRequest(httpInfo);
+                    ConnectionManager.Get.onJoinRoom = () =>
+                    {
+                        //로비로 이동
+                        PhotonNetwork.LoadLevel(4);
+                    };
+                    ConnectionManager.Get.ConnectToPhoton();
+
+                }, true);
+                UserInfo_customizing userInfo_Customizing = new UserInfo_customizing(characterInfo.characterType, characterInfo.hexString_cloth, characterInfo.hexString_face, characterInfo.hexString_ribbon, characterInfo.hexString_skin, characterInfo.isBagON, characterInfo.isCapON, characterInfo.isCrownON, characterInfo.isGlassON, dto.results.authority.userNo);
+                httpInfo.body = JsonUtility.ToJson(userInfo_Customizing);
+                HttpManager.Get().SendRequest(httpInfo);
+            })
+            .build();
+
+        //토큰으로 조회
+        StartCoroutine(SendRequest(rq));
+        //지금은 그냥 ... 1로 합시다.
+
+      
+
+
+
     }
 }

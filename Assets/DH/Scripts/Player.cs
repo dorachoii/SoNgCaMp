@@ -25,8 +25,8 @@ public class Player : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
         //이 방식은 너무 힘드네. 되도록이면 쓰지말자
-        LoginResponseDTO dto = (LoginResponseDTO)PlayerManager.Get.GetValue("LoginInfo");
-        photonView.RPC(nameof(ss),RpcTarget.AllBuffered,JsonUtility.ToJson(dto));
+        //LoginResponseDTO dto = (LoginResponseDTO)PlayerManager.Get.GetValue("LoginInfo");
+        photonView.RPC(nameof(ss),RpcTarget.AllBuffered,JsonUtility.ToJson(Login));
     }
 
     [PunRPC]

@@ -41,7 +41,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
     const string saveFilePath = "music";
     public void Click() {
 
-        Debug.Log("CLICK");
+       /* Debug.Log("CLICK");
         if (isSelect) { 
             //넘어가기
             //DTO 넘겨주기
@@ -77,7 +77,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
 
         //mp3 파일 읽어서 재생하기
         //musicFilePath = Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3";
-        isSelect = true;
+        isSelect = true;*/
     }
 
 
@@ -88,22 +88,81 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
     {
         if (isSelect)
             return;
+        HttpRequest rq = null;
+        //내 음악 들려줘
+        //경로가 없다면 요청하기
+        if (musicFilePath == null)
+        {
+            rq = new HttpBuilder()
+            .Host(dto.musicFileUrl)
+            .Type(ReqType.GET)
+            .Success((down) => {
+                musicFilePath = Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3";
+                File.WriteAllBytes(Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3", down.data);
+                //파일 다운로드
+                Debug.Log("Down!!");
+            })
+            .build();
+        }
+        //있다면 그 경로로 요청
+        else
+        {
+            rq = new HttpBuilder()
+            .Host("file://")
+            .Uri(musicFilePath)
+            .Type(ReqType.GET)
+            .build();
+        }
+        StartCoroutine(LoadAudioFromURL(rq, (clip) => { SoundManager.Get.PlayBGM(clip); }));
+
 
         if (ClickEvent.instance.prevImg == null || ClickEvent.instance.prevImg != this)
             ClickEvent.instance.prevImg = this;
         else if (ClickEvent.instance.prevImg == this)
         {
-            Debug.Log("두번 클릭");
+            //파일 정보 저장
             PlayerManager.Get.Add("FileDTO",dto);
-            
 
-            
-            
+            //미디 정보 저장까지.
+            string path = "files/" + "compose.mid";
+            rq = new HttpBuilder()
+                .Host(dto.midFileUrl)
+                .Type(ReqType.GET)
+                .Success((down) => {
+
+                    File.WriteAllBytes(Application.persistentDataPath + "/" + path, down.data);
+
+
+                    SceneManager.LoadScene(clickChangeScene);
+
+                })
+                .build();
+            StartCoroutine(SendRequest(rq));
+
+
             //PlayerManager.Get.Add("MidiPath",);
             //dto 넘기기...
             isSelect = true;
-            SceneManager.LoadScene(clickChangeScene);
         }
 
+    }
+
+
+    public string DownLoadMidi(FileDTO dto) {
+        string path = Application.persistentDataPath + "/files/compose/" + "compose.mid";
+        HttpRequest rq = new HttpBuilder()
+            .Host(dto.midFileUrl)
+            .Type(ReqType.GET)
+            .Success((down)=> {
+
+                
+                File.WriteAllBytes(path,down.data);
+                
+                
+            
+            })
+            .build();
+        StartCoroutine(SendRequest(rq));
+        return path;
     }
 }

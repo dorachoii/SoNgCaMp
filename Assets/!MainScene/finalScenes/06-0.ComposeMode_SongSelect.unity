@@ -3124,7 +3124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 1250059051}
   songImgObj: {fileID: 1425395647733669002, guid: 302f5a870a548e04d9bfbc20b3f26dfe, type: 3}
-  selectScene: 1
+  selectScene: 6
 --- !u!4 &1555517139
 Transform:
   m_ObjectHideFlags: 0
@@ -3306,7 +3306,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wanna play...
+  m_text: Wanna join...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14a70c3df6024ce49a6a03896348ff82, type: 2}
   m_sharedMaterial: {fileID: -9136451712173917168, guid: 14a70c3df6024ce49a6a03896348ff82, type: 2}

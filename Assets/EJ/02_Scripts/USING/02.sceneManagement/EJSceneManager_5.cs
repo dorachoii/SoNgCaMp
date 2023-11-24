@@ -20,7 +20,9 @@ public class EJSceneManager_5 : MonoBehaviour
 
     public void ClickComposeBtn()
     {
-        SceneManager.LoadScene(6);
+        SceneController.StartLoadSceneAsync(this,true,12,null);
+
+        //SceneManager.LoadScene(12);
     }
 
     public void ClickPlayBtn()

@@ -35,7 +35,11 @@ public class PlayerManager : MonoBehaviour
 
     public System.Object GetValue(string key) {
         return infoList[key];
-    }   
+    }
+
+    public void RemoveValue(string key) {
+        infoList.Remove(key);
+    }
     // Start is called before the first frame update
     void Start()
     {

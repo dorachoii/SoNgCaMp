@@ -391,7 +391,7 @@ public class MidiFileWriter : MonoBehaviour
         Array.Copy(last_data, 0, realnewData, header.Buffer.Length + track.Buffer.Length, last_data.Length);
         //        Array.Copy();
 
-        string path = Application.persistentDataPath + "/" + "example.mid.txt";
+        string path = Application.persistentDataPath + "/files/" + "compose.mid";
         File.WriteAllBytes(path, data);
 
         Debug.LogError(path);
@@ -429,6 +429,8 @@ public class MidiFileWriter : MonoBehaviour
 
     private void Awake()
     {
+        //ReadMode?
+        //WriteMode???
         //ReadMidi();
     }
     //石嬢神切壱
@@ -437,8 +439,10 @@ public class MidiFileWriter : MonoBehaviour
         MidiFile midiFile = new MidiFile();
         midiFile.Header = new HeaderChunk();
 
-        string filePath = Application.persistentDataPath + "/example.mid.txt";
-
+        string filePath = (string)PlayerManager.Get.GetValue("midiPath");
+        if (filePath == null)
+            return;
+        PlayerManager.Get.RemoveValue("midiPath");
 
         Debug.LogError("しししし?!");
         if (File.Exists(filePath))
@@ -491,7 +495,7 @@ public class MidiFileWriter : MonoBehaviour
         MidiFile midiFile = new MidiFile();
         midiFile.Header = new HeaderChunk();
 
-        string filePath = Application.persistentDataPath + "/" + filename;
+        string filePath = Application.persistentDataPath + "/" +  filename;
 
 
         Debug.LogError("しししし?!");

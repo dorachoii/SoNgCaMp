@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     
 
 
-    public void Onclick() {
+    public void SaveMidifile() {
         
  
         NoteManager.instance.ReadNote();
@@ -45,7 +45,11 @@ public class UIManager : MonoBehaviour
 
         MidiFileWriter.write(NoteManager.instance.midifile.GetData());
     }
-
+    public void UploadMidifile() {
+        //미디파일 저장경로
+        //씬 이동
+        SceneController.StartLoadSceneAsync(this,false,7,null);
+    }
 
 
 
@@ -189,8 +193,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void PlayMidi() {
-        
 
+        MIDIPlayer1.instance.midiFilePath = "/files/" + "compose.mid"; 
         bool IsPlay = MIDIPlayer1.instance.ShouldPlayFile;
         MIDIPlayer1.instance.ShouldPlayFile = IsPlay ? false : true; //false 일때는 true true 일때는 false
     }
@@ -359,8 +363,7 @@ public class UIManager : MonoBehaviour
 
     int ctn;
     void LoadMidi() {
-        MidiFile midifile =  MidiFileWriter.ReadMidi("example.mid.txt");
-
+        MidiFile midifile =  MidiFileWriter.ReadMidi("files/compose.mid");
 
 
         midifile.TrackLsit.ForEach(track => {

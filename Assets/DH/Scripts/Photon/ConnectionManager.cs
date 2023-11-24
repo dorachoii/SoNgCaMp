@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ConnectionManager : MonoBehaviourPunCallbacks
 {
@@ -62,5 +63,12 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
         }
+    }
+
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        //로그인 씬으로 이동.
+        SceneController.StartLoadSceneAsync(this,false,2,null);
     }
 }

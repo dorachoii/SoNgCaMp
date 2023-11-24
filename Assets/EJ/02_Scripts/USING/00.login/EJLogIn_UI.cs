@@ -137,6 +137,7 @@ public class EJLogIn_UI : MonoBehaviour
         httpInfo.Set(RequestType.POST, "api/v1/users", (DownloadHandler downHandler) =>
         {
             print(downHandler.text);
+            registerLogin(userInfo_register_m);
         }, true);
 
         httpInfo.body = JsonUtility.ToJson(userInfo_register_m);
@@ -169,6 +170,7 @@ public class EJLogIn_UI : MonoBehaviour
 
     //회원가입 후 바로 로그인
     public void registerLogin(UserInfo_register regInfo)
+        
     {
         UserInfo_login loginInfo = new UserInfo_login(regInfo.userEmail,regInfo.userPwd);
         string data = JsonUtility.ToJson(loginInfo);
@@ -180,14 +182,17 @@ public class EJLogIn_UI : MonoBehaviour
             {
                 Debug.Log("로그인 성공 ");
                 //데이터 저장
-                LoginDTO dto = JsonUtility.FromJson<LoginDTO>(down.text);
+                ResponseDTO<LoginDTO>  dto = JsonUtility.FromJson<ResponseDTO<LoginDTO>>(down.text);
 
+
+                TokenManager.Token = dto.results.loginResponse.authority[0].accessToken;
                 //로컬에 정보 저장
-                PlayerManager.Get.Add("LoginInfo", dto.loginResponse);
+                //PlayerManager.Get.Add("LoginInfo", dto.loginResponse);
 
-                //씬 이동
+                //커스텀 씬 이동
 
-                SceneController.StartLoadSceneAsync(this,false,3,null);
+                int sceneIndex = regInfo.musician ? 3 : 13; 
+                SceneController.StartLoadSceneAsync(this,false,sceneIndex,null);
 
             })
             .build();
