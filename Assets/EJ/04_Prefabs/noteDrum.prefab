@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d15bb0800b19d6e4e9d79a45a6507c5b, type: 2}
+  - {fileID: 2100000, guid: cc3af865cdb56704d9840c5b0bc0db4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,7 +165,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d15bb0800b19d6e4e9d79a45a6507c5b, type: 2}
+  - {fileID: 2100000, guid: cc3af865cdb56704d9840c5b0bc0db4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
     isLongNoteStart: 0
     DRAG_release_idx: 0
     isNoteEnabled: 0
+    pitch: 0
   linkNotePrefab: {fileID: 2711432886464089921, guid: cbdf2a3feeecb014bb0246b03456d9b1, type: 3}
 --- !u!54 &6421839488840568810
 Rigidbody:
