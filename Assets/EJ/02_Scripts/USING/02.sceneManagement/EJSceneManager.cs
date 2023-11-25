@@ -39,7 +39,7 @@ public class EJSceneManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space ))
         {
             currSceneIdx++;
             SceneManager.LoadScene(currSceneIdx);
