@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class EJSamplePlay : MonoBehaviour
+public class EJSampleBtnPlay : MonoBehaviour
 {
     public GameObject startCanvas;
     public GameObject trackCanvas;
@@ -26,6 +26,8 @@ public class EJSamplePlay : MonoBehaviour
         startCanvas.SetActive(false);
         samplesCanvas.SetActive(false);
         trackCanvas.SetActive(true);
+        whatSampleSelected[0] = -1;
+        whatSampleSelected[1] = -1;
     }
     
 
@@ -44,12 +46,14 @@ public class EJSamplePlay : MonoBehaviour
                 if (i == k)
                 {
                     audiosource_chords[i].Play();
-                    print(audiosource_chords[i].name + "play중");
+                    
                     outline_chords[i].SetActive(true);
                     whatSampleSelected[0] = i;
-                }else
+                    print("선택된 코드의 idx는" + whatSampleSelected[0]);
+                }
+                else
                 {
-                    audiosource_chords[i].Stop();
+                    audiosource_chords[k].Stop();
                     outline_chords[k].SetActive(false);
                 }
             }
@@ -76,6 +80,7 @@ public class EJSamplePlay : MonoBehaviour
                     audiosource_drums[i].Play();
                     outline_drums[i].SetActive(true);
                     whatSampleSelected[1] = i;
+                    print("선택된 드럼의 idx는" + whatSampleSelected[1]);
                 }else
                 {
                     audiosource_drums[k].Stop();
@@ -92,4 +97,5 @@ public class EJSamplePlay : MonoBehaviour
         }
 
     }
+
 }
