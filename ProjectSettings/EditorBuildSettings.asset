@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/DH/Scenes/composeUI.unity
     guid: dbaabfb9748547548a6106e59247008a
   - enabled: 1
-    path: Assets/!MainScene/finalScenes/05-1.ComposeMode_UploadInput.unity
+    path: Assets/!MainScene/finalScenes/&05-1.ComposeMode_UploadInput.unity
     guid: a8292e51fb4a88245b7de488bad93c65
   - enabled: 1
     path: Assets/!MainScene/finalScenes/06-0.PlayMode_SongSelect.unity
