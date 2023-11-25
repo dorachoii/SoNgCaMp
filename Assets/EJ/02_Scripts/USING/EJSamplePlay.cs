@@ -7,19 +7,27 @@ using UnityEngine.EventSystems;
 
 public class EJSamplePlay : MonoBehaviour
 {
+    public GameObject startCanvas;
+    public GameObject trackCanvas;
+    public GameObject samplesCanvas;
+    public GameObject chordCanvas;
+    public GameObject drumCanvas;
     
+    public int[] whatSampleSelected = new int[2];
 
     // Start is called before the first frame update
-    void Start()
+    public void ClickSampleBtn()
     {
-        
+        startCanvas.SetActive(false);
+        samplesCanvas.SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ClickZeroBtn()
     {
-        
+        startCanvas.SetActive(false);
+        samplesCanvas.SetActive(false);
+        trackCanvas.SetActive(true);
     }
+    
 
     public AudioSource[] audiosource_chords;
     public GameObject[] outline_chords;
@@ -31,13 +39,28 @@ public class EJSamplePlay : MonoBehaviour
     {
         if (!audiosource_chords[i].isPlaying && !outline_chords[i].activeSelf)
         {
-            audiosource_chords[i].Play();
-            outline_chords[i].SetActive(true);
+            for (int k = 0; k < audiosource_chords.Length; k++)
+            {
+                if (i == k)
+                {
+                    audiosource_chords[i].Play();
+                    print(audiosource_chords[i].name + "playÁß");
+                    outline_chords[i].SetActive(true);
+                    whatSampleSelected[0] = i;
+                }else
+                {
+                    audiosource_chords[i].Stop();
+                    outline_chords[k].SetActive(false);
+                }
+            }
         }
         else
         {
             audiosource_chords[i].Stop();
-            outline_chords[i].SetActive(false);
+            //outline_chords[i].SetActive(false);
+
+            chordCanvas.SetActive(false);
+            drumCanvas.SetActive(true);
         }
 
     }
@@ -52,17 +75,20 @@ public class EJSamplePlay : MonoBehaviour
                 {
                     audiosource_drums[i].Play();
                     outline_drums[i].SetActive(true);
+                    whatSampleSelected[1] = i;
                 }else
                 {
                     audiosource_drums[k].Stop();
-                    outline_drums[k].SetActive(true);
+                    outline_drums[k].SetActive(false);
                 }
             }
         }
         else
         {
             audiosource_drums[i].Stop();
-            outline_drums[i].SetActive(false);
+            //outline_drums[i].SetActive(false);
+            samplesCanvas.SetActive(false);
+            trackCanvas.SetActive(true);
         }
 
     }
