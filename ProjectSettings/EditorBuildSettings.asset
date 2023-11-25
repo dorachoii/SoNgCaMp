@@ -36,8 +36,8 @@ EditorBuildSettings:
     path: Assets/!MainScene/finalScenes/&06-1PlayMode_Beta.unity
     guid: 34dc33c8eecf7ce419a596873edbaf31
   - enabled: 1
-    path: Assets/!MainScene/ConcertScene.unity
-    guid: 0f80d489d25e199449373cd0aa985ecd
+    path: Assets/!MainScene/finalScenes/&07.ConcertScene.unity
+    guid: 6dc959457477d934f8f04e6ae1316a4c
   - enabled: 1
     path: Assets/DH/Scenes/ImageFileTest.unity
     guid: 2886e7f33d4824c459b7e4a043762ab3
