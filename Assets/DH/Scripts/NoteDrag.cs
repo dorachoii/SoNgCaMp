@@ -67,6 +67,8 @@ public class NoteDrag : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginD
         switch (state)
         {
             case EditerMode.EditerState.Pitch:
+                if (UIManager.instance.currentTrack.number == 9)
+                    return;
                 Debug.Log("Pitch º¯È­Áß");
                 //note.pitch
                 //note._Pitch = (Notes.Pitch) AdderEnum(note._Pitch,arrow);

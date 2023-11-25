@@ -38,7 +38,7 @@ public class InstrumentManager : MonoBehaviour
 
     //나는 트랙의 번호를 받을거야
 
-
+    public ChangeInstButton[] btns = new ChangeInstButton[(int)Instruments.Gunshot];
     private void Awake()
     {
         instance = this;
@@ -47,14 +47,54 @@ public class InstrumentManager : MonoBehaviour
             Debug.Log(i + "번 반복");
             GameObject go = Instantiate(InstruBtn, Content);
             ChangeInstButton btn =  go.GetComponent<ChangeInstButton>();
-            btn.img.sprite = iconlist[(int)retIns(i)];
 
+            btns[i] = btn;
+            btn.img.sprite = iconlist[(int)retIns(i)];
             btn.ChangeChanel = i;
             btn.text.text = (Instruments)i + "";
         
         }
 
     }
+
+
+     public static DrumSound[] drumList = (DrumSound[])Enum.GetValues(typeof(DrumSound));
+
+    public Sprite[] drumImg;
+    //트랙 창 변경
+    public void ChangeInstrumentTrack() {
+        if (UIManager.instance.currentTrack.number == 9)
+        {
+            for (int i = 0; i < btns.Length; i++)
+            {
+                //열거형이 없다? 그러면 그냥 숨겨라.
+                if (!Enum.IsDefined(typeof(DrumSound), i)) {
+                    Debug.Log(i + "번은 유요하지 않음.");
+                    btns[i].gameObject.SetActive(false);
+                    continue;
+                }
+                //있는경우
+                btns[i].gameObject.SetActive(true);
+                btns[i].text.text = (DrumSound)i + "";
+
+                int index = Array.IndexOf(drumList, (DrumSound)i);
+                btns[i].img.sprite = drumImg[index];
+            }
+        }
+        else {
+            for (int i = 0; i < btns.Length; i++)
+            {
+                //예는 그냥 전부 보여라.
+                btns[i].gameObject.SetActive(true);
+                btns[i].text.text = (Instruments)i + "";
+                btns[i].img.sprite = iconlist[(int)retIns(i)];
+            }
+        }
+    
+    }
+
+
+
     //악기 선택 창에서 클릭을 했을 시 
 
     int trackNum;
@@ -74,6 +114,7 @@ public class InstrumentManager : MonoBehaviour
         img = image;
         //악기 버튼 활성화
         Inst.SetActive(true);
+        ChangeInstrumentTrack();
     }
 
 

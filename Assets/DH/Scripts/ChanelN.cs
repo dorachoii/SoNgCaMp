@@ -18,7 +18,7 @@ public class ChanelN : DragChange
             if (count == 9)
             {
                 btn.image.sprite = InstrumentManager.instance.iconlist[(int)InstrumentManager.Instype.Percussive];
-                btn.mytrack.instrument = DH.D_MidiManager.Instruments.Acoustic_Grand_Piano;
+                
             }
             else {
 

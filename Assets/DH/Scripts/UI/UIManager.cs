@@ -151,6 +151,7 @@ public class UIManager : MonoBehaviour
 
     public void click(int idx)
     {
+
         //몇 번째 노트 데이터를 알려주세요.
         NoteBlockInfo[] notes = NoteList[idx];
         Debug.Log("Loading!!");
@@ -161,7 +162,7 @@ public class UIManager : MonoBehaviour
             
             if (notes[i] != null)
             {
-                Debug.LogError("왜 안되는지");
+                //Debug.LogError("왜 안되는지");
 
                 //불러올때는 노트의 정보가
                 Notes note = Board.instance.drags[i].Tile;
@@ -171,6 +172,11 @@ public class UIManager : MonoBehaviour
 
                 Debug.Log(info.pitch);
                 note.gameObject.SetActive(info.enable);
+                if (currentTrack.number == 9) {
+                    Debug.LogWarning("바뀐겨?" + (int)currentTrack.instrument);
+                    note._IPitch = (int)currentTrack.instrument;
+                }
+
             }
 
 
@@ -226,7 +232,7 @@ public class UIManager : MonoBehaviour
         TrackButton trButton =  go.GetComponent<TrackButton>();
         //trButton.
         trButton.myPage = trackPage;
-
+        trbuttonList.Add(trButton);
         //trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
         //trButton.OnClickTrackEv.AddListener(ChangeTrack);
         //트랙 증가
@@ -249,13 +255,16 @@ public class UIManager : MonoBehaviour
         Debug.Log("근데 왜 안됨?");
     }
 
+    List<TrackButton> trbuttonList = new List<TrackButton>();
     public void trackButton(Track track)
     {
+        Debug.LogWarning((int)track.instrument);
         GameObject go = Instantiate(TrackButton, TrackBoard);
         TrackBtn.SetAsLastSibling();
         TrackButton trButton = go.GetComponent<TrackButton>();
+        trbuttonList.Add(trButton);
         //trButton.
-        trButton.myPage = trackPage;
+        trButton.myPage = track.number;
 
         //trButton.OnClickInsEv.AddListener(InstrumentManager.instance.ChangeTrack);
         //trButton.OnClickTrackEv.AddListener(ChangeTrack);
@@ -264,13 +273,30 @@ public class UIManager : MonoBehaviour
         Tracks.Add(track);
 
         trButton.mytrack = track;
-
+        trButton.ChanelBtn.Count = track.number;
 
 
         //버튼을 맨 마지막으로 보냄
 
 
         Debug.Log("근데 왜 안됨?");
+    }
+
+    public void removetrackButton()
+    {
+
+        if (trbuttonList.Count - 1 < 0)
+            return;
+        TrackButton button = trbuttonList[trbuttonList.Count - 1]; //마지막
+        Track tr = button.mytrack;
+        trbuttonList.Remove(button);
+        Tracks.Remove(tr);
+        Destroy(button.gameObject);
+
+
+
+        
+
     }
 
     public void EscapeButton() {
@@ -336,11 +362,18 @@ public class UIManager : MonoBehaviour
         TrackCanvas.gameObject.SetActive(false);
         EditerCanvas.gameObject.SetActive(true);
         //렌더링 방식을 변경
-
+        if (currentTrack.number == 9 && !Enum.IsDefined(typeof(DrumSound), (int)currentTrack.instrument))
+        {
+            Debug.LogWarning("왜 내가 아닌걸까??" + (int)currentTrack.instrument);
+            currentTrack.instrument = (Instruments)DrumSound.AcousticBassDrum;
+        }
         if (track.number == 9)
         {
-            InsImage.sprite = InstrumentManager.instance.iconlist[(int)InstrumentManager.Instype.Percussive];
-            InsText.text = "Drum Kit";
+            int index = (int)track.instrument;
+            int idx = Array.IndexOf(InstrumentManager.drumList, (DrumSound)index);
+
+            InsImage.sprite = InstrumentManager.instance.drumImg[idx];
+            InsText.text = (DrumSound)index + "";
         }
         else {
             int ins = (int)currentTrack.instrument;
@@ -365,7 +398,7 @@ public class UIManager : MonoBehaviour
     void LoadMidi() {
         MidiFile midifile =  MidiFileWriter.ReadMidi("files/compose.mid");
 
-
+        int count = 0;
         midifile.TrackLsit.ForEach(track => {
             Track tr = new Track ();
             ctn = 0;
@@ -385,8 +418,15 @@ public class UIManager : MonoBehaviour
                         case 0xC:
                             tr.instrument = (Instruments)midievt.fData;
                             tr.number = midievt.chanel;
+                            Debug.LogWarning(tr.number);
                             break;
                         case 0x9:
+                            //ㅋㅋ 이렇게 한다.ㅋㅋ
+                            tr.number = midievt.chanel; //드럼은 체인지 이벤트 노노!
+                            if (tr.number == 9) { 
+                                tr.instrument = (Instruments)midievt.fData; //음을 악기러 변경하면 됨.
+                                Debug.Log("HELLOHELLO" + (int)tr.instrument);
+                            }
                             prevOnEvent = midievt;
                             
 
@@ -444,8 +484,10 @@ public class UIManager : MonoBehaviour
 
 
             });
-            tr.Notelist.Add(notelist);
+            tr.Notelist.Add(notelist);            
             trackButton(tr);
+
+            count++;
         });
 
     }

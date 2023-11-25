@@ -16,7 +16,7 @@ public class NoteManager : MonoBehaviour
     public static NoteManager instance;
 
 
-    public NoteBlockInfo SaveData = new NoteBlockInfo();
+    public NoteBlockInfo SaveData = new NoteBlockInfo(60,16,120,true);
     private void Awake()
     {
         instance = this;
@@ -95,8 +95,11 @@ public class NoteManager : MonoBehaviour
 
 
             //악기 설정
-            bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(0)));
-            bytelist.AddRange(D_MidiManager.ChangeInstument(track.number, track.instrument));
+            if (track.number != 9) {
+                bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(0)));
+                bytelist.AddRange(D_MidiManager.ChangeInstument(track.number, track.instrument));
+            }
+
 
             //트랙의 시작 시 시작이벤트 넣자. 
             bytelist.AddRange(new byte[] { 0x00, (byte)(0x90 + track.number), 0x3C, 0x00 });
@@ -111,6 +114,8 @@ public class NoteManager : MonoBehaviour
 
                 //지금 칸이 공백이 아니라면
                 if (info.enable) {
+                        info.Pitch = track.number == 9 ? (int)track.instrument : info.Pitch;      
+
                     shim = count;
                     //공백이 아닐시 뒤에 노트를 끊고 
                     if (prevNote != null)
