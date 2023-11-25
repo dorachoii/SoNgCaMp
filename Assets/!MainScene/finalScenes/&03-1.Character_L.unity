@@ -5938,6 +5938,8 @@ MonoBehaviour:
   CP_Face: {fileID: 1739536036}
   CP_Skin: {fileID: 762388345}
   animator: {fileID: 466935634}
+  centerPos: {fileID: 1906999208}
+  loveFX: {fileID: 5766691976136461342, guid: 43d1d06cf70fcb2488255051aaae40a5, type: 3}
 --- !u!114 &903718973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14402,6 +14404,37 @@ MonoBehaviour:
   slider: {fileID: 1750675593}
   character_L: {fileID: 1245786196}
   sliderBackgroundImg: {fileID: 1378154626}
+--- !u!1 &1906999207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906999208}
+  m_Layer: 0
+  m_Name: centerPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1906999208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906999207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.20599999, y: 0.7, z: 1.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1934901609
 GameObject:
   m_ObjectHideFlags: 0

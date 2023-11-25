@@ -57,6 +57,8 @@ public class EJCharacter_M : MonoBehaviour
     public Animator[] animator;
     CharacterInfo characterInfo_M;
 
+    public GameObject completeFX;
+
     private void Awake()
     {
         instance = this;
@@ -127,9 +129,9 @@ public class EJCharacter_M : MonoBehaviour
 
     IEnumerator moveToCenterPoint(GameObject go)
     {
-        while (!(Vector3.Distance(go.transform.position, centerPos.transform.position +Vector3.up*0.5f - Vector3.right *1.8f) < 0.01f))
+        while (!(Vector3.Distance(go.transform.position, centerPos.transform.position /*+Vector3.up*0.5f - Vector3.right *1.8f*/) < 0.01f))
         {
-            go.transform.position = Vector3.Lerp(go.transform.position, centerPos.transform.position + Vector3.up*0.5f - Vector3.right*1.8f, 0.1f);
+            go.transform.position = Vector3.Lerp(go.transform.position, centerPos.transform.position /*+ Vector3.up*0.5f - Vector3.right*1.8f*/, 0.1f);
             yield return null;
         }
 
@@ -140,18 +142,21 @@ public class EJCharacter_M : MonoBehaviour
     public void Show_Btns()
     {
         CustomBtns.SetActive(true);
+
         explainBox[0].SetActive(false);
         explainBox[1].SetActive(true);
     }
     
     public void Click_Item()
     {
+        explainBox[1].SetActive(false);
         CustomBtns.SetActive(false);
         Btns_Item_M.SetActive(true);
     }
 
     public void Click_ColorChange()
     {
+        explainBox[1].SetActive(false);
         CustomBtns.SetActive(false);
         Btns_ColorChange.SetActive(true);
     }
@@ -159,6 +164,7 @@ public class EJCharacter_M : MonoBehaviour
 
     public void Click_Back()
     {
+        explainBox[1].SetActive(true);
         CP_Face.SetActive(false);
         CP_Skin.SetActive(false);
         CP_Cloth.SetActive(false);
@@ -434,6 +440,14 @@ public class EJCharacter_M : MonoBehaviour
 
     public void Click_CompleteBtn()
     {
+        explainBox[1].SetActive(false);
+        explainBox[2].SetActive(true);
+        CustomBtns.SetActive(false);
+
+        GameObject fx = Instantiate(completeFX, centerPos.transform.position, Quaternion.identity);
+        
+
+
         ColorInfoCheck_M();
         //server에 업로드 한다.
 
@@ -495,7 +509,7 @@ public class EJCharacter_M : MonoBehaviour
         StartCoroutine(SendRequest(rq));
         //지금은 그냥 ... 1로 합시다.
 
-      
+        Destroy(fx, 5);
 
 
 

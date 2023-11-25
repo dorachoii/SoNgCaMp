@@ -64,6 +64,9 @@ public class EJCharacter_L : MonoBehaviour
     //04. Animator
     public Animator animator;
 
+    public Transform centerPos;
+    public GameObject loveFX;
+
     private void Awake()
     {
         instance = this;
@@ -102,6 +105,7 @@ public class EJCharacter_L : MonoBehaviour
     public void Click_Back()
     {
         explainBox[0].SetActive(true);
+
         CP_Face.SetActive(false);
         CP_Skin.SetActive(false);
         CP_Cloth.SetActive(false);
@@ -359,6 +363,9 @@ public class EJCharacter_L : MonoBehaviour
 
         animator.SetTrigger("Spin");
 
+        GameObject fx = Instantiate(loveFX, centerPos.transform.position,Quaternion.identity);
+
+
         ColorInfoCheck_L();
 
 
@@ -406,6 +413,7 @@ public class EJCharacter_L : MonoBehaviour
         StartCoroutine(SendRequest(rq));
         //지금은 그냥 ... 1로 합시다.
 
+        Destroy(fx, 10);
     }
 
 
