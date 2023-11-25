@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/!MainScene/finalScenes/&05-1.ComposeMode_UploadInput.unity
     guid: a8292e51fb4a88245b7de488bad93c65
   - enabled: 1
-    path: Assets/!MainScene/finalScenes/06-0.PlayMode_SongSelect.unity
+    path: Assets/!MainScene/finalScenes/&06-0.PlayMode_SongSelect.unity
     guid: 6dd980d531f765a4d93e01a524df5e07
   - enabled: 1
     path: Assets/!MainScene/finalScenes/!PlayMode_Beta.unity
@@ -42,7 +42,7 @@ EditorBuildSettings:
     path: Assets/DH/Scenes/ImageFileTest.unity
     guid: 2886e7f33d4824c459b7e4a043762ab3
   - enabled: 1
-    path: Assets/!MainScene/finalScenes/06-0.ComposeMode_SongSelect.unity
+    path: Assets/!MainScene/finalScenes/&06-0.ComposeMode_SongSelect.unity
     guid: bca14f9b26c88ad42ad23c70f7521d0b
   - enabled: 1
     path: Assets/!MainScene/finalScenes/&03-1.Character_L.unity
