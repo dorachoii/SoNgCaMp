@@ -88,20 +88,24 @@ public class EJCharacter_L : MonoBehaviour
     {
         CustomBtns.SetActive(false);
         Btns_Item_L.SetActive(true);
+        explainBox[0].SetActive(false);
     }
 
     public void Click_ColorChange()
     {
         CustomBtns.SetActive(false);
         Btns_ColorChange.SetActive(true);
+        explainBox[0].SetActive(false);
     }
 
 
     public void Click_Back()
     {
+        explainBox[0].SetActive(true);
         CP_Face.SetActive(false);
         CP_Skin.SetActive(false);
         CP_Cloth.SetActive(false);
+
 
         print("clickBack을 눌렀다");
         if (Btns_Item_L.activeSelf)
@@ -349,9 +353,16 @@ public class EJCharacter_L : MonoBehaviour
 
     public void Click_CompleteBtn()
     {
+        explainBox[0].SetActive(false); 
+        explainBox[1].SetActive(true);
+        CustomBtns.SetActive(false);
+
         animator.SetTrigger("Spin");
 
         ColorInfoCheck_L();
+
+
+
         //characterInfo를 server에 업로드 한다.
         print("캐릭터 정보는 이래요" + characterInfo.hexString_cloth);
 
