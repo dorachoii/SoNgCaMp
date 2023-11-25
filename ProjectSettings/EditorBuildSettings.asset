@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/!MainScene/finalScenes/&03-2.Character_M.unity
     guid: 9902481f9657e0947823a49f11baffe6
   - enabled: 1
-    path: Assets/!MainScene/finalScenes/04-0.Lounge.unity
+    path: Assets/!MainScene/finalScenes/&04-0.Lounge.unity
     guid: 2f64022b6f978264e9ed187f5042f97b
   - enabled: 1
     path: Assets/ARTScene/ARTChangeScene/ChatbotScene 1.unity
