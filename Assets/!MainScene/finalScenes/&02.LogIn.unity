@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2110,7 +2110,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239413404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.5000114}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2838,6 +2838,7 @@ GameObject:
   - component: {fileID: 308143913}
   - component: {fileID: 308143912}
   - component: {fileID: 308143911}
+  - component: {fileID: 308143914}
   m_Layer: 5
   m_Name: Btn_Register_M
   m_TagString: Untagged
@@ -2960,6 +2961,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 308143909}
   m_CullTransparentMesh: 1
+--- !u!95 &308143914
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308143909}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58cb60d45de517a4cbb372bbad5de770, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &318865323
 GameObject:
   m_ObjectHideFlags: 0
@@ -5303,8 +5325,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Register
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 14a70c3df6024ce49a6a03896348ff82, type: 2}
+  m_sharedMaterial: {fileID: -9136451712173917168, guid: 14a70c3df6024ce49a6a03896348ff82, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5955,8 +5977,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 85592bca6b9f7434fa5bfc710caed776, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6262,8 +6284,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Resiter
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cd555f7d890697d418b0179303390b26, type: 2}
-  m_sharedMaterial: {fileID: -4208875345470387848, guid: cd555f7d890697d418b0179303390b26, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 14a70c3df6024ce49a6a03896348ff82, type: 2}
+  m_sharedMaterial: {fileID: -9136451712173917168, guid: 14a70c3df6024ce49a6a03896348ff82, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7853,6 +7875,7 @@ GameObject:
   - component: {fileID: 840264464}
   - component: {fileID: 840264463}
   - component: {fileID: 840264462}
+  - component: {fileID: 840264465}
   m_Layer: 5
   m_Name: Register_Btn_L
   m_TagString: Untagged
@@ -7975,6 +7998,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840264460}
   m_CullTransparentMesh: 1
+--- !u!95 &840264465
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840264460}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58cb60d45de517a4cbb372bbad5de770, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &848160897
 GameObject:
   m_ObjectHideFlags: 0
@@ -8710,7 +8754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &929263302
 RectTransform:
   m_ObjectHideFlags: 0

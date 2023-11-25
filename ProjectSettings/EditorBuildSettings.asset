@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/!MainScene/finalScenes/&01.Loading.unity
     guid: 819ce77c94a13c14da7fd49c2df4cd52
   - enabled: 1
-    path: Assets/!MainScene/02.LogIn.unity
+    path: Assets/!MainScene/finalScenes/&02.LogIn.unity
     guid: eece6e756a19dac49a83cd917ddfe479
   - enabled: 1
     path: Assets/!MainScene/finalScenes/!03-2.Character_M.unity
