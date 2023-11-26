@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DH;
 using DHMidi;
-
+using TMPro;
 public class NoteManager : MonoBehaviour
 {
 
@@ -16,7 +16,7 @@ public class NoteManager : MonoBehaviour
     public static NoteManager instance;
 
 
-    public NoteBlockInfo SaveData = new NoteBlockInfo();
+    public NoteBlockInfo SaveData = new NoteBlockInfo(60,16,120,true);
     private void Awake()
     {
         instance = this;
@@ -59,9 +59,13 @@ public class NoteManager : MonoBehaviour
 
     public MidiFile midifile = new MidiFile();
 
-
+    public int BPM { get; set; }
+    //BPM 
+    public TMP_InputField bpmField;
     public void ReadNote() {
 
+            Debug.LogError(bpmField.text);
+        BPM = bpmField.text == null || bpmField.text == "" ? 120 : int.Parse(bpmField.text);
 
         midifile.TrackLsit.Clear();
         DummyHeaderData dummy = new DummyHeaderData();
@@ -93,10 +97,19 @@ public class NoteManager : MonoBehaviour
         int count = 0;//얼마나 공백이 존재하는지
         int shim = 0;
 
+            //BPM SET!!
+            bytelist.AddRange(new byte[] { 0x00, 0xFF, 0x51, 0x03 });
+            byte[] bpmList = D_MidiManager.RemoveZero(BitConverter.GetBytes(D_MidiManager.ConvertBpmToMicro(BPM)));
+            bytelist.AddRange(bpmList);
+
+
 
             //악기 설정
-            bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(0)));
-            bytelist.AddRange(D_MidiManager.ChangeInstument(track.number, track.instrument));
+            if (track.number != 9) {
+                bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime(0)));
+                bytelist.AddRange(D_MidiManager.ChangeInstument(track.number, track.instrument));
+            }
+
 
             //트랙의 시작 시 시작이벤트 넣자. 
             bytelist.AddRange(new byte[] { 0x00, (byte)(0x90 + track.number), 0x3C, 0x00 });
@@ -111,6 +124,8 @@ public class NoteManager : MonoBehaviour
 
                 //지금 칸이 공백이 아니라면
                 if (info.enable) {
+                        info.Pitch = track.number == 9 ? (int)track.instrument : info.Pitch;      
+
                     shim = count;
                     //공백이 아닐시 뒤에 노트를 끊고 
                     if (prevNote != null)

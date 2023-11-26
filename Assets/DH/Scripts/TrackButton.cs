@@ -7,7 +7,11 @@ using UnityEngine.UI;
 
 public class TrackButton : MonoBehaviour
 {
-    public Track mytrack;
+    public Track mytrack { 
+        get;
+
+        set; 
+    }
     public ChanelN ChanelBtn;
     //트랙 악기가 클릭되었을때 진행될 이벤트를 담음
     public UnityEvent<int> OnClickInsEv;

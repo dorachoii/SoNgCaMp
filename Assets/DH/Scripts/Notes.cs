@@ -32,7 +32,14 @@ public class Track {
 [System.Serializable]
 public class NoteBlockInfo{
 
-    
+    public NoteBlockInfo(int pitch, int beat, int velocity, bool enable) {
+        Pitch = pitch;
+        Beat = beat;
+        this.velocity = velocity;
+        this.enable = enable;
+    }
+
+    public NoteBlockInfo() { }
 
     public int Pitch = 60;
     public Pitch pitch;

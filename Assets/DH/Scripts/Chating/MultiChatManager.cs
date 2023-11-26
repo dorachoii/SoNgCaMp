@@ -15,19 +15,20 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
 
     void Start()
     {
-        ConnectToChatServer();
         
     }
     void Update()
     {
-        chatClient.Service();
+        if(chatClient != null)
+            chatClient.Service();
     }
 
-    public void ConnectToChatServer() {
+    public void ConnectToChatServer(string id) {
         ChatAppSettings chatset = new ChatAppSettings();
         chatClient = new ChatClient(this);
         chatset.AppIdChat = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat;
-        chatClient.ConnectUsingSettings(chatset);
+        //chatClient.ConnectUsingSettings(chatset);
+        chatClient.Connect(chatset.AppIdChat,chatset.AppVersion,new AuthenticationValues(id));
     }
     public void Send(string message)
     {

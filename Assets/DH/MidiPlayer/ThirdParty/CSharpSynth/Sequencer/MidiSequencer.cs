@@ -6,6 +6,7 @@ using CSharpSynth.Banks;
 using UnityEngine;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine.Assertions.Must;
+using UnityEngine.SceneManagement;
 
 namespace CSharpSynth.Sequencer
 {
@@ -127,54 +128,52 @@ namespace CSharpSynth.Sequencer
             //// j = track count
             //// i = events count
 
+            //for (int j = 0; j < _MidiFile.Tracks.Length; j++)
+            //{
+            //    MidiEvent[] midiEvents_tracks = _MidiFile.Tracks[j].MidiEvents;
 
+            //    List<MidiEventInfo> midiNoteEvents = new List<MidiEventInfo>();
+            //    MidiEventInfo midiEventInfo_each = null;
+            //    float playedTime = 0;
 
-            for (int j = 0; j < _MidiFile.Tracks.Length; j++)
-            {
-                MidiEvent[] midiEvents_tracks = _MidiFile.Tracks[j].MidiEvents;
+            //    for (int i = 0; i < midiEvents_tracks.Length; i++)
+            //    {
+            //        if (midiEvents_tracks[i].midiChannelEvent == MidiHelper.MidiChannelEvent.Note_On)
+            //        {
+            //            midiEventInfo_each = new MidiEventInfo();
 
-                List<MidiEventInfo> midiNoteEvents = new List<MidiEventInfo>();
-                MidiEventInfo midiEventInfo_each = null;
-                float playedTime = 0;
+            //            //on일 때의 deltaTime을 더해 줘야 쉼표까지 포함되어서 playedTime 누적
+            //            playedTime += (midiEvents_tracks[i].deltaTime / 480) * (60 / 120);
 
-                for (int i = 0; i < midiEvents_tracks.Length; i++)
-                {
-                    if (midiEvents_tracks[i].midiChannelEvent == MidiHelper.MidiChannelEvent.Note_On)
-                    {
-                        midiEventInfo_each = new MidiEventInfo();
+            //            midiEventInfo_each.startTime = playedTime;
+            //            midiEventInfo_each.pitch = midiEvents_tracks[i].parameter1;
 
-                        //on일 때의 deltaTime을 더해 줘야 쉼표까지 포함되어서 playedTime 누적
-                        playedTime += (midiEvents_tracks[i].deltaTime / 480) * (60 / 120);
+            //            midiNoteEvents.Add(midiEventInfo_each);
+            //        }
 
-                        midiEventInfo_each.startTime = playedTime;
-                        midiEventInfo_each.pitch = midiEvents_tracks[i].parameter1;
+            //        //Note_Off check
+            //        if (midiEvents_tracks[i].midiChannelEvent == MidiHelper.MidiChannelEvent.Note_Off)
+            //        {
+            //            //off될 때의 deltaTime이 곧 length. on과 off 사이의 길이
+            //            midiEventInfo_each.length = (midiEvents_tracks[i].deltaTime / 480.0f) * (60.0f / 120.0f);
 
-                        midiNoteEvents.Add(midiEventInfo_each);
-                    }
+            //            // 그 길이만큼 또 누적
+            //            playedTime += midiEventInfo_each.length;
 
-                    //Note_Off check
-                    if (midiEvents_tracks[i].midiChannelEvent == MidiHelper.MidiChannelEvent.Note_Off)
-                    {
-                        //off될 때의 deltaTime이 곧 length. on과 off 사이의 길이
-                        midiEventInfo_each.length = (midiEvents_tracks[i].deltaTime / 480.0f) * (60.0f / 120.0f);
+            //            //endTime 체크 필요!!!
+            //            midiEventInfo_each.endTime = playedTime;
+            //        }
 
-                        // 그 길이만큼 또 누적
-                        playedTime += midiEventInfo_each.length;
+            //    }
 
-                        //endTime 체크 필요!!!
-                        midiEventInfo_each.endTime = playedTime;
-                    }
+            //    if (midiNoteEvents.Count > 0)
+            //    {
+            //        //midiAllNoteEvents[0] = midiNoteEvents;
+            //        midiAllNoteEventsDic[getProgramIndex(j)] = midiNoteEvents;
 
-                }
-
-                if (midiNoteEvents.Count > 0)
-                {
-                    //midiAllNoteEvents[0] = midiNoteEvents;
-                    midiAllNoteEventsDic[getProgramIndex(j)] = midiNoteEvents;
-
-                    Debug.Log("000 LoadMidi 함수가 실행되었고, midiAllNoteEventsDic[getProgramIndex(j)]의 midiEvent의 개수는" + midiNoteEvents.Count + "가 담겼다");
-                }
-            }
+            //        Debug.Log("000 LoadMidi 함수가 실행되었고, midiAllNoteEventsDic[getProgramIndex(j)]의 midiEvent의 개수는" + midiNoteEvents.Count + "가 담겼다");
+            //    }
+            //}
 
             #endregion
 
