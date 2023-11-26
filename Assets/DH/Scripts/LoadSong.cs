@@ -15,15 +15,26 @@ public class LoadSong : MonoBehaviour
         HttpRequest rq = new HttpBuilder()
             .Uri("/api/v1/findAllfiles")
             .Type(ReqType.GET)
-            .Success((down)=> {
+            .Success((down) => {
                 Debug.Log(down.text);
                 FileListDTO dto = JsonUtility.FromJson<FileListDTO>(down.text);
                 Setlist(dto);
 
                 //Debug.Log(dtoList);
-                
+
             })
-            .Failure((down) => { })
+            .Failure((down) => {
+                //요청 실패시...
+                //기본 생성 
+                FileListDTO dto = new FileListDTO();
+                dto.files = new List<FileDTO>();
+                dto.files.Add(new FileDTO() { songTitle = "DEFAULT", needSession = "DEFAULT", songArtist = "DEFAULT" }); //DEFAULT 생상
+                dto.files.Add(new FileDTO() { songTitle = "DEFAULT",needSession = "DEFAULT" ,songArtist = "DEFAULT" }); //DEFAULT 생상
+                dto.files.Add(new FileDTO() { songTitle = "DEFAULT", needSession = "DEFAULT", songArtist = "DEFAULT" }); //DEFAULT 생상
+                dto.files.Add(new FileDTO() { songTitle = "DEFAULT", needSession = "DEFAULT", songArtist = "DEFAULT" }); //DEFAULT 생상
+                dto.files.Add(new FileDTO() { songTitle = "DEFAULT", needSession = "DEFAULT", songArtist = "DEFAULT" }); //DEFAULT 생상
+                Setlist(dto);
+            })
             .build();
 
 
@@ -40,10 +51,18 @@ public class LoadSong : MonoBehaviour
     public int selectScene;
     public void Setlist(FileListDTO dto)
     {
+        int count = 0;
         dto.files.ForEach((info)=> {
             //Img 생성하기
             GameObject go = Instantiate(songImgObj, content);
+            go.SetActive(false);
             SongImg img =  go.GetComponent<SongImg>();
+
+            //info의 img url이 null이면
+            if (info.imageFileUrl == null) {
+                
+                SetFaildList(info, img,count);
+            }
 
             //이미지 요청
             HttpRequest rq = new HttpBuilder()
@@ -54,18 +73,30 @@ public class LoadSong : MonoBehaviour
                 Sprite sprite = LoadSpriteFromBytes(down.data);
                 //텍스트 세팅
                 img.Set(info.songTitle, info.songArtist, info.needSession, "?",sprite,info, selectScene);
+                go.SetActive(true);
             })
             .Failure((down)=> {
-                Sprite sprite = LoadSpriteFromBytes(down.data);
+                //Sprite sprite = LoadSpriteFromBytes(down.data);
                 //이미지 요청 실패. 
-                img.Set(info.songTitle, info.songArtist, info.needSession, "?", null, info, selectScene);
+                //img.Set(info.songTitle, info.songArtist, info.needSession, "?", null, info, selectScene);
+                //go.SetActive(true);
             })
             .build();
 
-            //img.Set(info.songTitle, info.songArtist, info.needSession, "?", null, info);
+            
             StartCoroutine(SendRequest(rq));
-          
+            count++;
         });
+    }
+
+    //faild list
+    [SerializeField]
+    Sprite[] faildImgList;
+    public void SetFaildList(FileDTO info, SongImg img, int count) {
+        img.isDefault = true;
+        //요청 안하고 바로
+            img.Set(info.songTitle, info.songArtist, info.needSession, "?", faildImgList[count], info, selectScene);
+            img.gameObject.SetActive(true);
     }
 
 

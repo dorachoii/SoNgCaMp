@@ -35,6 +35,7 @@ public class NoteBlockInfo{
     public NoteBlockInfo(int pitch, int beat, int velocity, bool enable) {
         Pitch = pitch;
         Beat = beat;
+        this.beat = (Beat)beat;
         this.velocity = velocity;
         this.enable = enable;
     }
@@ -87,8 +88,19 @@ public class Notes : MonoBehaviour
     //의존성 두고싶지 않음 차후에 수정
     public TMPro.TextMeshProUGUI pitchText;
     public TMPro.TextMeshProUGUI beatText;
+    public TMPro.TextMeshProUGUI volumeText;
 
-
+    public int Volume
+    {
+        get {
+            return velocity;
+        }
+        set {
+            velocity = value;
+            volumeText.text = value + "";
+            info.velocity = value;
+        }
+    }
     public int _IPitch
     {
         get { return Ipitch; }

@@ -16,10 +16,18 @@ public class NoteManager : MonoBehaviour
     public static NoteManager instance;
 
 
-    public NoteBlockInfo SaveData = new NoteBlockInfo(60,16,120,true);
+
+    public NoteBlockInfo bl;
+    public NoteBlockInfo SaveData {
+        get;
+        set;
+    }//= new NoteBlockInfo(60,16,120,true);
+
+    
     private void Awake()
     {
         instance = this;
+        SaveData = new NoteBlockInfo(60,16,120,true);
     }
     public Transform Board;
     public Notes[] list;
@@ -27,12 +35,6 @@ public class NoteManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        D_MidiManager.ConvertDeltaTime(240);
-
-
-        byte[] bytes = BitConverter.GetBytes(10);
-        Debug.Log(bytes);
-
 
 
 
@@ -145,7 +147,7 @@ public class NoteManager : MonoBehaviour
                     //NoteOnEvent
                     bytelist.AddRange(D_MidiManager.ConvertDeltaTime(D_MidiManager.ConvertSecondsToDeltatime((shim) * 0.5f))); //쉼표는 결국 count가 된다.
                     bytelist.Add((byte)info.Pitch);
-                    bytelist.Add(120);
+                    bytelist.Add((byte)info.velocity);
                     count = 0;
                     //끝났으니 내가 이전으로 될게.
                     prevNote = info;

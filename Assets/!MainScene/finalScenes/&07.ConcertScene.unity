@@ -40966,10 +40966,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chatService: {fileID: 785637307}
   channel: CONCERT
-  names:
-  - Dora
-  - Messi
-  - Sally
 --- !u!4 &1250598518
 Transform:
   m_ObjectHideFlags: 0
@@ -47270,6 +47266,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419978305}
   m_Mesh: {fileID: -1375570805367266300, guid: 87ad877797cf0504ba78abb453810d6d, type: 3}
+--- !u!1 &1420347597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1420347599}
+  - component: {fileID: 1420347598}
+  m_Layer: 0
+  m_Name: SetChat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1420347598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420347597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd5d3d2ca85f8846bb8487fd9c7746e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiChat: {fileID: 1250598517}
+  chatID:
+  - "\uB2E4\uB78C\uC950"
+  - "\uB108\uAD6C\uB9AC"
+  - "\uC5FC\uC18C"
+  - "\uCF54\uBFD4\uC18C"
+--- !u!4 &1420347599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420347597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 679.4305, y: 306.25735, z: -1.308258}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422192634
 GameObject:
   m_ObjectHideFlags: 0

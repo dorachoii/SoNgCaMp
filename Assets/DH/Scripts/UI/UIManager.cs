@@ -169,6 +169,7 @@ public class UIManager : MonoBehaviour
                 NoteBlockInfo info = note.info = notes[i];
                 note._IBeat = info.Beat;
                 note._IPitch = info.Pitch;
+                note.Volume = info.velocity;
 
                 Debug.Log(info.pitch);
                 note.gameObject.SetActive(info.enable);

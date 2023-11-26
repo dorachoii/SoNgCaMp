@@ -81,7 +81,10 @@ public class NoteDrag : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginD
                 NoteManager.instance.SaveData.Copy(note.info);
                 break;
             case EditerMode.EditerState.Volume:
-                
+                //note.velocity = Adderint(note.velocity, Notes.MinBeatNum, Notes.MaxBeatNum, arrow);
+                note.Volume = Adderint(note.velocity, Notes.MinNoteNum, Notes.MaxNoteNum, arrow);
+                NoteManager.instance.SaveData.Copy(note.info);
+
                 break;
             case EditerMode.EditerState.Beat:
                 note._IBeat = Adderint(note.Ibeat, Notes.MinBeatNum, Notes.MaxBeatNum, arrow);

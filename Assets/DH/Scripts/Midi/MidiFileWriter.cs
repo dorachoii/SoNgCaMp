@@ -392,6 +392,11 @@ public class MidiFileWriter : MonoBehaviour
         //        Array.Copy();
 
         string path = Application.persistentDataPath + "/files/" + "compose.mid";
+        //파일 매니져를 만들걸 ㅠㅠㅠㅠ
+        if (!Directory.Exists(Application.persistentDataPath + "/files"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/files");
+        }
         File.WriteAllBytes(path, data);
 
         Debug.LogError(path);

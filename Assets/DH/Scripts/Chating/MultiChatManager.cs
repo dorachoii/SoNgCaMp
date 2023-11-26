@@ -11,7 +11,6 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
     public ChatService chatService;
     public string channel = "DEFAULT";
 
-    public string[] names = new string[] { "Dora", "Messi", "Sally" };
 
     void Start()
     {
@@ -24,6 +23,7 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
     }
 
     public void ConnectToChatServer(string id) {
+        
         ChatAppSettings chatset = new ChatAppSettings();
         chatClient = new ChatClient(this);
         chatset.AppIdChat = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat;
@@ -63,9 +63,7 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
     {
         for (int i = 0; i < senders.Length; i++)
         {
-            //string sender = senders[i];
-            string sender = names[Random.Range(0, names.Length)];
-            
+            string sender = senders[i];
 
             object messageObject = messages[i];
 
@@ -105,7 +103,7 @@ public class MultiChatManager : MonoBehaviour,IChatClientListener
 
     public void OnSubscribed(string[] channels, bool[] results)
     {
-        
+        chatService.CreateChat("채팅 서버에 입장하셨습니다.");
     }
     public void OnUnsubscribed(string[] channels)
     {

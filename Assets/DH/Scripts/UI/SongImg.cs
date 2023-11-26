@@ -17,6 +17,8 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
     public TMP_Text session;
     public TMP_Text genre;
     public bool isSelect;
+    public bool isDefault;
+
     FileDTO dto;
     public void Set(string title,string musician,string session,string genre,Sprite sprite,FileDTO dto,int clickChangeScene) {
         image.sprite = sprite;
@@ -88,6 +90,14 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
     {
         if (isSelect)
             return;
+
+        //default면 바로이동
+        if (isDefault) {
+            SceneController.StartLoadSceneAsync(this, false, clickChangeScene, null);
+            return;
+        }
+            
+
         HttpRequest rq = null;
         //내 음악 들려줘
         //경로가 없다면 요청하기
@@ -101,6 +111,9 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
                 File.WriteAllBytes(Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3", down.data);
                 //파일 다운로드
                 Debug.Log("Down!!");
+            })
+            .Failure((down)=> {
+
             })
             .build();
         }
@@ -125,10 +138,17 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
 
             //미디 정보 저장까지.
             string path = "files/" + "compose.mid";
+            if (!Directory.Exists(Application.persistentDataPath + "/files"))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath + "/files");
+            }
+
             rq = new HttpBuilder()
                 .Host(dto.midFileUrl)
                 .Type(ReqType.GET)
                 .Success((down) => {
+
+
 
                     File.WriteAllBytes(Application.persistentDataPath + "/" + path, down.data);
 
@@ -136,7 +156,16 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
                     SceneManager.LoadScene(clickChangeScene);
 
                 })
+                .Failure((down)=> {
+                    //다운 실패!
+                    //기본으로 다운로드 
+
+                    TextAsset tx = (TextAsset)Resources.Load("Default/default.mid");
+                    File.WriteAllBytes(Application.persistentDataPath + "/" + path, tx.bytes);
+                    SceneManager.LoadScene(clickChangeScene);
+                })
                 .build();
+                
             StartCoroutine(SendRequest(rq));
 
 
@@ -154,8 +183,11 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
             .Host(dto.midFileUrl)
             .Type(ReqType.GET)
             .Success((down)=> {
+                if (!Directory.Exists(Application.persistentDataPath + "/files"))
+                {
+                    Directory.CreateDirectory(Application.persistentDataPath + "/files");
+                }
 
-                
                 File.WriteAllBytes(path,down.data);
                 
                 

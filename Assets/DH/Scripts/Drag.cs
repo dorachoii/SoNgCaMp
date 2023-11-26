@@ -21,6 +21,7 @@ public class Drag : MonoBehaviour, IPointerDownHandler
         Tile._IPitch = NoteManager.instance.SaveData.Pitch;
         Tile._Beat = NoteManager.instance.SaveData.beat;
         Tile._IBeat = NoteManager.instance.SaveData.Beat;
+        Tile.Volume = NoteManager.instance.SaveData.velocity;
         Tile.gameObject.SetActive(true);
         Tile.info.enable = true;
         //현재 트랙이 드럼이라면 

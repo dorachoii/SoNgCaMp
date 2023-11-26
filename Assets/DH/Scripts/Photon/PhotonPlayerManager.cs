@@ -56,7 +56,9 @@ public class PhotonPlayerManager : MonoBehaviour
 
             })
             .Failure((down) => {
-                SceneController.StartLoadSceneAsync(this, false, 2, null);
+                //시연할때는, 하지않는걸로,
+                Debug.LogError("로그인이 되지 않은 상태로 로비 입장");
+                //SceneController.StartLoadSceneAsync(this, false, 2, null);
             })
             .build();
         StartCoroutine(SendRequest(rq));

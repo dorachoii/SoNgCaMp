@@ -11,22 +11,41 @@ public class MidiUpload : MonoBehaviour
 {
     [SerializeField]
     TMP_InputField titleField;
-
+    [SerializeField]
+    TMP_Text artistText;
+    private void Awake()
+    {
+        HttpRequest rq = new HttpBuilder()
+           .Uri("/api/v1/users/byToken")
+           .Data(TokenManager.Token)
+           .Success((down) => {
+                //닉네임 담기
+                ResponseDTO<LoginDTO2> responce = JsonUtility.FromJson<ResponseDTO<LoginDTO2>>(down.text);
+               dto.songArtist = responce.results.authority.userNickname;
+               artistText.text = dto.songArtist;
+           })
+           .Failure((down) => {
+                //요청 실패시 Default로.
+                dto.songArtist = "Dohyeon Kim";
+               artistText.text = dto.songArtist;
+           })
+           .build();
+        StartCoroutine(SendRequest(rq));
+    }
     private void Start()
     {
-
+       
     }
     //버튼을 누르면 업로드
 
+    SongDTO dto = new SongDTO();
     public void UploadMidi() {
         //v
-
-        SongDTO dto = new SongDTO();
-
+        
+        //이건 생성할때 받아야 하는데, 정보가 없음.
         dto.needSession = "Guitar";
-        dto.songArtist = "Doss";
-        dto.songTitle = "Winter With Me";
-
+        dto.songTitle = titleField.text;
+        
         string js_dto = JsonUtility.ToJson(dto);
 
         //mp3는 없으니까 고정
@@ -64,6 +83,7 @@ public class MidiUpload : MonoBehaviour
 
     public byte[] Getfile(string path) {
         string defaultpath = Application.persistentDataPath;
+
         return File.ReadAllBytes(defaultpath + "/files/" + path);
 
     }
@@ -90,6 +110,6 @@ public class MidiUpload : MonoBehaviour
         Texture2D tex = new Texture2D(0, 0);
         tex.LoadImage(fileData);
         image.texture = tex;
-
+        image.color = Color.white;
     }
 }

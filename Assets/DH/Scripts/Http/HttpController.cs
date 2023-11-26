@@ -72,6 +72,7 @@ public class HttpController : MonoBehaviour
             case ReqType.GET:
                 string data = string.IsNullOrEmpty(info.data) ? "" : "/" + info.data;
                 www = UnityWebRequest.Get(info.host + info.uri + data); //1234, 
+                www.timeout = 5;
                 //Debug.Log(info.host + info.uri + );
                 break;
             case ReqType.POST:

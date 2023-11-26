@@ -9,6 +9,7 @@ public class SetMultiChat : MonoBehaviour
     public string[] chatID = new string[] { "다람쥐" ,"너구리","염소" ,"코뿔소" };
     private void Awake()
     {
+        multiChat.chatService.CreateChat("채팅 서버에 연결중입니다!!");
         //채팅을 시작하기 전에 ID 설정하기.
         HttpRequest rq = new HttpBuilder()
             .Uri("/api/v1/users/byToken")

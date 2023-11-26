@@ -27,12 +27,14 @@ public class EJSceneManager_5 : MonoBehaviour
 
     public void ClickPlayBtn()
     {
-        SceneManager.LoadScene(8);
+        SceneController.StartLoadSceneAsync(this, true, 8, null);
+        //SceneManager.LoadScene(8);
     }
 
     public void ClickConcertBtn()
     {
-        SceneManager.LoadScene(10);
+        SceneController.StartLoadSceneAsync(this, true, 10, null);
+        //SceneManager.LoadScene(10);
     }
 
     public void ClickChatbotBtn()

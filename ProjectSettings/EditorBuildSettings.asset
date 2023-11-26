@@ -25,7 +25,7 @@ EditorBuildSettings:
     guid: 81c680c934aa6904ca01abd810db9507
   - enabled: 1
     path: Assets/!MainScene/finalScenes/&05-1.composeUI.unity
-    guid: 94fc7fc549a62aa47813167635753757
+    guid: b02eac8b86505364a922327fc666f755
   - enabled: 1
     path: Assets/!MainScene/finalScenes/&05-2.ComposeMode_UploadInput.unity
     guid: a8292e51fb4a88245b7de488bad93c65
@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/!MainScene/finalScenes/&03-1.Character_L.unity
     guid: 310dec0070f4d63498a0ff47af7c2476
+  - enabled: 1
+    path: Assets/DH/Scenes/composeUI.unity
+    guid: dbaabfb9748547548a6106e59247008a
   m_configObjects: {}
