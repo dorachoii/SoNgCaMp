@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DH;
 using DHMidi;
-
+using TMPro;
 public class NoteManager : MonoBehaviour
 {
 
@@ -61,9 +61,11 @@ public class NoteManager : MonoBehaviour
 
     public int BPM { get; set; }
     //BPM 
-
+    public TMP_InputField bpmField;
     public void ReadNote() {
-        BPM = 240;
+
+            Debug.LogError(bpmField.text);
+        BPM = bpmField.text == null || bpmField.text == "" ? 120 : int.Parse(bpmField.text);
 
         midifile.TrackLsit.Clear();
         DummyHeaderData dummy = new DummyHeaderData();
