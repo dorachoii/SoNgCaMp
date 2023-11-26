@@ -23,7 +23,7 @@ public class EJMidi2Note : MonoBehaviour
 
     public string midiPath = "ichumonandodemo.mid.txt";
 
-    int instrumentIdx = 0;      //default : piano 0
+    int instrumentIdx = 0;      //default : piano 0 , elecGuitar: 아마 51?
 
     GameObject[] btns;
 
@@ -57,6 +57,8 @@ public class EJMidi2Note : MonoBehaviour
 
     GameNoteInfo gameNoteInfo;
 
+
+    int bpm = 120;  // 원래는120이었음
 
     // Start is called before the first frame update
     void Start()
@@ -196,7 +198,7 @@ public class EJMidi2Note : MonoBehaviour
                 gameNoteInfo.isLongNoteStart = true;
                 //gameNoteInfo.DRAG_release_idx = 0;
                 gameNoteInfo.isNoteEnabled = false;
-                gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * 120;
+                gameNoteInfo.time = midiEvents_selectedTrack[i].startTime * bpm;
 
             }
 
@@ -213,7 +215,7 @@ public class EJMidi2Note : MonoBehaviour
 
                 gameNoteInfo_end.isLongNoteStart = false;
                 gameNoteInfo_end.isNoteEnabled = false;
-                gameNoteInfo_end.time = midiEvents_selectedTrack[i].endTime * 120;
+                gameNoteInfo_end.time = midiEvents_selectedTrack[i].endTime * bpm;
                 ejnotemanager.allGameNoteInfo.Add(gameNoteInfo_end);
             }
 
@@ -228,7 +230,7 @@ public class EJMidi2Note : MonoBehaviour
                 gameNoteInfo_dragRight.isLongNoteStart = false;
 
                 gameNoteInfo_dragRight.isNoteEnabled = false;
-                gameNoteInfo_dragRight.time = midiEvents_selectedTrack[i].startTime * 120;
+                gameNoteInfo_dragRight.time = midiEvents_selectedTrack[i].startTime * bpm;
                 ejnotemanager.allGameNoteInfo.Add(gameNoteInfo_dragRight);
 
                 gameNoteInfo = new GameNoteInfo();
@@ -238,7 +240,7 @@ public class EJMidi2Note : MonoBehaviour
                 gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
                 gameNoteInfo.DRAG_release_idx = 0;
                 gameNoteInfo.isNoteEnabled = false;
-                gameNoteInfo.time = midiEvents_selectedTrack[i - 1].startTime * 120;
+                gameNoteInfo.time = midiEvents_selectedTrack[i - 1].startTime * bpm;
                 ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
 
                 gameNoteInfo = new GameNoteInfo();
@@ -248,7 +250,7 @@ public class EJMidi2Note : MonoBehaviour
                 gameNoteInfo.type = (int)GameNoteType.DRAG_empty;
                 gameNoteInfo.DRAG_release_idx = 0;
                 gameNoteInfo.isNoteEnabled = false;
-                gameNoteInfo.time = midiEvents_selectedTrack[i - 2].startTime * 120;
+                gameNoteInfo.time = midiEvents_selectedTrack[i - 2].startTime * bpm;
                 ejnotemanager.allGameNoteInfo.Add(gameNoteInfo);
             }
 
@@ -294,7 +296,7 @@ public class EJMidi2Note : MonoBehaviour
             gameNoteInfo_end.type = gameNoteInfo.type;
             gameNoteInfo_end.isLongNoteStart = false;
             gameNoteInfo_end.isNoteEnabled = false;
-            gameNoteInfo_end.time = midiNote[idx].endTime * 120;
+            gameNoteInfo_end.time = midiNote[idx].endTime * bpm;
 
             ejnotemanager.allGameNoteInfo.Add(gameNoteInfo_end);
         }
