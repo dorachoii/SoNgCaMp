@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3203,6 +3203,16 @@ MonoBehaviour:
   content: {fileID: 1250059051}
   songImgObj: {fileID: 1425395647733669002, guid: 302f5a870a548e04d9bfbc20b3f26dfe, type: 3}
   selectScene: 9
+  faildImgList:
+  - {fileID: 21300000, guid: 194c2e569d46bf145932da2f93d9173f, type: 3}
+  - {fileID: 21300000, guid: 1be55209e9da8b7428ed2efaf45a16d2, type: 3}
+  - {fileID: 21300000, guid: 81e6d112780af0647ad13007e289d5cb, type: 3}
+  - {fileID: 21300000, guid: 58094ac6944c65e419356ada88298207, type: 3}
+  - {fileID: 21300000, guid: fece39f6d1b1452448b76f40e340571e, type: 3}
+  - {fileID: 21300000, guid: dfcd6e329d17ada45968ba75016528a9, type: 3}
+  - {fileID: 21300000, guid: 36e9fdd1a76993342947c4d048f63de0, type: 3}
+  - {fileID: 21300000, guid: 3d897ea454e2a7744b06bd13aea11f09, type: 3}
+  - {fileID: 21300000, guid: 337396d664848af46bf91f8c855984f7, type: 3}
 --- !u!4 &1555517139
 Transform:
   m_ObjectHideFlags: 0

@@ -93,6 +93,9 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
 
         //default면 바로이동
         if (isDefault) {
+            TextAsset tx = (TextAsset)Resources.Load("Default/default.mid");
+            File.WriteAllBytes(Application.persistentDataPath + "/" + "files/compose.mid", tx.bytes);
+
             SceneController.StartLoadSceneAsync(this, false, clickChangeScene, null);
             return;
         }
