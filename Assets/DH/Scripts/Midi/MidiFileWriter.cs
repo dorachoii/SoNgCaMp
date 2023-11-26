@@ -294,7 +294,7 @@ public class DummyTrackData {
 public class MidiFileWriter : MonoBehaviour
 {
 
-
+    
     //public static HeaderChunk chunk = new HeaderChunk();
     void Start()
     {

@@ -59,9 +59,11 @@ public class NoteManager : MonoBehaviour
 
     public MidiFile midifile = new MidiFile();
 
+    public int BPM { get; set; }
+    //BPM 
 
     public void ReadNote() {
-
+        BPM = 240;
 
         midifile.TrackLsit.Clear();
         DummyHeaderData dummy = new DummyHeaderData();
@@ -92,6 +94,12 @@ public class NoteManager : MonoBehaviour
         NoteBlockInfo prevNote = null;
         int count = 0;//얼마나 공백이 존재하는지
         int shim = 0;
+
+            //BPM SET!!
+            bytelist.AddRange(new byte[] { 0x00, 0xFF, 0x51, 0x03 });
+            byte[] bpmList = D_MidiManager.RemoveZero(BitConverter.GetBytes(D_MidiManager.ConvertBpmToMicro(BPM)));
+            bytelist.AddRange(bpmList);
+
 
 
             //악기 설정

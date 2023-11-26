@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
-
+using System.Linq;
 namespace DH {
     public class D_MidiManager : MonoBehaviour
     {
@@ -76,8 +76,44 @@ namespace DH {
             return bytes;
         }
 
+        public static byte[] CustomGetBytes(int num) {
+            //일단? 처음부터 읽어야지
+            //if(num >> 4 0)
+            //8바이트라고 해.
+            //8바이트 --> 4읽고 4남았으니까 4읽고.
+            int number = num;
+            while (number >> 4 > 0) {
+                //4 비트를 읽습니다!!!
+                byte b = (byte)(number >> 4 & 0x0F);
+
+                //읽었으니 4비트 지우기
+                number = number >> 4;
 
 
+            }
+
+
+            return null;
+        }
+
+        public static byte[] RemoveZero(byte[] array) {
+            //바이트 배열을 받고, 
+            //NETWORK ORDER 방식. 
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(array);
+                
+            List<byte> list = array.ToList();
+            //첫번째 0을 지우자.
+            for(int i = 0; i < list.Count; i++)
+            {
+                //0~3까지니까. Count -1일때는 0이여도 무시를 해야한다.
+                if (list[i] == 0 && i != list.Count - 1) {
+                    list.RemoveAt(i);
+                    i = -1;
+                }
+            }
+            return list.ToArray();
+        }
         /// <summary>
         /// deltatime을 midi 파일 규약에 맞게 변환하는 함수
         /// </summary>
@@ -328,12 +364,13 @@ namespace DH {
 
         const int CHANGE_EVENT = 192;
         //이 채널의 악기를 이것으로 바꾸자.
-        public static byte[] ChangeInstument(int channel,Instruments instruments) {
+        public static byte[] ChangeInstument(int channel, Instruments instruments)
+        {
             //Cc (악기)
             //근데 함정이? 16진수니까.
             //C0는 192이니까,
 
-            byte _event = (byte) (CHANGE_EVENT + channel); //이벤트와 채널 합치기 ( 1 바이트)
+            byte _event = (byte)(CHANGE_EVENT + channel); //이벤트와 채널 합치기 ( 1 바이트)
             //뒤에는 악기 바이트 들어옴.
             byte instrument = (byte)instruments;
 
@@ -341,7 +378,24 @@ namespace DH {
             return new byte[] { _event, instrument };
         }
 
+        /// <summary>
+        /// BPM TO MICRO... MIDI FIle은 SET TEMPO EVENT를 비트당 마이크로초로 계산함.
+        /// </summary>
+        public static int ConvertBpmToMicro(int bpm)
+        {
+            //초당 비트
+            double bps = bpm / 60;
+
+            // 1 / bps = 1비트당 초
+            
+            //비트 당 마이크로 초 
+            return (int) ((1 / bps) * 1000000);
+        }
+
     }
+
+
+
     class MidiFiles
     {
         //헤더
