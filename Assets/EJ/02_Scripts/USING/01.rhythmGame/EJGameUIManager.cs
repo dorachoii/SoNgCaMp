@@ -32,7 +32,7 @@ public class EJGameUIManager : MonoBehaviour
 
     public IEnumerator gameEndUI()
     {
-        UIcanvas.SetActive(false);
+        //UIcanvas.SetActive(false);
         successText.SetActive(true);
 
         yield return new WaitForSeconds(1.5f);

@@ -2277,7 +2277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: heechan Ahn, Kim Dohyeon, Sally
+  m_text: Jett, Muteko
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cd555f7d890697d418b0179303390b26, type: 2}
   m_sharedMaterial: {fileID: -4208875345470387848, guid: cd555f7d890697d418b0179303390b26, type: 2}
@@ -2722,7 +2722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fa7422909e5244786a79dcd7adc333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midiFilePath: solati.mid.txt
+  midiFilePath: Guitar2MIDI.mid.txt
   ShouldPlayFile: 1
   bankFilePath: GM Bank/gm
   bufferSize: 1024
@@ -7105,7 +7105,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 82fa19ef083f9c547b8b54c80ff2b7f5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dee76b084bc8b904fac29bfaede7ca89, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -7231,7 +7231,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283865687}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e161a915a3809514a828dacb06216e73, type: 3}
   m_Name: 
@@ -7239,7 +7239,7 @@ MonoBehaviour:
   ejnotemanager: {fileID: 1271823016}
   bankFilePath: GM Bank/gm
   bufferSize: 1024
-  midiPath: solati.mid.txt
+  midiPath: Guitar2MIDI.mid.txt
 --- !u!82 &1283865690
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8253,7 +8253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: London Night
+  m_text: Cameraman
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cd555f7d890697d418b0179303390b26, type: 2}
   m_sharedMaterial: {fileID: -4208875345470387848, guid: cd555f7d890697d418b0179303390b26, type: 2}
