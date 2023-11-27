@@ -14,7 +14,7 @@ public class TouchScene : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButton(0)) {
-            SceneController.StartLoadSceneAsync(this,false,4,null);
+            SceneController.StartLoadSceneAsync(this,false,2,null);
         }
     }
 }

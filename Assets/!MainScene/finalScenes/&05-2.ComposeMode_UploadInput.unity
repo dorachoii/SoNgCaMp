@@ -2995,7 +2995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleField: {fileID: 1811653404}
-  artistText: {fileID: 0}
+  artistText: {fileID: 252853649}
   pngData: 
   midData: 
   image: {fileID: 1957536073}

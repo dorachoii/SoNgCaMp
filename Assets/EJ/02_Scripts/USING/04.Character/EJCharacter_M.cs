@@ -506,12 +506,19 @@ public class EJCharacter_M : MonoBehaviour
             .build();
 
         //토큰으로 조회
-        StartCoroutine(SendRequest(rq));
+        StartCoroutine(send(4,rq));
         //지금은 그냥 ... 1로 합시다.
 
         Destroy(fx, 5);
 
 
 
+    }
+
+    IEnumerator send(float t, HttpRequest rq)
+    {
+        yield return new WaitForSeconds(t);
+
+        yield return SendRequest(rq);
     }
 }

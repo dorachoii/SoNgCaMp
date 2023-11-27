@@ -11,9 +11,7 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LoadSceneAsync(false,2,()=> {
-            Debug.Log("로딩완료!!!!!");
-        }));
+
     }
 
 
@@ -58,5 +56,9 @@ public class SceneController : MonoBehaviour
         mono.StartCoroutine(LoadSceneAsync(isNetwork,index,loadAction));
 
     }
-    
+
+
+    public void Load(int index) {
+        StartCoroutine(LoadSceneAsync(false, index, null));
+    }
 }

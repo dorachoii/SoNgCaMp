@@ -398,7 +398,8 @@ public class UIManager : MonoBehaviour
     int ctn;
     void LoadMidi() {
         MidiFile midifile =  MidiFileWriter.ReadMidi("files/compose.mid");
-
+        if (midifile == null)
+            return;
         int count = 0;
         midifile.TrackLsit.ForEach(track => {
             Track tr = new Track ();

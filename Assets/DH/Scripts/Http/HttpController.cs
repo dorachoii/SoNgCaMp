@@ -70,10 +70,10 @@ public class HttpController : MonoBehaviour
         UnityWebRequest www = null;
         switch (info.type) {
             case ReqType.GET:
+                Debug.Log(info.host + info.uri + info.data);
                 string data = string.IsNullOrEmpty(info.data) ? "" : "/" + info.data;
                 www = UnityWebRequest.Get(info.host + info.uri + data); //1234, 
                 www.timeout = 5;
-                //Debug.Log(info.host + info.uri + );
                 break;
             case ReqType.POST:
                 Debug.Log(info);

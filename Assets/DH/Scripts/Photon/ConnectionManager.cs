@@ -69,6 +69,7 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         //로그인 씬으로 이동.
-        SceneController.StartLoadSceneAsync(this,false,2,null);
+        //시연떄는 이렇게 하면 곤란함.
+        //SceneController.StartLoadSceneAsync(this,false,2,null);
     }
 }

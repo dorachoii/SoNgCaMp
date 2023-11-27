@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,20 +21,23 @@ public class EJSceneManager_5 : MonoBehaviour
 
     public void ClickComposeBtn()
     {
-        SceneController.StartLoadSceneAsync(this,true,12,null);
+        PhotonNetwork.Disconnect();
+        SceneController.StartLoadSceneAsync(this, false, 12,null);
 
         //SceneManager.LoadScene(12);
     }
 
     public void ClickPlayBtn()
     {
-        SceneController.StartLoadSceneAsync(this, true, 8, null);
+        PhotonNetwork.Disconnect();
+        SceneController.StartLoadSceneAsync(this, false, 8, null);
         //SceneManager.LoadScene(8);
     }
 
     public void ClickConcertBtn()
     {
-        SceneController.StartLoadSceneAsync(this, true, 10, null);
+        PhotonNetwork.Disconnect();
+        SceneController.StartLoadSceneAsync(this, false, 10, null);
         //SceneManager.LoadScene(10);
     }
 

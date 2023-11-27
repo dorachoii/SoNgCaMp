@@ -410,11 +410,18 @@ public class EJCharacter_L : MonoBehaviour
             .build();
 
         //토큰으로 조회
-        StartCoroutine(SendRequest(rq));
+        StartCoroutine(send(4,rq));
         //지금은 그냥 ... 1로 합시다.
+
+        //스핀하니까 딜레이 주고 하자.
 
         Destroy(fx, 10);
     }
 
+    IEnumerator send(float t,HttpRequest rq)
+    {
+        yield return new WaitForSeconds(t);
 
+        yield return SendRequest(rq);
+    }
 }

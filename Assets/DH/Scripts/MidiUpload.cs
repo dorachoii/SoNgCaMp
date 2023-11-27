@@ -49,7 +49,8 @@ public class MidiUpload : MonoBehaviour
         string js_dto = JsonUtility.ToJson(dto);
 
         //mp3는 없으니까 고정
-        mp3Data = Getfile("file2.mp3");
+        TextAsset tx = (TextAsset)Resources.Load("Default/default.mp3");
+        mp3Data = tx.bytes;
         midData = Getfile("compose.mid");
         //일단 파일을 선택했다고 치고
 
@@ -78,6 +79,7 @@ public class MidiUpload : MonoBehaviour
     //업로드 실패
     public void Failed() {
         Debug.Log("실패");
+        SceneController.StartLoadSceneAsync(this,false,4,null);
     }
 
 
