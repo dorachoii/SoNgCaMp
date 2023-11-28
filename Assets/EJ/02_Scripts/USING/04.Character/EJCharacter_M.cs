@@ -473,6 +473,7 @@ public class EJCharacter_M : MonoBehaviour
 
         ResponseDTO<LoginDTO2> dto = new ResponseDTO<LoginDTO2>();
        
+        UserInfo_customizing userInfo_Customizing = new UserInfo_customizing(characterInfo.characterType, characterInfo.hexString_cloth, characterInfo.hexString_face, characterInfo.hexString_ribbon, characterInfo.hexString_skin, characterInfo.isBagON, characterInfo.isCapON, characterInfo.isCrownON, characterInfo.isGlassON, dto.results.authority.userNo);
         HttpRequest rq = new HttpBuilder()
             .Uri("/api/v1/users/byToken")
             .Data(TokenManager.Token)
@@ -499,9 +500,21 @@ public class EJCharacter_M : MonoBehaviour
                     ConnectionManager.Get.ConnectToPhoton();
 
                 }, true);
-                UserInfo_customizing userInfo_Customizing = new UserInfo_customizing(characterInfo.characterType, characterInfo.hexString_cloth, characterInfo.hexString_face, characterInfo.hexString_ribbon, characterInfo.hexString_skin, characterInfo.isBagON, characterInfo.isCapON, characterInfo.isCrownON, characterInfo.isGlassON, dto.results.authority.userNo);
                 httpInfo.body = JsonUtility.ToJson(userInfo_Customizing);
                 HttpManager.Get().SendRequest(httpInfo);
+            })
+            .Failure((down)=> {
+                //요청실패시
+                //로딩창
+                SceneController.PlayUI();
+
+                ConnectionManager.Get.onJoinRoom = () =>
+                {
+                    //로비로 이동
+                    PhotonNetwork.LoadLevel(4);
+
+                };
+                ConnectionManager.Get.ConnectToPhoton();
             })
             .build();
 

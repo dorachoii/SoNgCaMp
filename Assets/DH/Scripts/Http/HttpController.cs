@@ -151,6 +151,7 @@ public class HttpController : MonoBehaviour
         Debug.Log(info.host + info.uri);
 
         UnityWebRequest www = UnityWebRequest.Post(info.host + info.uri, formData);
+        www.timeout = 7;
         yield return www.SendWebRequest();
         if (www.error == null)
         {
