@@ -1,0 +1,11 @@
+Sequence_Or_Track_Name : 악기이름
+	Paramseters - 1 번째
+
+
+Temp : bpm
+ 	_MidiFile.BeatsPerMinute = MidiHelper.MicroSecondsPerMinute / System.Convert.ToUInt32(midiEvent.Parameters[0]);
+
+
+Note_On
+	parameter1 : note
+	parameter2 : velocity

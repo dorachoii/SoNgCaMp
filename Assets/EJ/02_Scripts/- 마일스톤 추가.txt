@@ -1,0 +1,33 @@
+- 마일스톤 추가
+- 융합구조도, 서버 통신 부분까지
+- 시행착오 기록
+- 디자인패턴
+- 기획의도, 리깅 등 쓸떼없는 부분들 거르기
+
+- cash cow
+- 시니어가 있는지
+- 현 프로젝트 개발 진행도
+- 입사 시 포지션
+
+-cs, 자료구조
+- 짐벌락
+- untiy mono vs il2cpp
+- 렌더링 파이프라인
+- 클래스 vs 구조체
+
+- 구면좌표계 >> 
+- 삼각함수
+- 행렬의 곱셈
+- 이득우의 게임수학
+
+- 자료구조-시간복잡도
+
+1) midiEvents를 읽어와서 midi 저장소에 넣는다.
+	EJMidi2Note에서 MidiSequencer에 있는 LoadMidi 함수를 실행한다
+	- midiNoteEvents에 각 events를 담는다.
+	- midiAllNoteEvents
+2)midiEvents를 gameNote에 넣는다.
+	- allGameNoteInfo에 넣고
+	- gameNoteInfo_Rails레일별로 나눠서 담아준다.
+3)그 정보에 따라 instantiate한다.	
+	
