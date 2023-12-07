@@ -50,7 +50,7 @@ public class EJNoteManager : MonoBehaviour
     public List<GameNoteInfo>[] gameNoteInfo_Rails = new List<GameNoteInfo>[railCount];
 
     //01-2.Hierarchy - instance noteData
-    public List<EJGameNote>[] gameNoteInstance_Rails = new List<EJGameNote>[railCount];
+    List<EJGameNote>[] gameNoteInstance_Rails = new List<EJGameNote>[railCount];
     EJGameNote[] gameStartNoteArr = new EJGameNote[railCount];
 
     //02. Note_pressCheck

@@ -38,23 +38,20 @@ public class EJ_pause : MonoBehaviour
         SceneManager.LoadScene(8);
     }
 
-    //여기 해결 필요
+   
     public void ClickRestart()
     {
         canvasPause.SetActive(false);
         //audiosource restart
+
+        //for (int i = 0; i < GameObject.FindGameObjectsWithTag("Note").Length; i++)
+        //{
+        //    Destroy(GameObject.FindGameObjectsWithTag("Note")[i]);
+        //}
+
         Time.timeScale = 1;
-        noteManager.currTime = 0;
-
-
-        //생성되어 있는 노트들 다 destroy해라!
-        for (int i = 0; i < noteManager.gameNoteInstance_Rails.Length; i++) 
-        {
-            //Destroy(noteManager.gameNoteInstance_Rails[i]);
-        
-        }
-
-        
+       
+        SceneManager.LoadScene(9);               
         //notemanager currTime = 0
     }
 
