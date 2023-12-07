@@ -198,6 +198,7 @@ public class EJLogIn_UI : MonoBehaviour
             .build();
 
         StartCoroutine(SendRequest(rq));
+;
 
     }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 #region 통신정보
 public enum RequestType
@@ -55,14 +56,14 @@ public class HttpInfo
 [System.Serializable]
 public struct UserInfo_register
 {
-    public string userEmail;        
+    public string userEmail;
     public string userPwd;          // 영문 + 숫자 + 특수문자 7자리 이상
 
     public string userNickname;
     public int sessionType;         //  0: None, 1~n: Instruments
     public int genre;               //  0: None, 1~n: Genre
     public int mood;                //  0: None, 1~n: Mood
-    public bool musician;           
+    public bool musician;
 
     // new 생성 시, 매개변수 받아서 바로 세팅해주는 역할
     public UserInfo_register(string userEmail, string userPwd, string userNickname, int sessionType, int genre, int mood, bool musician)
@@ -111,7 +112,7 @@ public struct UserInfo_customizing
 
 
     // new 생성 시, 매개변수 받아서 바로 세팅해주는 역할
-    public UserInfo_customizing( int characterType, string hexStringCloth, string hexStringFace, string hexStringRibbon, string hexStringSkin, bool isBagOn, bool isCapOn, bool isCrownOn, bool isGlassOn, int userNo)
+    public UserInfo_customizing(int characterType, string hexStringCloth, string hexStringFace, string hexStringRibbon, string hexStringSkin, bool isBagOn, bool isCapOn, bool isCrownOn, bool isGlassOn, int userNo)
     {
         this.characterType = characterType;
 
@@ -126,7 +127,7 @@ public struct UserInfo_customizing
         this.isGlassOn = isGlassOn;
 
         this.userNo = userNo;
-               
+
     }
 }
 
@@ -144,6 +145,7 @@ public struct SongInfo
 
 public class HttpManager : MonoBehaviour
 {
+    public EJLogIn_UI ui;
     static HttpManager instance;
 
     private void Start()
@@ -162,7 +164,8 @@ public class HttpManager : MonoBehaviour
         //"api/v1/users"
         HttpInfo httpInfo = new HttpInfo();
 
-        httpInfo.Set(RequestType.POST, /*"api/v1/authentication/login"*/"api/v1/users", (DownloadHandler downHandler) => {
+        httpInfo.Set(RequestType.POST, /*"api/v1/authentication/login"*/"api/v1/users", (DownloadHandler downHandler) =>
+        {
             print(downHandler.text);
             //정상적으로 요청받았을 때 값을 프린트
         }, true);
@@ -239,7 +242,7 @@ public class HttpManager : MonoBehaviour
             // GET, PUT, DELETE, TEXTURE 분기
             switch (httpInfo.requestType)
             {
-                case RequestType.GET:                    
+                case RequestType.GET:
                     req = UnityWebRequest.Get(httpInfo.url);
                     break;
 
@@ -253,7 +256,7 @@ public class HttpManager : MonoBehaviour
 
                 case RequestType.TEXTURE:
                     req = UnityWebRequestTexture.GetTexture(httpInfo.url);
-                    break;                    
+                    break;
             }
 
             //서버에 요청을 보내고 응답이 올때까지 양보한다.
@@ -288,6 +291,18 @@ public class HttpManager : MonoBehaviour
         else
         {
             print("네트워크 에러 : " + req.error);
+
+            
+            if (ui.c.activeSelf)
+            {
+                SceneManager.LoadScene(3);
+            }else if (ui.d.activeSelf)
+            {
+                SceneManager.LoadScene(13);
+            }
+
+
+
         }
     }
 }
