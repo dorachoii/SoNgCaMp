@@ -43,14 +43,14 @@ public class EJNoteManager : MonoBehaviour
     GameObject endNote;
 
     const int railCount = 6;
-    float currTime;
+    public float currTime;
 
     //01-1.noteData _ 일종의 대기열 느낌
     public List<GameNoteInfo> allGameNoteInfo = new List<GameNoteInfo>();
     public List<GameNoteInfo>[] gameNoteInfo_Rails = new List<GameNoteInfo>[railCount];
 
     //01-2.Hierarchy - instance noteData
-    List<EJGameNote>[] gameNoteInstance_Rails = new List<EJGameNote>[railCount];
+    public List<EJGameNote>[] gameNoteInstance_Rails = new List<EJGameNote>[railCount];
     EJGameNote[] gameStartNoteArr = new EJGameNote[railCount];
 
     //02. Note_pressCheck

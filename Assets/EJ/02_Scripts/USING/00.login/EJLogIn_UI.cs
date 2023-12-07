@@ -21,7 +21,7 @@ public class EJLogIn_UI : MonoBehaviour
     public TMP_InputField PW;
 
     //02. Who are you (musician / listener)
-    //03. Input - musician (nickName, instrument, genre, wanna make)
+    //03. Input - musician (nickName, instrument, genre, wanna make) 
     public TMP_InputField NickName_m;
 
     public TMP_Dropdown instrument_m;
