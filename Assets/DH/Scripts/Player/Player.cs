@@ -2,14 +2,14 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Player : MonoBehaviourPun
 {
     public LoginResponseDTO Login;
     //cloth,skin,ribbon,eye
     public SkinnedMeshRenderer renderer;
     public Material mat;
-
+    public TMP_Text nickName_text;
 
     public GameObject[] accessoriList;
     public enum Accessories { 
@@ -26,6 +26,17 @@ public class Player : MonoBehaviourPun
             return;
         //이 방식은 너무 힘드네. 되도록이면 쓰지말자
         //LoginResponseDTO dto = (LoginResponseDTO)PlayerManager.Get.GetValue("LoginInfo");
+        if (Login.userNickname == "") {
+            Debug.Log("aigojgioe");
+            Login.userNickname = "NickName1234";
+            Login.hexStringFace = "RGBA(0, 0, 0, 1)";
+            Login.hexStringCloth = "RGBA(0, 255, 0, 1)";
+            Login.hexStringRibbon = "RGBA(128, 128, 128, 1)";
+            Login.hexStringSkin = "RGBA(255, 165, 79, 1)";
+        }
+
+        nickName_text.text = Login.userNickname;
+
         photonView.RPC(nameof(ss),RpcTarget.AllBuffered,JsonUtility.ToJson(Login));
     }
 

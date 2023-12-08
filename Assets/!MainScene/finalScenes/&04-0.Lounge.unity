@@ -4644,7 +4644,7 @@ GameObject:
   - component: {fileID: 1466380690}
   m_Layer: 8
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5886,6 +5886,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObjectPath: Player
   spawnPostion: {x: 1, y: 1, z: 1}
+  evt:
+    m_PersistentCalls:
+      m_Calls: []
   points:
   - {fileID: 1936976862}
   - {fileID: 976706152}
