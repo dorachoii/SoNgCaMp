@@ -27,7 +27,6 @@ public class PlayerChatManager : MonoBehaviourPun
         if (board.childCount > maxChatCount)
         {
             Destroy(board.GetChild(0).gameObject);
-            
         }
         //inputField.text
         GameObject go = Instantiate(TextField,board);
@@ -39,5 +38,6 @@ public class PlayerChatManager : MonoBehaviourPun
     
     public void Send() {
         photonView.RPC(nameof(SendChat),RpcTarget.All,inputField.text);
+        inputField.text = "";
     }
 }

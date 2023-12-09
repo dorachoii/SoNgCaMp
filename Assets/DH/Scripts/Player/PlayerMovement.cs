@@ -49,16 +49,29 @@ public class PlayerMovement : MonoBehaviourPun
     }
     Vector3 target;
 
+    private bool IsPointerOverUIObject()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            return EventSystem.current.IsPointerOverGameObject(touch.fingerId);
+        }
+        else
+        {
+            return EventSystem.current.IsPointerOverGameObject();
+        }
+    }
+
     public void TouchPosition() {
         if (Input.GetMouseButtonDown(0)) {
 
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (IsPointerOverUIObject())
             {
                 return; // UI를 클릭한 경우 무시
             }
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo)) {
+            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider.gameObject.layer  ==LayerMask.NameToLayer("Ground")) {
                 target = hitInfo.point;
             }
         }
