@@ -12,7 +12,9 @@ using UnityEngine;
 public class EJNoteManager : MonoBehaviour
 {
     //임의
-    int bpm = 120;
+    //150 - 120이 그나마 
+    float bpm = 100;
+    
     public Camera maincam;
 
     //01. Note_Instantiate
@@ -109,7 +111,9 @@ public class EJNoteManager : MonoBehaviour
         //InputTestDRAGNote();
         //InputTestMIXEDNote();
         //InputTestFLOP();
-        InputCameraMan();
+        //InputCameraMan();
+        //input150beats();
+        inputAPEX();
 
         //StartCoroutine(Test());
 
@@ -161,7 +165,7 @@ public class EJNoteManager : MonoBehaviour
                 //Note_Instantiate on Time
                 //대기열에 있는 0번 레일의 0번 노트의 생성시간에 생성
                 //if (currTime >= noteInfo_Rails[i][0].time)
-                if (currTime >= gameNoteInfo_Rails[i][0].time / bpm)
+                if (currTime >= (float)(gameNoteInfo_Rails[i][0].time / bpm))
                 {
                     //Note_Instantiate by NoteType, SpawnRail
                     //01-1-1.NoteType
@@ -628,10 +632,8 @@ public class EJNoteManager : MonoBehaviour
 
             GameObject touchEffect = Instantiate(touchFX, touchFX_pos[n]);
             Destroy(touchEffect, 1);
-
             
-            
-
+           
             MIDIPlayer.instance.NoteOn(pitches_rail[n]);
 
 
@@ -3840,6 +3842,2447 @@ public class EJNoteManager : MonoBehaviour
         }
     }
 
+
+    int madi2 = 240;
+    void input150beats()
+    {
+        GameNoteInfo info = new GameNoteInfo();
+
+        #region 1마디
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 181;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 241;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 421;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 481;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 661;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        //info = new GameNoteInfo();
+        //info.railIdx = 1;
+        //info.type = (int)GameNoteType.LONG;
+        //info.time = 721;
+        //info.isLongNoteStart = true;
+        //info.DRAG_release_idx = -1;
+        //info.isNoteEnabled = true;
+        //allGameNoteInfo.Add(info);
+
+        //info = new GameNoteInfo();
+        //info.railIdx = 1;
+        //info.type = (int)GameNoteType.LONG;
+        //info.time = 901;
+        //info.isLongNoteStart = false;
+        //info.DRAG_release_idx = -1;
+        //info.isNoteEnabled = true;
+        //allGameNoteInfo.Add(info);
+        #endregion
+
+        #region 2마디
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 961 -madi2;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1080 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1081 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1081 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1201 - madi2;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1320 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1321 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1381 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1441 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1501 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1561 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1621 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1681 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1801 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1861 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 3마디
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1921 - madi2;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 2040 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2041 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2101 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 2161 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 2161 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2281 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2341 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 2401 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 2401 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 2641 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 2641 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 4마디
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 2881 - madi2;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 3061 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 3121 - madi2;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 3301 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 3361 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 3361 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        //
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3481 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 5;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3511 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3601 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3661 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3691 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3721 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3781 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        #endregion
+
+        #region 5마디
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3841 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3961 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3991 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4081 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4141 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4171 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4201 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4261 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4321 - madi2;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4440 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4441 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4471 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4561 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4621 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 5;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4651 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4681 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4741 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4771 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        #endregion
+
+        #region 6마디
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 4801 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 4801 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4921 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4951 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx =2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5041 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5101 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5131 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5161 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5221 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5281 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5311 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5341 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5371 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5401 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5431 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5521 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5551 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5581 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5611 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5641 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx =2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5671 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5791 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 5851 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        #endregion
+
+        #region 7마디
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 6001 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 6031 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 6061 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 6091 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 6121 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 6151 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 6271 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 6331 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 6391 - madi2;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 6511 - madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        #endregion
+
+        for (int i = 0; i < gameNoteInfo_Rails.Length; i++)
+        {
+            gameNoteInfo_Rails[i] = new List<GameNoteInfo>();
+        }
+
+        for (int i = 0; i < allGameNoteInfo.Count; i++)
+        {
+            
+            gameNoteInfo_Rails[allGameNoteInfo[i].railIdx].Add(allGameNoteInfo[i]);
+        }
+    }
+
+    void inputAPEX()
+    {
+        GameNoteInfo info = new GameNoteInfo();
+
+        #region 1-1
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 31;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 61;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 76;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 106;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 136;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 166;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 226;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 1-2
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 241;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 271;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 301;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 316;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 346;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 376;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 406;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 466;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 1-3
+
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 481;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 511;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 541;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 556;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 586;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 616;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 646;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 706;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 1-4
+
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 721;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 751;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 781;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 796;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 826;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 856;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 886;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 946;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 2-1
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 961;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 961;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 991;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1021;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1036;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1066;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1126;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1171;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1186;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        #endregion
+
+        #region 2-2
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 1201;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 1201;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1231;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1261;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 5;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1291;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1321;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1380;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1411;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1426;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 2-3
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 1441;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 1441;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1471;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1501;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1516;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1561;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1591;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1621;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1651;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        #endregion
+
+        #region 2-4
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1681;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1711;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1741;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1756;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1786;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 1905;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 2-5
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1906;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1921;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1966;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 1996;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2026;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2041;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2086;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2116;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2146;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2161;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 5;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2206;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2236;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 2266;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 2385;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+
+        #endregion
+
+        #region 2-6
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2386;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2401;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2446;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2476;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2506;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2521;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2566;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2596;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2626;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2641;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2686;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 0;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 2716;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 2746;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 2865;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+
+        #endregion
+
+        #region 3-1
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 2866 ;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 2866 ;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3001 ;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3016;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3061;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3106    ;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3166 + madi2;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3196        ;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3211;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3271;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3316;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3406;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3436;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3451;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3511;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3556;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3646;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3661;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3691 ;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3721;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        #endregion
+
+        #region 3-2
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.DRAG_RIGHT;
+        info.time = 3781;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.DRAG_LEFT;
+        info.time = 3781;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3916;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3931;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 3976;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4021;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4051;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4111;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4141;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4156;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4171;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4216;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4261;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4291;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4351;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4381;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4396;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4411;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4456;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4501;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4591;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4606;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4636;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.SHORT;
+        info.time = 4666;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+        #endregion
+
+
+        #region 4
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4696;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4815;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        //
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4816;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4875;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        //
+
+        info = new GameNoteInfo();
+        info.railIdx = 5;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4876;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 5;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4935;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        //
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 4836;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5055;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        //
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5056;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5115;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        //
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5116;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 3;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5175;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        //
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5176;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 2;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5295;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        //
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5296;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 4;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5355;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+        //
+
+        info = new GameNoteInfo();
+        info.railIdx = 5;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5356;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 5;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5415;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5416;
+        info.isLongNoteStart = true;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+        info = new GameNoteInfo();
+        info.railIdx = 1;
+        info.type = (int)GameNoteType.LONG;
+        info.time = 5656;
+        info.isLongNoteStart = false;
+        info.DRAG_release_idx = -1;
+        info.isNoteEnabled = true;
+        allGameNoteInfo.Add(info);
+
+
+
+        #endregion
+
+
+        for (int i = 0; i < gameNoteInfo_Rails.Length; i++)
+        {
+            gameNoteInfo_Rails[i] = new List<GameNoteInfo>();
+        }
+
+        for (int i = 0; i < allGameNoteInfo.Count; i++)
+        {
+            gameNoteInfo_Rails[allGameNoteInfo[i].railIdx].Add(allGameNoteInfo[i]);
+        }
+    }
 
 
     //scoreManager Script로 이전
