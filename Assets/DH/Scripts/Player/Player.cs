@@ -35,7 +35,7 @@ public class Player : MonoBehaviourPun
             Login.hexStringSkin = "RGBA(255, 165, 79, 1)";
         }
 
-        nickName_text.text = Login.userNickname;
+        //nickName_text.text = Login.userNickname;
 
         photonView.RPC(nameof(ss),RpcTarget.AllBuffered,JsonUtility.ToJson(Login));
     }
@@ -45,10 +45,10 @@ public class Player : MonoBehaviourPun
             Debug.Log(dto);
             //커스텀 정보 받으면, 커스텀 정보에 따라서 외형변경
             Login = JsonUtility.FromJson<LoginResponseDTO>(dto);
-            //dto 넣어서 변경하는 함수 제작.
+        //dto 넣어서 변경하는 함수 제작.
+        nickName_text.text = Login.userNickname;
 
-
-            string hexString = Login.hexStringCloth + ":" + Login.hexStringSkin + ":" + Login.hexStringRibbon + ":" + Login.hexStringFace;
+        string hexString = Login.hexStringCloth + ":" + Login.hexStringSkin + ":" + Login.hexStringRibbon + ":" + Login.hexStringFace;
             string[] colorString = hexString.Split(":"); 
             for(int i = 0; i < renderer.materials.Length; i++)
             {

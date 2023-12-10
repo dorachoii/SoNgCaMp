@@ -61,7 +61,7 @@ public class PhotonPlayerManager : MonoBehaviour
                 //시연할때는, 하지않는걸로,
                 Debug.LogError("로그인이 되지 않은 상태로 로비 입장");
                 Vector3 pos = CloudRayCast();
-                GameObject character = PhotonNetwork.Instantiate("Ch_00", pos != Vector3.one ? pos : spawnPostion, Quaternion.identity);
+                GameObject character = PhotonNetwork.Instantiate("Ch_03", pos != Vector3.one ? pos : spawnPostion, Quaternion.identity);
                 //SceneController.StartLoadSceneAsync(this, false, 2, null);
                 evt?.Invoke(character);
                 //그냥 기본 캐릭터 생성.

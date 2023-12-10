@@ -36,7 +36,7 @@ public class EJSceneManager_5 : MonoBehaviour
 
     public void ClickConcertBtn()
     {
-        PhotonNetwork.Disconnect();
+        ConnectionManager.Get.CreateOrJoinRoom("Concert");
         SceneController.StartLoadSceneAsync(this, false, 10, null);
         //SceneManager.LoadScene(10);
     }
