@@ -628,10 +628,8 @@ public class EJNoteManager : MonoBehaviour
 
             GameObject touchEffect = Instantiate(touchFX, touchFX_pos[n]);
             Destroy(touchEffect, 1);
-
             
-            
-
+           
             MIDIPlayer.instance.NoteOn(pitches_rail[n]);
 
 
