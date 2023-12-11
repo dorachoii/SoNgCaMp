@@ -111,7 +111,9 @@ public class EJNoteManager : MonoBehaviour
         //InputTestDRAGNote();
         //InputTestMIXEDNote();
 
-        
+        //누르는 버튼에 따라 실행
+
+
         //InputTestFLOP();
         InputCameraMan();
         //input150beats();

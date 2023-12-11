@@ -13,6 +13,8 @@ public class EJSongPlayer : MonoBehaviour
 {
     #region MP3 Play
     public AudioSource audio;
+    public AudioClip[] songs;
+
     int playCount = 0;
 
     public EJNoteManager noteManager;
@@ -25,6 +27,7 @@ public class EJSongPlayer : MonoBehaviour
             if (!audio.isPlaying)
             {
                 audio.Play();
+                audio.PlayOneShot(songs[0]);
                 playCount++;    
             }
         }
