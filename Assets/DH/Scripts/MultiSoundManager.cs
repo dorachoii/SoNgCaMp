@@ -24,10 +24,12 @@ public class MultiSoundManager : MonoBehaviourPun
                 
             })
             .build();
-        LoadAudioFromURL(rq,(clip)=> {
+        StartCoroutine(LoadAudioFromURL(rq, (clip) => {
+            Debug.Log("재생이 왜 안되느냐.");
             smanager.PlayBGM(clip);
-        });
-        StartCoroutine(SendRequest(rq));
+        }));
+
+
 
         //smanager.PlayBGM(clip);
     }

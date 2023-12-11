@@ -110,6 +110,12 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
             .Host(dto.musicFileUrl)
             .Type(ReqType.GET)
             .Success((down) => {
+
+                if (!Directory.Exists(Application.persistentDataPath + "/" + saveFilePath))
+                {
+                    Directory.CreateDirectory(Application.persistentDataPath + "/" + saveFilePath);
+                }
+
                 musicFilePath = Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3";
                 File.WriteAllBytes(Application.persistentDataPath + "/" + saveFilePath + "/" + "music.mp3", down.data);
                 //파일 다운로드

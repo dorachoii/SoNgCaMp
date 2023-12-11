@@ -24,7 +24,7 @@ public class HttpInfo
     public string url = "";
     public string body;
     public Action<DownloadHandler> onReceive;
-    public static string defaultHost = "http://192.168.0.45:8080/";
+    public static string defaultHost = "http://192.168.26.109:8080/";
     //Set 함수: 1) 요청 타입 2) url 3) return값 받을 Action 4) default url 쓸지 안 쓸지
     public void Set(
 

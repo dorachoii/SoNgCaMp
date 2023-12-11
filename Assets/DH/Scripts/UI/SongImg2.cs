@@ -15,7 +15,7 @@ public class SongImg2 : MonoBehaviour
     public 
     Image img;
 
-    FileDTO dto;
+    public FileDTO dto;
 
     //사진은 아직.
     public void set(string text,Sprite img,FileDTO dto) {
