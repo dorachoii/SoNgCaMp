@@ -145,7 +145,6 @@ public struct SongInfo
 
 public class HttpManager : MonoBehaviour
 {
-    public EJLogIn_UI ui;
     static HttpManager instance;
 
     private void Start()
@@ -293,13 +292,6 @@ public class HttpManager : MonoBehaviour
             print("네트워크 에러 : " + req.error);
 
             
-            if (ui.c.activeSelf)
-            {
-                SceneManager.LoadScene(3);
-            }else if (ui.d.activeSelf)
-            {
-                SceneManager.LoadScene(13);
-            }
 
 
 
