@@ -2,6 +2,7 @@ using Melanchall.DryWetMidi.Core;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 
 using UnityEngine;
@@ -97,6 +98,10 @@ public class EJNoteManager : MonoBehaviour
     public Canvas canvas;
     public GameObject[] scoreTexts;
 
+
+    public TextMeshProUGUI songName;
+    public TextMeshProUGUI songArtist;
+
     void Start()
     {
 
@@ -121,26 +126,38 @@ public class EJNoteManager : MonoBehaviour
         {
             case 0:
                 InputTestFLOP();
-                bpm = 120;
+                songName.text = "Flop";
+                songArtist.text = "Jaedal";
+                bpm = 100;
 
                 break;
             case 1:
                 inputAPEX();
+                songName.text = "APEX";
+                songArtist.text = "Silica gel";
                 bpm = 120;
 
                 break;
             case 2:
                 InputCameraMan();
+                songName.text = "Camera Man";
+                songArtist.text = "Jett, Muteko";
                 bpm = 120;
                 break;
 
             case 3:
                 input150beats();
+                songName.text = "Rock Star";
+                songArtist.text = "Jett, Muteko";
+
                 bpm = 120;
                 break;
 
             default:
                 InputCameraMan();
+                songName.text = "Camera Man";
+                songArtist.text = "Jett, Muteko";
+                bpm = 120;
                 break;
         }
 
@@ -968,6 +985,7 @@ public class EJNoteManager : MonoBehaviour
     public void MissCheck()
     {
         //showScoreText(4);
+        Handheld.Vibrate();
         EJScoreManager.instance.StartShowScoreText("Miss", 0, 0);
 
         //안되는 이유..? 한프레임이라?

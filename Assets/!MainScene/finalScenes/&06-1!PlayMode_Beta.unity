@@ -7829,6 +7829,8 @@ MonoBehaviour:
   - {fileID: 3271136883742011284, guid: 96fa2a4e29953de4ba1882c7f568b7da, type: 3}
   - {fileID: 3271136883742011284, guid: 3dc128b7b53c3f84bb8a0f9e2400c666, type: 3}
   - {fileID: 3271136883742011284, guid: 64594da228899af42abe17b333c46440, type: 3}
+  songName: {fileID: 1416595057}
+  songArtist: {fileID: 366404235}
 --- !u!82 &1271823017
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9468,9 +9470,9 @@ MonoBehaviour:
   audio: {fileID: 1271823017}
   songs:
   - {fileID: 8300000, guid: 82fa19ef083f9c547b8b54c80ff2b7f5, type: 3}
-  - {fileID: 0}
-  - {fileID: 8300000, guid: 492ccc3714f7d064082c1d2975d13829, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 20f1bf9d03da9e54aa915a7c55f9c76c, type: 3}
+  - {fileID: 8300000, guid: 894444cd994783847ae0a03816ad0237, type: 3}
+  - {fileID: 8300000, guid: 3310333c29d997646aadb3db0c7ea8e1, type: 3}
   noteManager: {fileID: 1271823016}
   pauseCanvas: {fileID: 0}
   midiFilePath: PianoTest1234.mid.txt

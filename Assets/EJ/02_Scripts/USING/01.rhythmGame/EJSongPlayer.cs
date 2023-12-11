@@ -8,6 +8,7 @@ using CSharpSynth.Sequencer;
 using CSharpSynth.Synthesis;
 using CSharpSynth.Midi;
 using Melanchall.DryWetMidi.MusicTheory;
+using TMPro;
 
 [RequireComponent(typeof(AudioSource))]
 
@@ -21,6 +22,7 @@ public class EJSongPlayer : MonoBehaviour
 
     public EJNoteManager noteManager;
     public GameObject pauseCanvas;
+
 
     private void OnTriggerEnter(Collider other)
     {

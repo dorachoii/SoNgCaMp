@@ -34,8 +34,10 @@ public class EJ_pause : MonoBehaviour
 
     public void ClickSongSelection()
     {
+
         canvasPause.SetActive(false);
         SceneManager.LoadScene(8);
+        Time.timeScale = 1;
     }
 
    

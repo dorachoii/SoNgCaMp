@@ -19,6 +19,9 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
     public bool isSelect;
     public bool isDefault;
     public int index;
+
+    //public GameObject outline;
+
     FileDTO dto;
     public void Set(string title,string musician,string session,string genre,Sprite sprite,FileDTO dto,int clickChangeScene) {
         image.sprite = sprite;
@@ -136,6 +139,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
             .Type(ReqType.GET)
             .build();
         }
+        //outline.SetActive(true);
         StartCoroutine(LoadAudioFromURL(rq, (clip) => { SoundManager.Get.PlayBGM(clip); }));
 
 
