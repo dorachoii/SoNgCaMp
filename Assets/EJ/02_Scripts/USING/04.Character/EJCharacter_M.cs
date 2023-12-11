@@ -501,6 +501,7 @@ public class EJCharacter_M : MonoBehaviour
 
                 }, true);
                 httpInfo.body = JsonUtility.ToJson(userInfo_Customizing);
+                Debug.LogError("SSSSSSS : "+ httpInfo.body);
                 HttpManager.Get().SendRequest(httpInfo);
             })
             .Failure((down)=> {

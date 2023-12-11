@@ -50,6 +50,7 @@ public class PhotonPlayerManager : MonoBehaviour
             .Success((down) => {
                 //자기 캐릭터 생성하기..
                 ResponseDTO<LoginDTO2> responce = JsonUtility.FromJson<ResponseDTO<LoginDTO2>>(down.text);
+                Debug.LogError(down.text);
                 Vector3 pos = CloudRayCast();
 
                 GameObject character = PhotonNetwork.Instantiate("Ch_0" + (responce.results.authority.characterType), pos != Vector3.one ? pos : spawnPostion, Quaternion.identity); //이거 수정필요
