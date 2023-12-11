@@ -16,19 +16,12 @@ public class EJ_screenshot : MonoBehaviour
         string timeStamp = System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
         string fileName = "SongCamp-ScreenShot-" + timeStamp + ".png";
 
-#if UNITY_EDITOR
+
 
         // 바탕화면에 저장
         string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
         string filePath = Path.Combine(desktopPath, fileName);
-#else
-        //mobile의 경우
-        Texture2D texture = sampleImage.sprite.texture;
 
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(texture, albumName, fileName + ".png"), (success, path) => Debug.Log("image save result: " + success + " " + path ));
-
-        Debug.Log("Permission result: " + permission);
-#endif
 
         lastSavedFilePath = filePath;
         ScreenCapture.CaptureScreenshot(filePath);
