@@ -18,7 +18,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
     public TMP_Text genre;
     public bool isSelect;
     public bool isDefault;
-
+    public int index;
     FileDTO dto;
     public void Set(string title,string musician,string session,string genre,Sprite sprite,FileDTO dto,int clickChangeScene) {
         image.sprite = sprite;
@@ -93,6 +93,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
 
         //default면 바로이동
         if (isDefault) {
+            PlayerPrefs.SetInt("SongIndex",index);
             TextAsset tx = (TextAsset)Resources.Load("Default/default.mid");
             File.WriteAllBytes(Application.persistentDataPath + "/" + "files/compose.mid", tx.bytes);
 
@@ -160,7 +161,7 @@ public class SongImg : MonoBehaviour,IPointerClickHandler
 
 
                     File.WriteAllBytes(Application.persistentDataPath + "/" + path, down.data);
-
+                    PlayerPrefs.SetInt("SongIndex", index);
 
                     SceneManager.LoadScene(clickChangeScene);
 

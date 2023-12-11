@@ -57,7 +57,7 @@ public class LoadSong : MonoBehaviour
             GameObject go = Instantiate(songImgObj, content);
             go.SetActive(false);
             SongImg img =  go.GetComponent<SongImg>();
-
+            img.index = count;
             //info의 img url이 null이면
             if (info.imageFileUrl == null) {
                 
