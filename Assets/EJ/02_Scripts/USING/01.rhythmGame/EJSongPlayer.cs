@@ -1,3 +1,5 @@
+
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,9 +15,12 @@ public class EJSongPlayer : MonoBehaviour
 {
     #region MP3 Play
     public AudioSource audio;
+    public AudioClip[] songs;
+
     int playCount = 0;
 
     public EJNoteManager noteManager;
+    public GameObject pauseCanvas;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,8 +28,15 @@ public class EJSongPlayer : MonoBehaviour
         {
             if (!audio.isPlaying)
             {
-                audio.Play();
-                playCount++;    
+                int songindex = PlayerPrefs.GetInt("SongIndex");
+
+                if (songindex > 3)
+                {
+                    songindex = 2;
+                }
+
+                audio.PlayOneShot(songs[songindex]);
+                playCount++;
             }
         }
     }
@@ -68,13 +80,13 @@ public class EJSongPlayer : MonoBehaviour
         midiSequencer = new MidiSequencer(midiStreamSynthesizer);
 
         //LoadSong(midiFilePath);
-        
+
         //These will be fired by the midiSequencer when a song plays. Check the console for messages if you uncomment these
         //midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler(MidiNoteOnHandler);
         //midiSequencer.NoteOffEvent += new MidiSequencer.NoteOffEventHandler (MidiNoteOffHandler);
     }
 
- 
+
     void LoadSong(string midiPath)
     {
         midiSequencer.LoadMidi(midiPath, false);
@@ -86,10 +98,9 @@ public class EJSongPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!audio.isPlaying)
         {
-            if (playCount > 0 &&!isFXplayed)
+            if (playCount > 0 && !isFXplayed && !pauseCanvas.activeSelf)
             {
                 isFXplayed = true;
                 noteManager.startcoFinaleFX();

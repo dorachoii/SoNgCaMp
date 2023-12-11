@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1859,7 +1859,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &237318440
 Canvas:
   m_ObjectHideFlags: 0
@@ -9466,7 +9466,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio: {fileID: 1271823017}
+  songs:
+  - {fileID: 8300000, guid: 82fa19ef083f9c547b8b54c80ff2b7f5, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 492ccc3714f7d064082c1d2975d13829, type: 3}
+  - {fileID: 0}
   noteManager: {fileID: 1271823016}
+  pauseCanvas: {fileID: 0}
   midiFilePath: PianoTest1234.mid.txt
   ShouldPlayFile: 1
   bankFilePath: GM Bank/gm
