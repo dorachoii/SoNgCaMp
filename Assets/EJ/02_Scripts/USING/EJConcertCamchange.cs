@@ -11,20 +11,25 @@ public class EJConcertCamchange : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        StartCoroutine(camChange());
+        //StartCoroutine(camChange());
     }
 
+    bool iscamChanged = false;
     // Update is called once per frame
     void Update()
     {
-      
+        if (!iscamChanged)
+        {
+            iscamChanged = true;
+            StartCoroutine(camChange());
+        }
     }
 
-
+    
     int camIdx = 0;
-    int repeat = 30;
+    int repeat = 2000;
     IEnumerator camChange()
     {
         for (int i = 0; i < repeat; i++)

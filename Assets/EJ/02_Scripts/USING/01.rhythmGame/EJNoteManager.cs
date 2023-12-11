@@ -13,7 +13,7 @@ public class EJNoteManager : MonoBehaviour
 {
     //임의
     //150 - 120이 그나마 
-    float bpm = 100;
+    float bpm = 120;
     
     public Camera maincam;
 
@@ -110,15 +110,15 @@ public class EJNoteManager : MonoBehaviour
         //InputTestLONGNotes();     //test FINISHED_1차!!!
         //InputTestDRAGNote();
         //InputTestMIXEDNote();
-        //InputTestFLOP();
-        //InputCameraMan();
-        //input150beats();
-        inputAPEX();
-
-        //StartCoroutine(Test());
 
         
+        //InputTestFLOP();
+        InputCameraMan();
+        //input150beats();
+        //inputAPEX();
 
+        //StartCoroutine(Test());
+       
     }
 
     IEnumerator Test()

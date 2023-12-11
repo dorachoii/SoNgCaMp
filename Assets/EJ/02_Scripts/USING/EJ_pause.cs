@@ -63,4 +63,10 @@ public class EJ_pause : MonoBehaviour
         //notemanager currtime 기록한 시점부터 시작
         Time.timeScale = 1;
     }
+
+    public void ClickHome()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(4);
+    }
 }

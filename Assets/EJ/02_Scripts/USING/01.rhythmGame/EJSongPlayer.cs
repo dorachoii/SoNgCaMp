@@ -16,6 +16,7 @@ public class EJSongPlayer : MonoBehaviour
     int playCount = 0;
 
     public EJNoteManager noteManager;
+    public GameObject pauseCanvas;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -86,10 +87,9 @@ public class EJSongPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!audio.isPlaying)
         {
-            if (playCount > 0 &&!isFXplayed)
+            if (playCount > 0 && !isFXplayed && !pauseCanvas.activeSelf)
             {
                 isFXplayed = true;
                 noteManager.startcoFinaleFX();

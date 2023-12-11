@@ -9467,6 +9467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 1271823017}
   noteManager: {fileID: 1271823016}
+  pauseCanvas: {fileID: 164536967}
   midiFilePath: PianoTest1234.mid.txt
   ShouldPlayFile: 1
   bankFilePath: GM Bank/gm
