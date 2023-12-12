@@ -36,7 +36,9 @@ public class MultiSoundManager : MonoBehaviourPun
 
     public AudioClip clip;
     public void PlayRPC(string url) {
-        photonView.RPC(nameof(Play),RpcTarget.All,url);
+        Play(url);
+        
+        //photonView.RPC(nameof(Play),RpcTarget.All,url);
         
     }
 }

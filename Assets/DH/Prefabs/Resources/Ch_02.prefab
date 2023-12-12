@@ -2902,7 +2902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  speed: 10
+  speed: 5
   rotspeed: 30
 --- !u!114 &8267292198999767910
 MonoBehaviour:

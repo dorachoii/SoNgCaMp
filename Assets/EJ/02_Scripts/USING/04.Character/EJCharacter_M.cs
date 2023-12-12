@@ -479,7 +479,7 @@ public class EJCharacter_M : MonoBehaviour
             .Data(TokenManager.Token)
             .Success((down)=> {
                 dto = JsonUtility.FromJson<ResponseDTO<LoginDTO2>>(down.text);
-
+                userInfo_Customizing.userNo = dto.results.authority.userNo;
 
                 //커스터마이징 저장
                 httpInfo.Set(RequestType.POST, "api/v1/users/customize", (DownloadHandler downHandler) =>
