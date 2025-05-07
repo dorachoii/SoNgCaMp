@@ -132,9 +132,7 @@ pulic class Midi2Note : MonoBehaviour
 </details>
 <details>
 <summary>③ タイルタイプ別のスコア判定</summary>
-![가로1080_1](https://github.com/user-attachments/assets/d0fc64da-4e71-4c06-af51-8f6dc216734a)
-![가로1080_2](https://github.com/user-attachments/assets/fa429318-29f0-4fd1-a24d-4bb5442cbc03)
-![가로1080_3](https://github.com/user-attachments/assets/35d14a2f-6ed8-4a71-87a2-55212a25299c)
+
 
 
 
