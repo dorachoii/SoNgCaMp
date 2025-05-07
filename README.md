@@ -20,7 +20,7 @@
 
 <details>
 <summary>① プレイヤーのカスタマイズ情報をサーバーに保存</summary>
-![가로1080](https://github.com/user-attachments/assets/101ea34a-b66c-4322-8422-a41291c58fb5)
+
 
 
 
